@@ -1,10 +1,10 @@
 # Migration de base de données MySQL WordPress
 #
-# Généré : Saturday 13. August 2022 11:51 UTC
+# Généré : Saturday 13. August 2022 13:46 UTC
 # Nom d’hôte : localhost
 # Base de données : `local`
 # URL: //merish.local
-# Path: C:\\Users\\hayth\\Local Sites\\merish\\app\\public
+# Path: C:\\Users\\Haytham\\Local Sites\\merish\\app\\public
 # Tables: wp_actionscheduler_actions, wp_actionscheduler_claims, wp_actionscheduler_groups, wp_actionscheduler_logs, wp_commentmeta, wp_comments, wp_gla_budget_recommendations, wp_gla_merchant_issues, wp_gla_shipping_rates, wp_gla_shipping_times, wp_links, wp_mailpoet_custom_fields, wp_mailpoet_dynamic_segment_filters, wp_mailpoet_feature_flags, wp_mailpoet_forms, wp_mailpoet_log, wp_mailpoet_mapping_to_external_entities, wp_mailpoet_newsletter_links, wp_mailpoet_newsletter_option, wp_mailpoet_newsletter_option_fields, wp_mailpoet_newsletter_posts, wp_mailpoet_newsletter_segment, wp_mailpoet_newsletter_templates, wp_mailpoet_newsletters, wp_mailpoet_scheduled_task_subscribers, wp_mailpoet_scheduled_tasks, wp_mailpoet_segments, wp_mailpoet_sending_queues, wp_mailpoet_settings, wp_mailpoet_statistics_bounces, wp_mailpoet_statistics_clicks, wp_mailpoet_statistics_forms, wp_mailpoet_statistics_newsletters, wp_mailpoet_statistics_opens, wp_mailpoet_statistics_unsubscribes, wp_mailpoet_statistics_woocommerce_purchases, wp_mailpoet_stats_notifications, wp_mailpoet_subscriber_custom_field, wp_mailpoet_subscriber_ips, wp_mailpoet_subscriber_segment, wp_mailpoet_subscriber_tag, wp_mailpoet_subscribers, wp_mailpoet_tags, wp_mailpoet_user_agents, wp_mailpoet_user_flags, wp_options, wp_postmeta, wp_posts, wp_term_relationships, wp_term_taxonomy, wp_termmeta, wp_terms, wp_usermeta, wp_users, wp_wc_admin_note_actions, wp_wc_admin_notes, wp_wc_category_lookup, wp_wc_customer_lookup, wp_wc_download_log, wp_wc_order_coupon_lookup, wp_wc_order_product_lookup, wp_wc_order_stats, wp_wc_order_tax_lookup, wp_wc_product_attributes_lookup, wp_wc_product_download_directories, wp_wc_product_meta_lookup, wp_wc_rate_limits, wp_wc_reserved_stock, wp_wc_tax_rate_classes, wp_wc_webhooks, wp_woocommerce_api_keys, wp_woocommerce_attribute_taxonomies, wp_woocommerce_downloadable_product_permissions, wp_woocommerce_log, wp_woocommerce_order_itemmeta, wp_woocommerce_order_items, wp_woocommerce_payment_tokenmeta, wp_woocommerce_payment_tokens, wp_woocommerce_sessions, wp_woocommerce_shipping_zone_locations, wp_woocommerce_shipping_zone_methods, wp_woocommerce_shipping_zones, wp_woocommerce_tax_rate_locations, wp_woocommerce_tax_rates, wp_wpforms_tasks_meta
 # Table Prefix: wp_
 # Post Types: revision, attachment, custom_css, customize_changeset, mailpoet_page, nav_menu_item, page, post, product, wp_global_styles, wpforms
@@ -12,7 +12,7 @@
 # Multisite: false
 # Subsite Export: false
 # --------------------------------------------------------
-/* meriem */
+
 /*!40101 SET NAMES utf8 */;
 
 SET sql_mode='NO_AUTO_VALUE_ON_ZERO';
@@ -32,18 +32,18 @@ DROP TABLE IF EXISTS `wp_actionscheduler_actions`;
 
 CREATE TABLE `wp_actionscheduler_actions` (
   `action_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `hook` varchar(191) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `hook` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `scheduled_date_gmt` datetime DEFAULT '0000-00-00 00:00:00',
   `scheduled_date_local` datetime DEFAULT '0000-00-00 00:00:00',
-  `args` varchar(191) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `schedule` longtext COLLATE utf8mb4_unicode_520_ci,
+  `args` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `schedule` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `group_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `attempts` int(11) NOT NULL DEFAULT '0',
   `last_attempt_gmt` datetime DEFAULT '0000-00-00 00:00:00',
   `last_attempt_local` datetime DEFAULT '0000-00-00 00:00:00',
   `claim_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `extended_args` varchar(8000) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `extended_args` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`action_id`),
   KEY `hook` (`hook`),
   KEY `status` (`status`),
@@ -52,118 +52,146 @@ CREATE TABLE `wp_actionscheduler_actions` (
   KEY `group_id` (`group_id`),
   KEY `last_attempt_gmt` (`last_attempt_gmt`),
   KEY `claim_id_status_scheduled_date_gmt` (`claim_id`,`status`,`scheduled_date_gmt`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
 # Données de la table `wp_actionscheduler_actions`
 #
 INSERT INTO `wp_actionscheduler_actions` ( `action_id`, `hook`, `status`, `scheduled_date_gmt`, `scheduled_date_local`, `args`, `schedule`, `group_id`, `attempts`, `last_attempt_gmt`, `last_attempt_local`, `claim_id`, `extended_args`) VALUES
-(6, 'action_scheduler/migration_hook', 'complete', '2022-08-12 14:16:05', '2022-08-12 14:16:05', '[]', 'O:30:"ActionScheduler_SimpleSchedule":2:{s:22:"\0*\0scheduled_timestamp";i:1660313765;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660313765;}', 1, 1, '2022-08-12 14:16:23', '2022-08-12 14:16:23', 0, NULL),
-(7, 'action_scheduler/migration_hook', 'canceled', '2022-08-12 14:16:05', '2022-08-12 14:16:05', '[]', 'O:30:"ActionScheduler_SimpleSchedule":2:{s:22:"\0*\0scheduled_timestamp";i:1660313765;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660313765;}', 2, 0, '2022-08-12 14:16:22', '2022-08-12 14:16:22', 0, NULL),
-(8, 'woocommerce_cleanup_draft_orders', 'complete', '2022-08-12 14:15:10', '2022-08-12 14:15:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660313710;s:18:"\0*\0first_timestamp";i:1660313710;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660313710;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 0, 1, '2022-08-12 14:16:22', '2022-08-12 14:16:22', 0, NULL),
-(9, 'woocommerce_cleanup_draft_orders', 'pending', '2022-08-13 14:16:22', '2022-08-13 14:16:22', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660400182;s:18:"\0*\0first_timestamp";i:1660313710;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660400182;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(10, 'wc_gla_cron_daily_notes', 'complete', '2022-08-12 14:21:36', '2022-08-12 14:21:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314096;s:18:"\0*\0first_timestamp";i:1660314096;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314096;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 3, 1, '2022-08-12 14:21:45', '2022-08-12 14:21:45', 0, NULL),
-(11, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:21:39', '2022-08-12 14:21:39', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314099;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314099;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:21:50', '2022-08-12 14:21:50', 0, NULL),
-(12, 'wc_gla_cron_daily_notes', 'pending', '2022-08-13 14:21:45', '2022-08-13 14:21:45', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660400505;s:18:"\0*\0first_timestamp";i:1660314096;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660400505;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 3, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(13, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:44', '2022-08-12 14:21:44', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314104;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314104;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:21:50', '2022-08-12 14:21:50', 0, NULL),
-(14, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:51', '2022-08-12 14:21:51', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314111;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314111;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:21:55', '2022-08-12 14:21:55', 0, NULL),
-(15, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:23:50', '2022-08-12 14:23:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314230;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314230;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:23:50', '2022-08-12 14:23:50', 0, NULL),
-(16, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:56', '2022-08-12 14:21:56', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314116;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314116;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:22:00', '2022-08-12 14:22:00', 0, NULL),
-(17, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:22:01', '2022-08-12 14:22:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314121;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314121;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:22:05', '2022-08-12 14:22:05', 0, NULL),
-(19, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:25:50', '2022-08-12 14:25:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314350;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314350;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:27:27', '2022-08-12 14:27:27', 0, NULL),
-(20, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:29:27', '2022-08-12 14:29:27', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314567;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314567;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:29:28', '2022-08-12 14:29:28', 0, NULL),
-(21, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:31:28', '2022-08-12 14:31:28', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314688;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314688;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:31:29', '2022-08-12 14:31:29', 0, NULL),
-(22, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:33:29', '2022-08-12 14:33:29', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314809;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314809;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:33:50', '2022-08-12 14:33:50', 0, NULL),
-(23, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:35:50', '2022-08-12 14:35:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660314950;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314950;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:37:38', '2022-08-12 14:37:38', 0, NULL),
-(24, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:39:38', '2022-08-12 14:39:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315178;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315178;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:39:42', '2022-08-12 14:39:42', 0, NULL),
-(25, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:41:42', '2022-08-12 14:41:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315302;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315302;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
-(26, 'wpforms_process_forms_locator_scan', 'complete', '2022-08-12 14:41:23', '2022-08-12 14:41:23', '{"tasks_meta_id":1}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315283;s:18:"\0*\0first_timestamp";i:1660315283;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315283;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 5, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
-(27, 'wpforms_email_summaries_fetch_info_blocks', 'complete', '2022-08-12 06:15:23', '2022-08-12 06:15:23', '{"tasks_meta_id":null}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660284923;s:18:"\0*\0first_timestamp";i:1660284923;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660284923;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;}', 5, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
-(28, 'wpforms_admin_addons_cache_update', 'pending', '2022-08-19 14:41:24', '2022-08-19 14:41:24', '{"tasks_meta_id":2}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660920084;s:18:"\0*\0first_timestamp";i:1660920084;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920084;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(29, 'wpforms_admin_builder_templates_cache_update', 'pending', '2022-08-19 14:41:24', '2022-08-19 14:41:24', '{"tasks_meta_id":3}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660920084;s:18:"\0*\0first_timestamp";i:1660920084;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920084;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(30, 'wpforms_email_summaries_fetch_info_blocks', 'pending', '2022-08-19 14:41:47', '2022-08-19 14:41:47', '{"tasks_meta_id":null}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660920107;s:18:"\0*\0first_timestamp";i:1660284923;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920107;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(31, 'wpforms_process_forms_locator_scan', 'pending', '2022-08-13 14:41:47', '2022-08-13 14:41:47', '{"tasks_meta_id":1}', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660401707;s:18:"\0*\0first_timestamp";i:1660315283;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660401707;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
-(32, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:43:47', '2022-08-12 14:43:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315427;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315427;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:43:59', '2022-08-12 14:43:59', 0, NULL),
+(6, 'action_scheduler/migration_hook', 'complete', '2022-08-12 14:16:05', '2022-08-12 14:16:05', '[]', 'O:30:"ActionScheduler_SimpleSchedule":4:{s:22:"\0*\0scheduled_timestamp";i:1660313765;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660313765;s:19:"scheduled_timestamp";i:1660313765;s:9:"timestamp";i:1660313765;}', 1, 1, '2022-08-12 14:16:23', '2022-08-12 14:16:23', 0, NULL),
+(7, 'action_scheduler/migration_hook', 'canceled', '2022-08-12 14:16:05', '2022-08-12 14:16:05', '[]', 'O:30:"ActionScheduler_SimpleSchedule":4:{s:22:"\0*\0scheduled_timestamp";i:1660313765;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660313765;s:19:"scheduled_timestamp";i:1660313765;s:9:"timestamp";i:1660313765;}', 2, 0, '2022-08-12 14:16:22', '2022-08-12 14:16:22', 0, NULL),
+(8, 'woocommerce_cleanup_draft_orders', 'complete', '2022-08-12 14:15:10', '2022-08-12 14:15:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660313710;s:18:"\0*\0first_timestamp";i:1660313710;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660313710;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660313710;s:15:"first_timestamp";i:1660313710;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660313710;s:19:"interval_in_seconds";i:86400;}', 0, 1, '2022-08-12 14:16:22', '2022-08-12 14:16:22', 0, NULL),
+(9, 'woocommerce_cleanup_draft_orders', 'pending', '2022-08-13 14:16:22', '2022-08-13 14:16:22', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660400182;s:18:"\0*\0first_timestamp";i:1660313710;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660400182;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660400182;s:15:"first_timestamp";i:1660313710;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660400182;s:19:"interval_in_seconds";i:86400;}', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(10, 'wc_gla_cron_daily_notes', 'complete', '2022-08-12 14:21:36', '2022-08-12 14:21:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314096;s:18:"\0*\0first_timestamp";i:1660314096;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314096;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660314096;s:15:"first_timestamp";i:1660314096;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660314096;s:19:"interval_in_seconds";i:86400;}', 3, 1, '2022-08-12 14:21:45', '2022-08-12 14:21:45', 0, NULL),
+(11, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:21:39', '2022-08-12 14:21:39', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314099;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314099;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314099;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314099;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:21:50', '2022-08-12 14:21:50', 0, NULL),
+(12, 'wc_gla_cron_daily_notes', 'pending', '2022-08-13 14:21:45', '2022-08-13 14:21:45', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660400505;s:18:"\0*\0first_timestamp";i:1660314096;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660400505;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660400505;s:15:"first_timestamp";i:1660314096;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660400505;s:19:"interval_in_seconds";i:86400;}', 3, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(13, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:44', '2022-08-12 14:21:44', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314104;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314104;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660314104;s:15:"first_timestamp";i:1660314104;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660314104;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:21:50', '2022-08-12 14:21:50', 0, NULL),
+(14, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:51', '2022-08-12 14:21:51', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314111;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314111;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660314111;s:15:"first_timestamp";i:1660314104;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660314111;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:21:55', '2022-08-12 14:21:55', 0, NULL),
+(15, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:23:50', '2022-08-12 14:23:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314230;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314230;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314230;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314230;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:23:50', '2022-08-12 14:23:50', 0, NULL),
+(16, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:21:56', '2022-08-12 14:21:56', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314116;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314116;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660314116;s:15:"first_timestamp";i:1660314104;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660314116;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:22:00', '2022-08-12 14:22:00', 0, NULL),
+(17, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 14:22:01', '2022-08-12 14:22:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314121;s:18:"\0*\0first_timestamp";i:1660314104;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314121;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660314121;s:15:"first_timestamp";i:1660314104;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660314121;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 14:22:05', '2022-08-12 14:22:05', 0, NULL),
+(19, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:25:50', '2022-08-12 14:25:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314350;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314350;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314350;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314350;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:27:27', '2022-08-12 14:27:27', 0, NULL),
+(20, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:29:27', '2022-08-12 14:29:27', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314567;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314567;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314567;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314567;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:29:28', '2022-08-12 14:29:28', 0, NULL),
+(21, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:31:28', '2022-08-12 14:31:28', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314688;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314688;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314688;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314688;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:31:29', '2022-08-12 14:31:29', 0, NULL),
+(22, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:33:29', '2022-08-12 14:33:29', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314809;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314809;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314809;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314809;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:33:50', '2022-08-12 14:33:50', 0, NULL),
+(23, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:35:50', '2022-08-12 14:35:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660314950;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660314950;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660314950;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660314950;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:37:38', '2022-08-12 14:37:38', 0, NULL),
+(24, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:39:38', '2022-08-12 14:39:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315178;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315178;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315178;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315178;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:39:42', '2022-08-12 14:39:42', 0, NULL),
+(25, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:41:42', '2022-08-12 14:41:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315302;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315302;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315302;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315302;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
+(26, 'wpforms_process_forms_locator_scan', 'complete', '2022-08-12 14:41:23', '2022-08-12 14:41:23', '{"tasks_meta_id":1}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315283;s:18:"\0*\0first_timestamp";i:1660315283;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315283;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660315283;s:15:"first_timestamp";i:1660315283;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660315283;s:19:"interval_in_seconds";i:86400;}', 5, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
+(27, 'wpforms_email_summaries_fetch_info_blocks', 'complete', '2022-08-12 06:15:23', '2022-08-12 06:15:23', '{"tasks_meta_id":null}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660284923;s:18:"\0*\0first_timestamp";i:1660284923;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660284923;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;s:19:"scheduled_timestamp";i:1660284923;s:15:"first_timestamp";i:1660284923;s:10:"recurrence";i:604800;s:15:"start_timestamp";i:1660284923;s:19:"interval_in_seconds";i:604800;}', 5, 1, '2022-08-12 14:41:47', '2022-08-12 14:41:47', 0, NULL),
+(28, 'wpforms_admin_addons_cache_update', 'pending', '2022-08-19 14:41:24', '2022-08-19 14:41:24', '{"tasks_meta_id":2}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660920084;s:18:"\0*\0first_timestamp";i:1660920084;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920084;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;s:19:"scheduled_timestamp";i:1660920084;s:15:"first_timestamp";i:1660920084;s:10:"recurrence";i:604800;s:15:"start_timestamp";i:1660920084;s:19:"interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(29, 'wpforms_admin_builder_templates_cache_update', 'pending', '2022-08-19 14:41:24', '2022-08-19 14:41:24', '{"tasks_meta_id":3}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660920084;s:18:"\0*\0first_timestamp";i:1660920084;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920084;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;s:19:"scheduled_timestamp";i:1660920084;s:15:"first_timestamp";i:1660920084;s:10:"recurrence";i:604800;s:15:"start_timestamp";i:1660920084;s:19:"interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(30, 'wpforms_email_summaries_fetch_info_blocks', 'pending', '2022-08-19 14:41:47', '2022-08-19 14:41:47', '{"tasks_meta_id":null}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660920107;s:18:"\0*\0first_timestamp";i:1660284923;s:13:"\0*\0recurrence";i:604800;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660920107;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:604800;s:19:"scheduled_timestamp";i:1660920107;s:15:"first_timestamp";i:1660284923;s:10:"recurrence";i:604800;s:15:"start_timestamp";i:1660920107;s:19:"interval_in_seconds";i:604800;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(31, 'wpforms_process_forms_locator_scan', 'pending', '2022-08-13 14:41:47', '2022-08-13 14:41:47', '{"tasks_meta_id":1}', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660401707;s:18:"\0*\0first_timestamp";i:1660315283;s:13:"\0*\0recurrence";i:86400;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660401707;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:86400;s:19:"scheduled_timestamp";i:1660401707;s:15:"first_timestamp";i:1660315283;s:10:"recurrence";i:86400;s:15:"start_timestamp";i:1660401707;s:19:"interval_in_seconds";i:86400;}', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL),
+(32, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:43:47', '2022-08-12 14:43:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315427;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315427;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315427;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315427;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:43:59', '2022-08-12 14:43:59', 0, NULL),
 (33, 'woocommerce_admin/stored_state_setup_for_products/async/run_remote_notifications', 'complete', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '[]', 'O:28:"ActionScheduler_NullSchedule":0:{}', 0, 1, '2022-08-12 14:43:59', '2022-08-12 14:43:59', 0, NULL),
-(34, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:45:59', '2022-08-12 14:45:59', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315559;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315559;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:46:03', '2022-08-12 14:46:03', 0, NULL),
+(34, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:45:59', '2022-08-12 14:45:59', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315559;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315559;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315559;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315559;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:46:03', '2022-08-12 14:46:03', 0, NULL),
 (35, 'wpforms_admin_notifications_update', 'complete', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '{"tasks_meta_id":4}', 'O:28:"ActionScheduler_NullSchedule":0:{}', 5, 1, '2022-08-12 14:44:58', '2022-08-12 14:44:58', 0, NULL),
-(36, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:48:03', '2022-08-12 14:48:03', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315683;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315683;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:48:39', '2022-08-12 14:48:39', 0, NULL),
-(37, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:50:39', '2022-08-12 14:50:39', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315839;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315839;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:51:14', '2022-08-12 14:51:14', 0, NULL),
-(38, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:53:14', '2022-08-12 14:53:14', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660315994;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315994;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:54:38', '2022-08-12 14:54:38', 0, NULL),
-(39, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:56:38', '2022-08-12 14:56:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316198;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316198;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:57:40', '2022-08-12 14:57:40', 0, NULL),
-(40, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:59:40', '2022-08-12 14:59:40', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316380;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316380;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:00:07', '2022-08-12 15:00:07', 0, NULL),
-(41, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:02:07', '2022-08-12 15:02:07', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316527;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316527;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:02:10', '2022-08-12 15:02:10', 0, NULL),
-(42, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:04:10', '2022-08-12 15:04:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316650;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316650;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:04:42', '2022-08-12 15:04:42', 0, NULL),
-(43, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:06:42', '2022-08-12 15:06:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316802;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316802;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:07:48', '2022-08-12 15:07:48', 0, NULL),
-(44, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:09:48', '2022-08-12 15:09:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660316988;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316988;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:09:48', '2022-08-12 15:09:48', 0, NULL),
-(45, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:11:48', '2022-08-12 15:11:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317108;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317108;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:11:48', '2022-08-12 15:11:48', 0, NULL),
-(46, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:13:48', '2022-08-12 15:13:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317228;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317228;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:14:43', '2022-08-12 15:14:43', 0, NULL),
-(47, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:16:43', '2022-08-12 15:16:43', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317403;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317403;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:16:50', '2022-08-12 15:16:50', 0, NULL),
-(48, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:18:50', '2022-08-12 15:18:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317530;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317530;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:20:51', '2022-08-12 15:20:51', 0, NULL),
-(49, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:22:51', '2022-08-12 15:22:51', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317771;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317771;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:22:58', '2022-08-12 15:22:58', 0, NULL),
-(50, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 15:22:52', '2022-08-12 15:22:52', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317772;s:18:"\0*\0first_timestamp";i:1660317772;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317772;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 15:22:59', '2022-08-12 15:22:59', 0, NULL),
-(51, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:24:58', '2022-08-12 15:24:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317898;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317898;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:26:53', '2022-08-12 15:26:53', 0, NULL),
-(52, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 15:23:00', '2022-08-12 15:23:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660317780;s:18:"\0*\0first_timestamp";i:1660317772;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317780;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;}', 4, 1, '2022-08-12 15:23:04', '2022-08-12 15:23:04', 0, NULL),
-(54, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:28:53', '2022-08-12 15:28:53', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660318133;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660318133;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:43:24', '2022-08-12 15:43:24', 0, NULL),
-(55, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:45:24', '2022-08-12 15:45:24', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319124;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319124;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:46:00', '2022-08-12 15:46:00', 0, NULL),
-(56, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:48:00', '2022-08-12 15:48:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319280;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319280;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:48:08', '2022-08-12 15:48:08', 0, NULL),
-(57, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:50:08', '2022-08-12 15:50:08', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319408;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319408;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:50:42', '2022-08-12 15:50:42', 0, NULL),
-(58, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:52:42', '2022-08-12 15:52:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319562;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319562;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:52:42', '2022-08-12 15:52:42', 0, NULL),
-(59, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:54:42', '2022-08-12 15:54:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319682;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319682;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:55:10', '2022-08-12 15:55:10', 0, NULL),
-(60, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:57:10', '2022-08-12 15:57:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319830;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319830;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:57:43', '2022-08-12 15:57:43', 0, NULL),
-(61, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:59:43', '2022-08-12 15:59:43', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660319983;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319983;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:59:44', '2022-08-12 15:59:44', 0, NULL),
-(62, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:01:44', '2022-08-12 16:01:44', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320104;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320104;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:02:47', '2022-08-12 16:02:47', 0, NULL),
-(63, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:04:47', '2022-08-12 16:04:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320287;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320287;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:04:48', '2022-08-12 16:04:48', 0, NULL),
-(64, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:06:48', '2022-08-12 16:06:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320408;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320408;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:08:01', '2022-08-12 16:08:01', 0, NULL),
-(65, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:10:01', '2022-08-12 16:10:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320601;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320601;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:10:41', '2022-08-12 16:10:41', 0, NULL),
-(66, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:12:41', '2022-08-12 16:12:41', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320761;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320761;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:12:45', '2022-08-12 16:12:45', 0, NULL),
-(67, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:14:45', '2022-08-12 16:14:45', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660320885;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320885;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:15:01', '2022-08-12 16:15:01', 0, NULL),
-(68, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:17:01', '2022-08-12 16:17:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321021;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321021;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:17:09', '2022-08-12 16:17:09', 0, NULL),
-(69, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:19:09', '2022-08-12 16:19:09', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321149;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321149;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:19:58', '2022-08-12 16:19:58', 0, NULL),
-(70, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:21:58', '2022-08-12 16:21:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321318;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321318;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:22:08', '2022-08-12 16:22:08', 0, NULL),
-(71, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:24:08', '2022-08-12 16:24:08', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321448;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321448;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:24:22', '2022-08-12 16:24:22', 0, NULL),
-(72, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:26:22', '2022-08-12 16:26:22', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321582;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321582;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:27:54', '2022-08-12 16:27:54', 0, NULL),
-(73, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:29:54', '2022-08-12 16:29:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321794;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321794;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:30:38', '2022-08-12 16:30:38', 0, NULL),
-(74, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:32:38', '2022-08-12 16:32:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660321958;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321958;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:32:57', '2022-08-12 16:32:57', 0, NULL),
-(75, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:34:57', '2022-08-12 16:34:57', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322097;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322097;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:35:25', '2022-08-12 16:35:25', 0, NULL),
-(76, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:37:25', '2022-08-12 16:37:25', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322245;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322245;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:37:33', '2022-08-12 16:37:33', 0, NULL),
-(77, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:39:33', '2022-08-12 16:39:33', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322373;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322373;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:40:18', '2022-08-12 16:40:18', 0, NULL),
-(78, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:42:18', '2022-08-12 16:42:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322538;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322538;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:42:55', '2022-08-12 16:42:55', 0, NULL),
-(79, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:44:55', '2022-08-12 16:44:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322695;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322695;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:45:16', '2022-08-12 16:45:16', 0, NULL),
-(80, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:47:16', '2022-08-12 16:47:16', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660322836;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322836;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:48:10', '2022-08-12 16:48:10', 0, NULL),
-(81, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:50:10', '2022-08-12 16:50:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660323010;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660323010;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:09:00', '2022-08-13 09:09:00', 0, NULL),
-(82, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:11:00', '2022-08-13 09:11:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660381860;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660381860;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:12:01', '2022-08-13 09:12:01', 0, NULL),
-(83, 'wc-admin_import_customers', 'complete', '2022-08-13 09:09:26', '2022-08-13 09:09:26', '[1]', 'O:30:"ActionScheduler_SimpleSchedule":2:{s:22:"\0*\0scheduled_timestamp";i:1660381766;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660381766;}', 6, 1, '2022-08-13 09:09:57', '2022-08-13 09:09:57', 0, NULL),
-(84, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:14:01', '2022-08-13 09:14:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382041;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382041;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:14:21', '2022-08-13 09:14:21', 0, NULL),
-(85, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:16:21', '2022-08-13 09:16:21', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382181;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382181;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:16:48', '2022-08-13 09:16:48', 0, NULL),
-(86, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:18:48', '2022-08-13 09:18:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382328;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382328;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:19:46', '2022-08-13 10:19:46', 0, NULL),
-(87, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:21:46', '2022-08-13 09:21:46', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382506;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382506;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:21:46', '2022-08-13 10:21:46', 0, NULL),
-(88, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:23:46', '2022-08-13 09:23:46', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382626;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382626;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:23:47', '2022-08-13 10:23:47', 0, NULL),
-(89, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:25:47', '2022-08-13 09:25:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382747;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382747;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:25:47', '2022-08-13 10:25:47', 0, NULL),
-(90, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:27:47', '2022-08-13 09:27:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382867;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382867;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:27:48', '2022-08-13 10:27:48', 0, NULL),
-(91, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:29:48', '2022-08-13 09:29:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660382988;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382988;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:30:48', '2022-08-13 10:30:48', 0, NULL),
-(92, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:32:48', '2022-08-13 09:32:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383168;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383168;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:33:20', '2022-08-13 10:33:20', 0, NULL),
-(93, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:35:20', '2022-08-13 09:35:20', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383320;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383320;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:36:07', '2022-08-13 10:36:07', 0, NULL),
-(94, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:38:07', '2022-08-13 09:38:07', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383487;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383487;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:38:36', '2022-08-13 10:38:36', 0, NULL),
-(95, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:40:36', '2022-08-13 09:40:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383636;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383636;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:40:55', '2022-08-13 10:40:55', 0, NULL),
-(96, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:42:55', '2022-08-13 09:42:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383775;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383775;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:44:23', '2022-08-13 10:44:23', 0, NULL),
-(97, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:46:23', '2022-08-13 09:46:23', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660383983;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383983;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:46:54', '2022-08-13 10:46:54', 0, NULL),
-(98, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:48:54', '2022-08-13 09:48:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384134;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384134;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:49:35', '2022-08-13 10:49:35', 0, NULL),
-(99, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:51:35', '2022-08-13 09:51:35', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384295;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384295;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:52:55', '2022-08-13 10:52:55', 0, NULL),
-(100, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:54:55', '2022-08-13 09:54:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384495;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384495;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:55:36', '2022-08-13 10:55:36', 0, NULL),
-(101, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:57:36', '2022-08-13 09:57:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384656;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384656;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:58:01', '2022-08-13 10:58:01', 0, NULL),
-(102, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:00:01', '2022-08-13 10:00:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384801;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384801;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:00:19', '2022-08-13 11:00:19', 0, NULL),
-(103, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:02:19', '2022-08-13 10:02:19', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660384939;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384939;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:04:16', '2022-08-13 11:04:16', 0, NULL),
-(104, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:06:16', '2022-08-13 10:06:16', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660385176;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385176;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:06:18', '2022-08-13 11:06:18', 0, NULL),
-(105, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:08:18', '2022-08-13 10:08:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660385298;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385298;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:08:18', '2022-08-13 11:08:18', 0, NULL),
-(106, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:10:18', '2022-08-13 10:10:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660385418;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385418;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:10:19', '2022-08-13 11:10:19', 0, NULL),
-(107, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:12:19', '2022-08-13 10:12:19', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660385539;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385539;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:11:55', '2022-08-13 12:11:55', 0, NULL) ;
+(36, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:48:03', '2022-08-12 14:48:03', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315683;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315683;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315683;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315683;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:48:39', '2022-08-12 14:48:39', 0, NULL),
+(37, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:50:39', '2022-08-12 14:50:39', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315839;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315839;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315839;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315839;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:51:14', '2022-08-12 14:51:14', 0, NULL),
+(38, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:53:14', '2022-08-12 14:53:14', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660315994;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660315994;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660315994;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660315994;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:54:38', '2022-08-12 14:54:38', 0, NULL),
+(39, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:56:38', '2022-08-12 14:56:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316198;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316198;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316198;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316198;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 14:57:40', '2022-08-12 14:57:40', 0, NULL),
+(40, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 14:59:40', '2022-08-12 14:59:40', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316380;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316380;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316380;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316380;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:00:07', '2022-08-12 15:00:07', 0, NULL),
+(41, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:02:07', '2022-08-12 15:02:07', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316527;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316527;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316527;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316527;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:02:10', '2022-08-12 15:02:10', 0, NULL),
+(42, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:04:10', '2022-08-12 15:04:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316650;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316650;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316650;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316650;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:04:42', '2022-08-12 15:04:42', 0, NULL),
+(43, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:06:42', '2022-08-12 15:06:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316802;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316802;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316802;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316802;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:07:48', '2022-08-12 15:07:48', 0, NULL),
+(44, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:09:48', '2022-08-12 15:09:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660316988;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660316988;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660316988;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660316988;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:09:48', '2022-08-12 15:09:48', 0, NULL),
+(45, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:11:48', '2022-08-12 15:11:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317108;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317108;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317108;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317108;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:11:48', '2022-08-12 15:11:48', 0, NULL),
+(46, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:13:48', '2022-08-12 15:13:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317228;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317228;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317228;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317228;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:14:43', '2022-08-12 15:14:43', 0, NULL),
+(47, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:16:43', '2022-08-12 15:16:43', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317403;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317403;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317403;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317403;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:16:50', '2022-08-12 15:16:50', 0, NULL),
+(48, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:18:50', '2022-08-12 15:18:50', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317530;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317530;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317530;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317530;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:20:51', '2022-08-12 15:20:51', 0, NULL),
+(49, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:22:51', '2022-08-12 15:22:51', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317771;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317771;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317771;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317771;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:22:58', '2022-08-12 15:22:58', 0, NULL),
+(50, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 15:22:52', '2022-08-12 15:22:52', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317772;s:18:"\0*\0first_timestamp";i:1660317772;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317772;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660317772;s:15:"first_timestamp";i:1660317772;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660317772;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 15:22:59', '2022-08-12 15:22:59', 0, NULL),
+(51, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:24:58', '2022-08-12 15:24:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317898;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317898;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660317898;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660317898;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:26:53', '2022-08-12 15:26:53', 0, NULL),
+(52, 'mailpoet/cron/daemon-run', 'complete', '2022-08-12 15:23:00', '2022-08-12 15:23:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660317780;s:18:"\0*\0first_timestamp";i:1660317772;s:13:"\0*\0recurrence";i:1;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660317780;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:1;s:19:"scheduled_timestamp";i:1660317780;s:15:"first_timestamp";i:1660317772;s:10:"recurrence";i:1;s:15:"start_timestamp";i:1660317780;s:19:"interval_in_seconds";i:1;}', 4, 1, '2022-08-12 15:23:04', '2022-08-12 15:23:04', 0, NULL),
+(54, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:28:53', '2022-08-12 15:28:53', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660318133;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660318133;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660318133;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660318133;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:43:24', '2022-08-12 15:43:24', 0, NULL),
+(55, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:45:24', '2022-08-12 15:45:24', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319124;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319124;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319124;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319124;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:46:00', '2022-08-12 15:46:00', 0, NULL),
+(56, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:48:00', '2022-08-12 15:48:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319280;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319280;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319280;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319280;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:48:08', '2022-08-12 15:48:08', 0, NULL),
+(57, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:50:08', '2022-08-12 15:50:08', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319408;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319408;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319408;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319408;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:50:42', '2022-08-12 15:50:42', 0, NULL),
+(58, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:52:42', '2022-08-12 15:52:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319562;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319562;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319562;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319562;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:52:42', '2022-08-12 15:52:42', 0, NULL),
+(59, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:54:42', '2022-08-12 15:54:42', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319682;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319682;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319682;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319682;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:55:10', '2022-08-12 15:55:10', 0, NULL),
+(60, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:57:10', '2022-08-12 15:57:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319830;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319830;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319830;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319830;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:57:43', '2022-08-12 15:57:43', 0, NULL),
+(61, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 15:59:43', '2022-08-12 15:59:43', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660319983;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660319983;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660319983;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660319983;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 15:59:44', '2022-08-12 15:59:44', 0, NULL),
+(62, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:01:44', '2022-08-12 16:01:44', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320104;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320104;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320104;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320104;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:02:47', '2022-08-12 16:02:47', 0, NULL),
+(63, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:04:47', '2022-08-12 16:04:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320287;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320287;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320287;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320287;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:04:48', '2022-08-12 16:04:48', 0, NULL),
+(64, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:06:48', '2022-08-12 16:06:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320408;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320408;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320408;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320408;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:08:01', '2022-08-12 16:08:01', 0, NULL),
+(65, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:10:01', '2022-08-12 16:10:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320601;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320601;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320601;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320601;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:10:41', '2022-08-12 16:10:41', 0, NULL),
+(66, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:12:41', '2022-08-12 16:12:41', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320761;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320761;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320761;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320761;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:12:45', '2022-08-12 16:12:45', 0, NULL),
+(67, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:14:45', '2022-08-12 16:14:45', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660320885;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660320885;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660320885;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660320885;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:15:01', '2022-08-12 16:15:01', 0, NULL),
+(68, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:17:01', '2022-08-12 16:17:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321021;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321021;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321021;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321021;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:17:09', '2022-08-12 16:17:09', 0, NULL),
+(69, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:19:09', '2022-08-12 16:19:09', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321149;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321149;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321149;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321149;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:19:58', '2022-08-12 16:19:58', 0, NULL),
+(70, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:21:58', '2022-08-12 16:21:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321318;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321318;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321318;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321318;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:22:08', '2022-08-12 16:22:08', 0, NULL),
+(71, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:24:08', '2022-08-12 16:24:08', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321448;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321448;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321448;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321448;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:24:22', '2022-08-12 16:24:22', 0, NULL),
+(72, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:26:22', '2022-08-12 16:26:22', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321582;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321582;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321582;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321582;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:27:54', '2022-08-12 16:27:54', 0, NULL),
+(73, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:29:54', '2022-08-12 16:29:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321794;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321794;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321794;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321794;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:30:38', '2022-08-12 16:30:38', 0, NULL),
+(74, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:32:38', '2022-08-12 16:32:38', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660321958;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660321958;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660321958;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660321958;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:32:57', '2022-08-12 16:32:57', 0, NULL),
+(75, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:34:57', '2022-08-12 16:34:57', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322097;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322097;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322097;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322097;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:35:25', '2022-08-12 16:35:25', 0, NULL),
+(76, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:37:25', '2022-08-12 16:37:25', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322245;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322245;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322245;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322245;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:37:33', '2022-08-12 16:37:33', 0, NULL),
+(77, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:39:33', '2022-08-12 16:39:33', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322373;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322373;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322373;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322373;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:40:18', '2022-08-12 16:40:18', 0, NULL),
+(78, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:42:18', '2022-08-12 16:42:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322538;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322538;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322538;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322538;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:42:55', '2022-08-12 16:42:55', 0, NULL),
+(79, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:44:55', '2022-08-12 16:44:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322695;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322695;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322695;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322695;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:45:16', '2022-08-12 16:45:16', 0, NULL),
+(80, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:47:16', '2022-08-12 16:47:16', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660322836;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660322836;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660322836;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660322836;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-12 16:48:10', '2022-08-12 16:48:10', 0, NULL),
+(81, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-12 16:50:10', '2022-08-12 16:50:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660323010;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660323010;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660323010;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660323010;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:09:00', '2022-08-13 09:09:00', 0, NULL),
+(82, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:11:00', '2022-08-13 09:11:00', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660381860;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660381860;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660381860;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660381860;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:12:01', '2022-08-13 09:12:01', 0, NULL),
+(83, 'wc-admin_import_customers', 'complete', '2022-08-13 09:09:26', '2022-08-13 09:09:26', '[1]', 'O:30:"ActionScheduler_SimpleSchedule":4:{s:22:"\0*\0scheduled_timestamp";i:1660381766;s:41:"\0ActionScheduler_SimpleSchedule\0timestamp";i:1660381766;s:19:"scheduled_timestamp";i:1660381766;s:9:"timestamp";i:1660381766;}', 6, 1, '2022-08-13 09:09:57', '2022-08-13 09:09:57', 0, NULL),
+(84, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:14:01', '2022-08-13 09:14:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382041;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382041;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382041;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382041;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:14:21', '2022-08-13 09:14:21', 0, NULL),
+(85, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:16:21', '2022-08-13 09:16:21', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382181;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382181;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382181;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382181;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:16:48', '2022-08-13 09:16:48', 0, NULL),
+(86, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:18:48', '2022-08-13 09:18:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382328;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382328;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382328;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382328;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:19:46', '2022-08-13 10:19:46', 0, NULL),
+(87, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:21:46', '2022-08-13 09:21:46', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382506;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382506;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382506;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382506;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:21:46', '2022-08-13 10:21:46', 0, NULL) ;
 INSERT INTO `wp_actionscheduler_actions` ( `action_id`, `hook`, `status`, `scheduled_date_gmt`, `scheduled_date_local`, `args`, `schedule`, `group_id`, `attempts`, `last_attempt_gmt`, `last_attempt_local`, `claim_id`, `extended_args`) VALUES
-(108, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:13:55', '2022-08-13 11:13:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660389235;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389235;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:14:56', '2022-08-13 12:14:56', 0, NULL),
-(109, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:16:56', '2022-08-13 11:16:56', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660389416;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389416;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:17:04', '2022-08-13 12:17:04', 0, NULL),
-(110, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:19:04', '2022-08-13 11:19:04', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660389544;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389544;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:50:57', '2022-08-13 12:50:57', 0, NULL),
-(111, 'mailpoet/cron/daemon-trigger', 'pending', '2022-08-13 11:52:57', '2022-08-13 11:52:57', '[]', 'O:32:"ActionScheduler_IntervalSchedule":5:{s:22:"\0*\0scheduled_timestamp";i:1660391577;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660391577;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;}', 4, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL) ;
+(88, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:23:46', '2022-08-13 09:23:46', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382626;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382626;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382626;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382626;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:23:47', '2022-08-13 10:23:47', 0, NULL),
+(89, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:25:47', '2022-08-13 09:25:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382747;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382747;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382747;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382747;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:25:47', '2022-08-13 10:25:47', 0, NULL),
+(90, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:27:47', '2022-08-13 09:27:47', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382867;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382867;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382867;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382867;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:27:48', '2022-08-13 10:27:48', 0, NULL),
+(91, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:29:48', '2022-08-13 09:29:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660382988;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660382988;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660382988;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660382988;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:30:48', '2022-08-13 10:30:48', 0, NULL),
+(92, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:32:48', '2022-08-13 09:32:48', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383168;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383168;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383168;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383168;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:33:20', '2022-08-13 10:33:20', 0, NULL),
+(93, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:35:20', '2022-08-13 09:35:20', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383320;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383320;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383320;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383320;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:36:07', '2022-08-13 10:36:07', 0, NULL),
+(94, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:38:07', '2022-08-13 09:38:07', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383487;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383487;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383487;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383487;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:38:36', '2022-08-13 10:38:36', 0, NULL),
+(95, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:40:36', '2022-08-13 09:40:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383636;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383636;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383636;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383636;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:40:55', '2022-08-13 10:40:55', 0, NULL),
+(96, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:42:55', '2022-08-13 09:42:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383775;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383775;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383775;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383775;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:44:23', '2022-08-13 10:44:23', 0, NULL),
+(97, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:46:23', '2022-08-13 09:46:23', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660383983;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660383983;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660383983;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660383983;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:46:54', '2022-08-13 10:46:54', 0, NULL),
+(98, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:48:54', '2022-08-13 09:48:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384134;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384134;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384134;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384134;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:49:35', '2022-08-13 10:49:35', 0, NULL),
+(99, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:51:35', '2022-08-13 09:51:35', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384295;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384295;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384295;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384295;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:52:55', '2022-08-13 10:52:55', 0, NULL),
+(100, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:54:55', '2022-08-13 09:54:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384495;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384495;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384495;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384495;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:55:36', '2022-08-13 10:55:36', 0, NULL),
+(101, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 09:57:36', '2022-08-13 09:57:36', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384656;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384656;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384656;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384656;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 09:58:01', '2022-08-13 10:58:01', 0, NULL),
+(102, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:00:01', '2022-08-13 10:00:01', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384801;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384801;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384801;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384801;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:00:19', '2022-08-13 11:00:19', 0, NULL),
+(103, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:02:19', '2022-08-13 10:02:19', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660384939;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660384939;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660384939;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660384939;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:04:16', '2022-08-13 11:04:16', 0, NULL),
+(104, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:06:16', '2022-08-13 10:06:16', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660385176;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385176;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660385176;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660385176;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:06:18', '2022-08-13 11:06:18', 0, NULL),
+(105, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:08:18', '2022-08-13 10:08:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660385298;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385298;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660385298;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660385298;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:08:18', '2022-08-13 11:08:18', 0, NULL),
+(106, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:10:18', '2022-08-13 10:10:18', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660385418;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385418;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660385418;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660385418;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 10:10:19', '2022-08-13 11:10:19', 0, NULL),
+(107, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 10:12:19', '2022-08-13 10:12:19', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660385539;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660385539;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660385539;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660385539;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:11:55', '2022-08-13 12:11:55', 0, NULL) ;
+INSERT INTO `wp_actionscheduler_actions` ( `action_id`, `hook`, `status`, `scheduled_date_gmt`, `scheduled_date_local`, `args`, `schedule`, `group_id`, `attempts`, `last_attempt_gmt`, `last_attempt_local`, `claim_id`, `extended_args`) VALUES
+(108, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:13:55', '2022-08-13 11:13:55', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660389235;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389235;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660389235;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660389235;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:14:56', '2022-08-13 12:14:56', 0, NULL),
+(109, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:16:56', '2022-08-13 11:16:56', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660389416;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389416;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660389416;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660389416;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:17:04', '2022-08-13 12:17:04', 0, NULL),
+(110, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:19:04', '2022-08-13 11:19:04', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660389544;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660389544;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660389544;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660389544;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 11:50:57', '2022-08-13 12:50:57', 0, NULL),
+(111, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 11:52:57', '2022-08-13 11:52:57', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660391577;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660391577;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660391577;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660391577;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:05:23', '2022-08-13 13:05:23', 0, NULL),
+(112, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:07:23', '2022-08-13 12:07:23', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660392443;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660392443;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660392443;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660392443;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:09:10', '2022-08-13 13:09:10', 0, NULL),
+(113, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:11:10', '2022-08-13 12:11:10', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660392670;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660392670;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660392670;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660392670;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:15:54', '2022-08-13 13:15:54', 0, NULL),
+(114, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:17:54', '2022-08-13 12:17:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660393074;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660393074;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660393074;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660393074;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:17:54', '2022-08-13 13:17:54', 0, NULL),
+(115, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:19:54', '2022-08-13 12:19:54', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660393194;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660393194;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660393194;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660393194;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:19:58', '2022-08-13 13:19:58', 0, NULL),
+(116, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:21:58', '2022-08-13 12:21:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660393318;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660393318;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660393318;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660393318;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:22:03', '2022-08-13 13:22:03', 0, NULL),
+(117, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:24:03', '2022-08-13 12:24:03', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660393443;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660393443;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660393443;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660393443;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:53:20', '2022-08-13 13:53:20', 0, NULL),
+(118, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:55:20', '2022-08-13 12:55:20', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660395320;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660395320;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660395320;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660395320;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:56:06', '2022-08-13 13:56:06', 0, NULL),
+(119, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 12:58:06', '2022-08-13 12:58:06', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660395486;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660395486;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660395486;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660395486;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 12:58:12', '2022-08-13 13:58:12', 0, NULL),
+(120, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:00:12', '2022-08-13 13:00:12', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660395612;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660395612;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660395612;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660395612;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:00:13', '2022-08-13 14:00:13', 0, NULL),
+(121, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:02:13', '2022-08-13 13:02:13', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660395733;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660395733;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660395733;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660395733;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:02:14', '2022-08-13 14:02:14', 0, NULL),
+(122, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:04:14', '2022-08-13 13:04:14', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660395854;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660395854;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660395854;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660395854;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:06:09', '2022-08-13 14:06:09', 0, NULL),
+(123, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:08:09', '2022-08-13 13:08:09', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396089;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396089;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396089;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396089;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:08:09', '2022-08-13 14:08:09', 0, NULL),
+(124, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:10:09', '2022-08-13 13:10:09', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396209;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396209;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396209;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396209;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:10:56', '2022-08-13 14:10:56', 0, NULL),
+(125, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:12:56', '2022-08-13 13:12:56', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396376;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396376;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396376;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396376;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:13:51', '2022-08-13 14:13:51', 0, NULL),
+(126, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:15:51', '2022-08-13 13:15:51', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396551;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396551;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396551;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396551;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:15:52', '2022-08-13 14:15:52', 0, NULL),
+(127, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:17:52', '2022-08-13 13:17:52', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396672;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396672;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396672;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396672;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:17:53', '2022-08-13 14:17:53', 0, NULL),
+(128, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:19:53', '2022-08-13 13:19:53', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396793;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396793;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396793;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396793;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:19:53', '2022-08-13 14:19:53', 0, NULL),
+(129, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:21:53', '2022-08-13 13:21:53', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660396913;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660396913;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660396913;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660396913;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:22:12', '2022-08-13 14:22:12', 0, NULL),
+(130, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:24:12', '2022-08-13 13:24:12', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397052;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397052;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397052;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397052;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:24:58', '2022-08-13 14:24:58', 0, NULL),
+(131, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:26:58', '2022-08-13 13:26:58', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397218;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397218;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397218;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397218;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:27:03', '2022-08-13 14:27:03', 0, NULL),
+(132, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:29:03', '2022-08-13 13:29:03', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397343;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397343;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397343;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397343;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:29:59', '2022-08-13 14:29:59', 0, NULL),
+(133, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:31:59', '2022-08-13 13:31:59', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397519;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397519;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397519;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397519;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:32:08', '2022-08-13 14:32:08', 0, NULL),
+(134, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:34:08', '2022-08-13 13:34:08', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397648;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397648;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397648;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397648;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:35:14', '2022-08-13 14:35:14', 0, NULL),
+(135, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:37:14', '2022-08-13 13:37:14', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660397834;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660397834;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660397834;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660397834;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:38:30', '2022-08-13 14:38:30', 0, NULL),
+(136, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:40:30', '2022-08-13 13:40:30', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660398030;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660398030;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660398030;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660398030;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:42:21', '2022-08-13 14:42:21', 0, NULL),
+(137, 'mailpoet/cron/daemon-trigger', 'complete', '2022-08-13 13:44:21', '2022-08-13 13:44:21', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660398261;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660398261;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660398261;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660398261;s:19:"interval_in_seconds";i:120;}', 4, 1, '2022-08-13 13:44:32', '2022-08-13 14:44:32', 0, NULL),
+(138, 'mailpoet/cron/daemon-trigger', 'pending', '2022-08-13 13:46:32', '2022-08-13 13:46:32', '[]', 'O:32:"ActionScheduler_IntervalSchedule":10:{s:22:"\0*\0scheduled_timestamp";i:1660398392;s:18:"\0*\0first_timestamp";i:1660314099;s:13:"\0*\0recurrence";i:120;s:49:"\0ActionScheduler_IntervalSchedule\0start_timestamp";i:1660398392;s:53:"\0ActionScheduler_IntervalSchedule\0interval_in_seconds";i:120;s:19:"scheduled_timestamp";i:1660398392;s:15:"first_timestamp";i:1660314099;s:10:"recurrence";i:120;s:15:"start_timestamp";i:1660398392;s:19:"interval_in_seconds";i:120;}', 4, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, NULL) ;
 
 #
 # Fin du contenu des données de la table `wp_actionscheduler_actions`
@@ -187,7 +215,7 @@ CREATE TABLE `wp_actionscheduler_claims` (
   `date_created_gmt` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`claim_id`),
   KEY `date_created_gmt` (`date_created_gmt`)
-) ENGINE=InnoDB AUTO_INCREMENT=320 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=410 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -213,7 +241,7 @@ DROP TABLE IF EXISTS `wp_actionscheduler_groups`;
 
 CREATE TABLE `wp_actionscheduler_groups` (
   `group_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`group_id`),
   KEY `slug` (`slug`(191))
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -250,13 +278,13 @@ DROP TABLE IF EXISTS `wp_actionscheduler_logs`;
 CREATE TABLE `wp_actionscheduler_logs` (
   `log_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `action_id` bigint(20) unsigned NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `log_date_gmt` datetime DEFAULT '0000-00-00 00:00:00',
   `log_date_local` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`log_id`),
   KEY `action_id` (`action_id`),
   KEY `log_date_gmt` (`log_date_gmt`)
-) ENGINE=InnoDB AUTO_INCREMENT=303 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -562,7 +590,92 @@ INSERT INTO `wp_actionscheduler_logs` ( `log_id`, `action_id`, `message`, `log_d
 (299, 110, 'action created', '2022-08-13 11:17:04', '2022-08-13 11:17:04'),
 (300, 110, 'action started via WP Cron', '2022-08-13 11:50:56', '2022-08-13 11:50:56'),
 (301, 110, 'action complete via WP Cron', '2022-08-13 11:50:56', '2022-08-13 11:50:56'),
-(302, 111, 'action created', '2022-08-13 11:50:57', '2022-08-13 11:50:57') ;
+(302, 111, 'action created', '2022-08-13 11:50:57', '2022-08-13 11:50:57'),
+(303, 111, 'action started via WP Cron', '2022-08-13 12:05:23', '2022-08-13 12:05:23'),
+(304, 111, 'action complete via WP Cron', '2022-08-13 12:05:23', '2022-08-13 12:05:23') ;
+INSERT INTO `wp_actionscheduler_logs` ( `log_id`, `action_id`, `message`, `log_date_gmt`, `log_date_local`) VALUES
+(305, 112, 'action created', '2022-08-13 12:05:23', '2022-08-13 12:05:23'),
+(306, 112, 'action started via WP Cron', '2022-08-13 12:09:10', '2022-08-13 12:09:10'),
+(307, 112, 'action complete via WP Cron', '2022-08-13 12:09:10', '2022-08-13 12:09:10'),
+(308, 113, 'action created', '2022-08-13 12:09:10', '2022-08-13 12:09:10'),
+(309, 113, 'action started via WP Cron', '2022-08-13 12:15:54', '2022-08-13 12:15:54'),
+(310, 113, 'action complete via WP Cron', '2022-08-13 12:15:54', '2022-08-13 12:15:54'),
+(311, 114, 'action created', '2022-08-13 12:15:54', '2022-08-13 12:15:54'),
+(312, 114, 'action started via WP Cron', '2022-08-13 12:17:54', '2022-08-13 12:17:54'),
+(313, 114, 'action complete via WP Cron', '2022-08-13 12:17:54', '2022-08-13 12:17:54'),
+(314, 115, 'action created', '2022-08-13 12:17:54', '2022-08-13 12:17:54'),
+(315, 115, 'action started via WP Cron', '2022-08-13 12:19:58', '2022-08-13 12:19:58'),
+(316, 115, 'action complete via WP Cron', '2022-08-13 12:19:58', '2022-08-13 12:19:58'),
+(317, 116, 'action created', '2022-08-13 12:19:58', '2022-08-13 12:19:58'),
+(318, 116, 'action started via WP Cron', '2022-08-13 12:22:03', '2022-08-13 12:22:03'),
+(319, 116, 'action complete via WP Cron', '2022-08-13 12:22:03', '2022-08-13 12:22:03'),
+(320, 117, 'action created', '2022-08-13 12:22:03', '2022-08-13 12:22:03'),
+(321, 117, 'action started via WP Cron', '2022-08-13 12:53:20', '2022-08-13 12:53:20'),
+(322, 117, 'action complete via WP Cron', '2022-08-13 12:53:20', '2022-08-13 12:53:20'),
+(323, 118, 'action created', '2022-08-13 12:53:20', '2022-08-13 12:53:20'),
+(324, 118, 'action started via WP Cron', '2022-08-13 12:56:06', '2022-08-13 12:56:06'),
+(325, 118, 'action complete via WP Cron', '2022-08-13 12:56:06', '2022-08-13 12:56:06'),
+(326, 119, 'action created', '2022-08-13 12:56:06', '2022-08-13 12:56:06'),
+(327, 119, 'action started via WP Cron', '2022-08-13 12:58:12', '2022-08-13 12:58:12'),
+(328, 119, 'action complete via WP Cron', '2022-08-13 12:58:12', '2022-08-13 12:58:12'),
+(329, 120, 'action created', '2022-08-13 12:58:12', '2022-08-13 12:58:12'),
+(330, 120, 'action started via WP Cron', '2022-08-13 13:00:13', '2022-08-13 13:00:13'),
+(331, 120, 'action complete via WP Cron', '2022-08-13 13:00:13', '2022-08-13 13:00:13'),
+(332, 121, 'action created', '2022-08-13 13:00:13', '2022-08-13 13:00:13'),
+(333, 121, 'action started via WP Cron', '2022-08-13 13:02:14', '2022-08-13 13:02:14'),
+(334, 121, 'action complete via WP Cron', '2022-08-13 13:02:14', '2022-08-13 13:02:14'),
+(335, 122, 'action created', '2022-08-13 13:02:14', '2022-08-13 13:02:14'),
+(336, 122, 'action started via WP Cron', '2022-08-13 13:06:09', '2022-08-13 13:06:09'),
+(337, 122, 'action complete via WP Cron', '2022-08-13 13:06:09', '2022-08-13 13:06:09'),
+(338, 123, 'action created', '2022-08-13 13:06:09', '2022-08-13 13:06:09'),
+(339, 123, 'action started via WP Cron', '2022-08-13 13:08:09', '2022-08-13 13:08:09'),
+(340, 123, 'action complete via WP Cron', '2022-08-13 13:08:09', '2022-08-13 13:08:09'),
+(341, 124, 'action created', '2022-08-13 13:08:09', '2022-08-13 13:08:09'),
+(342, 124, 'action started via WP Cron', '2022-08-13 13:10:56', '2022-08-13 13:10:56'),
+(343, 124, 'action complete via WP Cron', '2022-08-13 13:10:56', '2022-08-13 13:10:56'),
+(344, 125, 'action created', '2022-08-13 13:10:56', '2022-08-13 13:10:56'),
+(345, 125, 'action started via WP Cron', '2022-08-13 13:13:50', '2022-08-13 13:13:50'),
+(346, 125, 'action complete via WP Cron', '2022-08-13 13:13:51', '2022-08-13 13:13:51'),
+(347, 126, 'action created', '2022-08-13 13:13:51', '2022-08-13 13:13:51'),
+(348, 126, 'action started via WP Cron', '2022-08-13 13:15:51', '2022-08-13 13:15:51'),
+(349, 126, 'action complete via WP Cron', '2022-08-13 13:15:52', '2022-08-13 13:15:52'),
+(350, 127, 'action created', '2022-08-13 13:15:52', '2022-08-13 13:15:52'),
+(351, 127, 'action started via WP Cron', '2022-08-13 13:17:52', '2022-08-13 13:17:52'),
+(352, 127, 'action complete via WP Cron', '2022-08-13 13:17:52', '2022-08-13 13:17:52'),
+(353, 128, 'action created', '2022-08-13 13:17:53', '2022-08-13 13:17:53'),
+(354, 128, 'action started via WP Cron', '2022-08-13 13:19:53', '2022-08-13 13:19:53'),
+(355, 128, 'action complete via WP Cron', '2022-08-13 13:19:53', '2022-08-13 13:19:53'),
+(356, 129, 'action created', '2022-08-13 13:19:53', '2022-08-13 13:19:53'),
+(357, 129, 'action started via Async Request', '2022-08-13 13:22:12', '2022-08-13 13:22:12'),
+(358, 129, 'action complete via Async Request', '2022-08-13 13:22:12', '2022-08-13 13:22:12'),
+(359, 130, 'action created', '2022-08-13 13:22:12', '2022-08-13 13:22:12'),
+(360, 130, 'action started via Async Request', '2022-08-13 13:24:58', '2022-08-13 13:24:58'),
+(361, 130, 'action complete via Async Request', '2022-08-13 13:24:58', '2022-08-13 13:24:58'),
+(362, 131, 'action created', '2022-08-13 13:24:58', '2022-08-13 13:24:58'),
+(363, 131, 'action started via WP Cron', '2022-08-13 13:27:03', '2022-08-13 13:27:03'),
+(364, 131, 'action complete via WP Cron', '2022-08-13 13:27:03', '2022-08-13 13:27:03'),
+(365, 132, 'action created', '2022-08-13 13:27:03', '2022-08-13 13:27:03'),
+(366, 132, 'action started via Async Request', '2022-08-13 13:29:59', '2022-08-13 13:29:59'),
+(367, 132, 'action complete via Async Request', '2022-08-13 13:29:59', '2022-08-13 13:29:59'),
+(368, 133, 'action created', '2022-08-13 13:29:59', '2022-08-13 13:29:59'),
+(369, 133, 'action started via Async Request', '2022-08-13 13:32:08', '2022-08-13 13:32:08'),
+(370, 133, 'action complete via Async Request', '2022-08-13 13:32:08', '2022-08-13 13:32:08'),
+(371, 134, 'action created', '2022-08-13 13:32:08', '2022-08-13 13:32:08'),
+(372, 134, 'action started via Async Request', '2022-08-13 13:35:14', '2022-08-13 13:35:14'),
+(373, 134, 'action complete via Async Request', '2022-08-13 13:35:14', '2022-08-13 13:35:14'),
+(374, 135, 'action created', '2022-08-13 13:35:14', '2022-08-13 13:35:14'),
+(375, 135, 'action started via WP Cron', '2022-08-13 13:38:30', '2022-08-13 13:38:30'),
+(376, 135, 'action complete via WP Cron', '2022-08-13 13:38:30', '2022-08-13 13:38:30'),
+(377, 136, 'action created', '2022-08-13 13:38:30', '2022-08-13 13:38:30'),
+(378, 136, 'action started via WP Cron', '2022-08-13 13:42:21', '2022-08-13 13:42:21'),
+(379, 136, 'action complete via WP Cron', '2022-08-13 13:42:21', '2022-08-13 13:42:21'),
+(380, 137, 'action created', '2022-08-13 13:42:21', '2022-08-13 13:42:21'),
+(381, 137, 'action started via Async Request', '2022-08-13 13:44:32', '2022-08-13 13:44:32'),
+(382, 137, 'action complete via Async Request', '2022-08-13 13:44:32', '2022-08-13 13:44:32'),
+(383, 138, 'action created', '2022-08-13 13:44:32', '2022-08-13 13:44:32'),
+(384, 138, 'action started via WP Cron', '2022-08-13 13:46:41', '2022-08-13 13:46:41'),
+(385, 138, 'action complete via WP Cron', '2022-08-13 13:46:41', '2022-08-13 13:46:41'),
+(386, 139, 'action created', '2022-08-13 13:46:41', '2022-08-13 13:46:41') ;
 
 #
 # Fin du contenu des données de la table `wp_actionscheduler_logs`
@@ -584,8 +697,8 @@ DROP TABLE IF EXISTS `wp_commentmeta`;
 CREATE TABLE `wp_commentmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `comment_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`meta_id`),
   KEY `comment_id` (`comment_id`),
   KEY `meta_key` (`meta_key`(191))
@@ -623,17 +736,17 @@ DROP TABLE IF EXISTS `wp_comments`;
 CREATE TABLE `wp_comments` (
   `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `comment_post_ID` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `comment_author` tinytext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `comment_author_email` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `comment_author_url` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `comment_author_IP` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `comment_author` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `comment_author_email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `comment_author_url` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `comment_author_IP` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `comment_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `comment_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `comment_content` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `comment_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `comment_karma` int(11) NOT NULL DEFAULT '0',
-  `comment_approved` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '1',
-  `comment_agent` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `comment_type` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'comment',
+  `comment_approved` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '1',
+  `comment_agent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `comment_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'comment',
   `comment_parent` bigint(20) unsigned NOT NULL DEFAULT '0',
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`comment_ID`),
@@ -674,8 +787,8 @@ DROP TABLE IF EXISTS `wp_gla_budget_recommendations`;
 
 CREATE TABLE `wp_gla_budget_recommendations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `currency` varchar(3) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `country` varchar(2) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `daily_budget_low` int(11) NOT NULL,
   `daily_budget_high` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -4980,15 +5093,15 @@ DROP TABLE IF EXISTS `wp_gla_merchant_issues`;
 CREATE TABLE `wp_gla_merchant_issues` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(20) NOT NULL,
-  `issue` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `code` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `severity` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'warning',
-  `product` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `action` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `action_url` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `applicable_countries` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `source` varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'mc',
-  `type` varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'product',
+  `issue` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `severity` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'warning',
+  `product` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `action` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `action_url` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `applicable_countries` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `source` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'mc',
+  `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'product',
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -5017,11 +5130,11 @@ DROP TABLE IF EXISTS `wp_gla_shipping_rates`;
 
 CREATE TABLE `wp_gla_shipping_rates` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `country` varchar(2) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `method` varchar(30) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `currency` varchar(3) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `method` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `rate` double NOT NULL DEFAULT '0',
-  `options` text COLLATE utf8mb4_unicode_520_ci,
+  `options` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`id`),
   KEY `country` (`country`),
   KEY `method` (`method`),
@@ -5052,7 +5165,7 @@ DROP TABLE IF EXISTS `wp_gla_shipping_times`;
 
 CREATE TABLE `wp_gla_shipping_times` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `country` varchar(2) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `country` (`country`)
@@ -5082,18 +5195,18 @@ DROP TABLE IF EXISTS `wp_links`;
 
 CREATE TABLE `wp_links` (
   `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `link_url` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_image` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_target` varchar(25) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_description` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_visible` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'Y',
+  `link_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_target` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_visible` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'Y',
   `link_owner` bigint(20) unsigned NOT NULL DEFAULT '1',
   `link_rating` int(11) NOT NULL DEFAULT '0',
   `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `link_rel` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `link_notes` mediumtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `link_rss` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_rel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `link_notes` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `link_rss` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`link_id`),
   KEY `link_visible` (`link_visible`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -5122,9 +5235,9 @@ DROP TABLE IF EXISTS `wp_mailpoet_custom_fields`;
 
 CREATE TABLE `wp_mailpoet_custom_fields` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `type` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `params` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -5159,8 +5272,8 @@ CREATE TABLE `wp_mailpoet_dynamic_segment_filters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `filter_data` longblob,
-  `filter_type` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `action` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `filter_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `action` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `segment_id` (`segment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -5189,7 +5302,7 @@ DROP TABLE IF EXISTS `wp_mailpoet_feature_flags`;
 
 CREATE TABLE `wp_mailpoet_feature_flags` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `value` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -5221,11 +5334,11 @@ DROP TABLE IF EXISTS `wp_mailpoet_forms`;
 
 CREATE TABLE `wp_mailpoet_forms` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'enabled',
-  `body` longtext COLLATE utf8mb4_unicode_520_ci,
-  `settings` longtext COLLATE utf8mb4_unicode_520_ci,
-  `styles` longtext COLLATE utf8mb4_unicode_520_ci,
+  `name` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'enabled',
+  `body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `styles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -5256,9 +5369,9 @@ DROP TABLE IF EXISTS `wp_mailpoet_log`;
 
 CREATE TABLE `wp_mailpoet_log` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
-  `message` longtext COLLATE utf8mb4_unicode_520_ci,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -5287,7 +5400,7 @@ DROP TABLE IF EXISTS `wp_mailpoet_mapping_to_external_entities`;
 
 CREATE TABLE `wp_mailpoet_mapping_to_external_entities` (
   `old_id` int(11) unsigned NOT NULL,
-  `type` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `new_id` int(11) unsigned NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`old_id`,`type`),
@@ -5320,8 +5433,8 @@ CREATE TABLE `wp_mailpoet_newsletter_links` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `newsletter_id` int(11) unsigned NOT NULL,
   `queue_id` int(11) unsigned NOT NULL,
-  `url` varchar(2083) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `hash` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `url` varchar(2083) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `hash` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -5356,7 +5469,7 @@ CREATE TABLE `wp_mailpoet_newsletter_option` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `newsletter_id` int(11) unsigned NOT NULL,
   `option_field_id` int(11) unsigned NOT NULL,
-  `value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -5387,8 +5500,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_newsletter_option_fields`;
 
 CREATE TABLE `wp_mailpoet_newsletter_option_fields` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `newsletter_type` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `newsletter_type` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -5509,12 +5622,12 @@ DROP TABLE IF EXISTS `wp_mailpoet_newsletter_templates`;
 CREATE TABLE `wp_mailpoet_newsletter_templates` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `newsletter_id` int(11) DEFAULT '0',
-  `name` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `categories` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '[]',
-  `description` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `body` longtext COLLATE utf8mb4_unicode_520_ci,
-  `thumbnail` longtext COLLATE utf8mb4_unicode_520_ci,
-  `thumbnail_data` longtext COLLATE utf8mb4_unicode_520_ci,
+  `name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `categories` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '[]',
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `thumbnail` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `thumbnail_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `readonly` tinyint(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -5649,23 +5762,23 @@ DROP TABLE IF EXISTS `wp_mailpoet_newsletters`;
 
 CREATE TABLE `wp_mailpoet_newsletters` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hash` varchar(150) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `hash` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `parent_id` int(11) unsigned DEFAULT NULL,
-  `subject` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `type` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'standard',
-  `sender_address` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `sender_name` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'draft',
-  `reply_to_address` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `reply_to_name` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `preheader` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `body` longtext COLLATE utf8mb4_unicode_520_ci,
+  `subject` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'standard',
+  `sender_address` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `sender_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'draft',
+  `reply_to_address` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `reply_to_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `preheader` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `sent_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `unsubscribe_token` char(15) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `ga_campaign` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `unsubscribe_token` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `ga_campaign` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unsubscribe_token` (`unsubscribe_token`),
   KEY `type_status` (`type`,`status`)
@@ -5698,7 +5811,7 @@ CREATE TABLE `wp_mailpoet_scheduled_task_subscribers` (
   `subscriber_id` int(11) unsigned NOT NULL,
   `processed` int(1) NOT NULL,
   `failed` smallint(1) NOT NULL DEFAULT '0',
-  `error` text COLLATE utf8mb4_unicode_520_ci,
+  `error` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`task_id`,`subscriber_id`),
@@ -5729,8 +5842,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_scheduled_tasks`;
 
 CREATE TABLE `wp_mailpoet_scheduled_tasks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(90) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `status` varchar(12) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `type` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `status` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `priority` mediumint(9) NOT NULL DEFAULT '0',
   `scheduled_at` timestamp NULL DEFAULT NULL,
   `processed_at` timestamp NULL DEFAULT NULL,
@@ -5739,7 +5852,7 @@ CREATE TABLE `wp_mailpoet_scheduled_tasks` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `in_progress` int(1) DEFAULT NULL,
   `reschedule_count` int(11) NOT NULL DEFAULT '0',
-  `meta` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `status` (`status`)
@@ -5786,9 +5899,9 @@ DROP TABLE IF EXISTS `wp_mailpoet_segments`;
 
 CREATE TABLE `wp_mailpoet_segments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `type` varchar(90) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'default',
-  `description` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `name` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'default',
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -5829,13 +5942,13 @@ CREATE TABLE `wp_mailpoet_sending_queues` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `task_id` int(11) unsigned NOT NULL,
   `newsletter_id` int(11) unsigned NOT NULL,
-  `newsletter_rendered_body` longtext COLLATE utf8mb4_unicode_520_ci,
-  `newsletter_rendered_subject` varchar(250) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `subscribers` longtext COLLATE utf8mb4_unicode_520_ci,
+  `newsletter_rendered_body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `newsletter_rendered_subject` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `subscribers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `count_total` int(11) unsigned NOT NULL DEFAULT '0',
   `count_processed` int(11) unsigned NOT NULL DEFAULT '0',
   `count_to_process` int(11) unsigned NOT NULL DEFAULT '0',
-  `meta` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -5868,8 +5981,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_settings`;
 
 CREATE TABLE `wp_mailpoet_settings` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6092,8 +6205,8 @@ CREATE TABLE `wp_mailpoet_statistics_unsubscribes` (
   `subscriber_id` int(11) unsigned NOT NULL,
   `queue_id` int(11) unsigned DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `source` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT 'unknown',
-  `meta` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT 'unknown',
+  `meta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `newsletter_id_subscriber_id` (`newsletter_id`,`subscriber_id`),
   KEY `queue_id` (`queue_id`),
@@ -6129,7 +6242,7 @@ CREATE TABLE `wp_mailpoet_statistics_woocommerce_purchases` (
   `queue_id` int(11) unsigned NOT NULL,
   `click_id` int(11) unsigned NOT NULL,
   `order_id` bigint(20) unsigned NOT NULL,
-  `order_currency` char(3) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `order_currency` char(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `order_price_total` float NOT NULL COMMENT 'With shipping and taxes in order_currency',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -6199,7 +6312,7 @@ CREATE TABLE `wp_mailpoet_subscriber_custom_field` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `subscriber_id` int(11) unsigned NOT NULL,
   `custom_field_id` int(11) unsigned NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6229,7 +6342,7 @@ DROP TABLE IF EXISTS `wp_mailpoet_subscriber_ips`;
 #
 
 CREATE TABLE `wp_mailpoet_subscriber_ips` (
-  `ip` varchar(45) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`created_at`,`ip`),
   KEY `ip` (`ip`)
@@ -6261,7 +6374,7 @@ CREATE TABLE `wp_mailpoet_subscriber_segment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `subscriber_id` int(11) unsigned NOT NULL,
   `segment_id` int(11) unsigned NOT NULL,
-  `status` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'subscribed',
+  `status` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'subscribed',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6330,22 +6443,22 @@ CREATE TABLE `wp_mailpoet_subscribers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `wp_user_id` bigint(20) DEFAULT NULL,
   `is_woocommerce_user` int(1) NOT NULL DEFAULT '0',
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `email` varchar(150) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `status` varchar(12) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'unconfirmed',
-  `subscribed_ip` varchar(45) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `confirmed_ip` varchar(45) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'unconfirmed',
+  `subscribed_ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `confirmed_ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `confirmed_at` timestamp NULL DEFAULT NULL,
   `last_subscribed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `unconfirmed_data` longtext COLLATE utf8mb4_unicode_520_ci,
-  `source` enum('form','imported','administrator','api','wordpress_user','woocommerce_user','woocommerce_checkout','unknown') COLLATE utf8mb4_unicode_520_ci DEFAULT 'unknown',
+  `unconfirmed_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `source` enum('form','imported','administrator','api','wordpress_user','woocommerce_user','woocommerce_checkout','unknown') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT 'unknown',
   `count_confirmations` int(11) unsigned NOT NULL DEFAULT '0',
-  `unsubscribe_token` char(15) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `link_token` char(32) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `unsubscribe_token` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `link_token` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `engagement_score` float unsigned DEFAULT NULL,
   `engagement_score_updated_at` timestamp NULL DEFAULT NULL,
   `last_engagement_at` timestamp NULL DEFAULT NULL,
@@ -6367,7 +6480,7 @@ CREATE TABLE `wp_mailpoet_subscribers` (
 # Données de la table `wp_mailpoet_subscribers`
 #
 INSERT INTO `wp_mailpoet_subscribers` ( `id`, `wp_user_id`, `is_woocommerce_user`, `first_name`, `last_name`, `email`, `status`, `subscribed_ip`, `confirmed_ip`, `confirmed_at`, `last_subscribed_at`, `created_at`, `updated_at`, `deleted_at`, `unconfirmed_data`, `source`, `count_confirmations`, `unsubscribe_token`, `link_token`, `engagement_score`, `engagement_score_updated_at`, `last_engagement_at`, `woocommerce_synced_at`, `email_count`) VALUES
-(1, 1, 0, 'dev.hmtl', '', 'dev-email@flywheel.local', 'unconfirmed', NULL, NULL, NULL, NULL, '2022-08-12 15:21:34', '2022-08-13 12:51:28', NULL, NULL, 'wordpress_user', 0, '4lueuw5zjsowgss', 'c2b06a', NULL, NULL, '2022-08-13 12:51:30', NULL, 0) ;
+(1, 1, 0, 'dev.hmtl', '', 'dev-email@flywheel.local', 'unconfirmed', NULL, NULL, NULL, NULL, '2022-08-12 15:21:34', '2022-08-13 14:46:35', NULL, NULL, 'wordpress_user', 0, '4lueuw5zjsowgss', 'c2b06a', NULL, NULL, '2022-08-13 14:46:36', NULL, 0) ;
 
 #
 # Fin du contenu des données de la table `wp_mailpoet_subscribers`
@@ -6388,8 +6501,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_tags`;
 
 CREATE TABLE `wp_mailpoet_tags` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6420,8 +6533,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_user_agents`;
 
 CREATE TABLE `wp_mailpoet_user_agents` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hash` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `hash` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6453,8 +6566,8 @@ DROP TABLE IF EXISTS `wp_mailpoet_user_flags`;
 CREATE TABLE `wp_mailpoet_user_flags` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -6485,13 +6598,13 @@ DROP TABLE IF EXISTS `wp_options`;
 
 CREATE TABLE `wp_options` (
   `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `option_name` varchar(191) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `option_value` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `autoload` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'yes',
+  `option_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `option_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `autoload` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`),
   KEY `autoload` (`autoload`)
-) ENGINE=InnoDB AUTO_INCREMENT=1030 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -6526,7 +6639,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (26, 'comment_moderation', '0', 'yes'),
 (27, 'moderation_notify', '1', 'yes'),
 (28, 'permalink_structure', '/%postname%/', 'yes'),
-(29, 'rewrite_rules', 'a:155:{s:24:"^wc-auth/v([1]{1})/(.*)?";s:63:"index.php?wc-auth-version=$matches[1]&wc-auth-route=$matches[2]";s:22:"^wc-api/v([1-3]{1})/?$";s:51:"index.php?wc-api-version=$matches[1]&wc-api-route=/";s:24:"^wc-api/v([1-3]{1})(.*)?";s:61:"index.php?wc-api-version=$matches[1]&wc-api-route=$matches[2]";s:11:"^wp-json/?$";s:22:"index.php?rest_route=/";s:14:"^wp-json/(.*)?";s:33:"index.php?rest_route=/$matches[1]";s:21:"^index.php/wp-json/?$";s:22:"index.php?rest_route=/";s:24:"^index.php/wp-json/(.*)?";s:33:"index.php?rest_route=/$matches[1]";s:17:"^wp-sitemap\\.xml$";s:23:"index.php?sitemap=index";s:17:"^wp-sitemap\\.xsl$";s:36:"index.php?sitemap-stylesheet=sitemap";s:23:"^wp-sitemap-index\\.xsl$";s:34:"index.php?sitemap-stylesheet=index";s:48:"^wp-sitemap-([a-z]+?)-([a-z\\d_-]+?)-(\\d+?)\\.xml$";s:75:"index.php?sitemap=$matches[1]&sitemap-subtype=$matches[2]&paged=$matches[3]";s:34:"^wp-sitemap-([a-z]+?)-(\\d+?)\\.xml$";s:47:"index.php?sitemap=$matches[1]&paged=$matches[2]";s:47:"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:42:"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:23:"category/(.+?)/embed/?$";s:46:"index.php?category_name=$matches[1]&embed=true";s:35:"category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:32:"category/(.+?)/wc-api(/(.*))?/?$";s:54:"index.php?category_name=$matches[1]&wc-api=$matches[3]";s:17:"category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:44:"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:39:"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:20:"tag/([^/]+)/embed/?$";s:36:"index.php?tag=$matches[1]&embed=true";s:32:"tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:29:"tag/([^/]+)/wc-api(/(.*))?/?$";s:44:"index.php?tag=$matches[1]&wc-api=$matches[3]";s:14:"tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:45:"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:40:"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:21:"type/([^/]+)/embed/?$";s:44:"index.php?post_format=$matches[1]&embed=true";s:33:"type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:15:"type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:55:"product-category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_cat=$matches[1]&feed=$matches[2]";s:50:"product-category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_cat=$matches[1]&feed=$matches[2]";s:31:"product-category/(.+?)/embed/?$";s:44:"index.php?product_cat=$matches[1]&embed=true";s:43:"product-category/(.+?)/page/?([0-9]{1,})/?$";s:51:"index.php?product_cat=$matches[1]&paged=$matches[2]";s:25:"product-category/(.+?)/?$";s:33:"index.php?product_cat=$matches[1]";s:52:"product-tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_tag=$matches[1]&feed=$matches[2]";s:47:"product-tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_tag=$matches[1]&feed=$matches[2]";s:28:"product-tag/([^/]+)/embed/?$";s:44:"index.php?product_tag=$matches[1]&embed=true";s:40:"product-tag/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?product_tag=$matches[1]&paged=$matches[2]";s:22:"product-tag/([^/]+)/?$";s:33:"index.php?product_tag=$matches[1]";s:35:"product/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:45:"product/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:65:"product/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:60:"product/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:60:"product/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:41:"product/[^/]+/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:24:"product/([^/]+)/embed/?$";s:40:"index.php?product=$matches[1]&embed=true";s:28:"product/([^/]+)/trackback/?$";s:34:"index.php?product=$matches[1]&tb=1";s:36:"product/([^/]+)/page/?([0-9]{1,})/?$";s:47:"index.php?product=$matches[1]&paged=$matches[2]";s:43:"product/([^/]+)/comment-page-([0-9]{1,})/?$";s:47:"index.php?product=$matches[1]&cpage=$matches[2]";s:33:"product/([^/]+)/wc-api(/(.*))?/?$";s:48:"index.php?product=$matches[1]&wc-api=$matches[3]";s:39:"product/[^/]+/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:50:"product/[^/]+/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:32:"product/([^/]+)(?:/([0-9]+))?/?$";s:46:"index.php?product=$matches[1]&page=$matches[2]";s:24:"product/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:34:"product/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:54:"product/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:49:"product/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:49:"product/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:30:"product/[^/]+/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:13:"favicon\\.ico$";s:19:"index.php?favicon=1";s:48:".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$";s:18:"index.php?feed=old";s:20:".*wp-app\\.php(/.*)?$";s:19:"index.php?error=403";s:18:".*wp-register.php$";s:23:"index.php?register=true";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:8:"embed/?$";s:21:"index.php?&embed=true";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:27:"comment-page-([0-9]{1,})/?$";s:40:"index.php?&page_id=362&cpage=$matches[1]";s:17:"wc-api(/(.*))?/?$";s:29:"index.php?&wc-api=$matches[2]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:17:"comments/embed/?$";s:21:"index.php?&embed=true";s:26:"comments/wc-api(/(.*))?/?$";s:29:"index.php?&wc-api=$matches[2]";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:20:"search/(.+)/embed/?$";s:34:"index.php?s=$matches[1]&embed=true";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:29:"search/(.+)/wc-api(/(.*))?/?$";s:42:"index.php?s=$matches[1]&wc-api=$matches[3]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:47:"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:42:"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:23:"author/([^/]+)/embed/?$";s:44:"index.php?author_name=$matches[1]&embed=true";s:35:"author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:32:"author/([^/]+)/wc-api(/(.*))?/?$";s:52:"index.php?author_name=$matches[1]&wc-api=$matches[3]";s:17:"author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:69:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:45:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/embed/?$";s:74:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&embed=true";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:54:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/wc-api(/(.*))?/?$";s:82:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&wc-api=$matches[5]";s:39:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:56:"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:51:"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:32:"([0-9]{4})/([0-9]{1,2})/embed/?$";s:58:"index.php?year=$matches[1]&monthnum=$matches[2]&embed=true";s:44:"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:41:"([0-9]{4})/([0-9]{1,2})/wc-api(/(.*))?/?$";s:66:"index.php?year=$matches[1]&monthnum=$matches[2]&wc-api=$matches[4]";s:26:"([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:43:"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:38:"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:19:"([0-9]{4})/embed/?$";s:37:"index.php?year=$matches[1]&embed=true";s:31:"([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:28:"([0-9]{4})/wc-api(/(.*))?/?$";s:45:"index.php?year=$matches[1]&wc-api=$matches[3]";s:13:"([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:27:".?.+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:".?.+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:33:".?.+?/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:16:"(.?.+?)/embed/?$";s:41:"index.php?pagename=$matches[1]&embed=true";s:20:"(.?.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:40:"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:35:"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:28:"(.?.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:35:"(.?.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:25:"(.?.+?)/wc-api(/(.*))?/?$";s:49:"index.php?pagename=$matches[1]&wc-api=$matches[3]";s:28:"(.?.+?)/order-pay(/(.*))?/?$";s:52:"index.php?pagename=$matches[1]&order-pay=$matches[3]";s:33:"(.?.+?)/order-received(/(.*))?/?$";s:57:"index.php?pagename=$matches[1]&order-received=$matches[3]";s:25:"(.?.+?)/orders(/(.*))?/?$";s:49:"index.php?pagename=$matches[1]&orders=$matches[3]";s:29:"(.?.+?)/view-order(/(.*))?/?$";s:53:"index.php?pagename=$matches[1]&view-order=$matches[3]";s:28:"(.?.+?)/downloads(/(.*))?/?$";s:52:"index.php?pagename=$matches[1]&downloads=$matches[3]";s:31:"(.?.+?)/edit-account(/(.*))?/?$";s:55:"index.php?pagename=$matches[1]&edit-account=$matches[3]";s:31:"(.?.+?)/edit-address(/(.*))?/?$";s:55:"index.php?pagename=$matches[1]&edit-address=$matches[3]";s:34:"(.?.+?)/payment-methods(/(.*))?/?$";s:58:"index.php?pagename=$matches[1]&payment-methods=$matches[3]";s:32:"(.?.+?)/lost-password(/(.*))?/?$";s:56:"index.php?pagename=$matches[1]&lost-password=$matches[3]";s:34:"(.?.+?)/customer-logout(/(.*))?/?$";s:58:"index.php?pagename=$matches[1]&customer-logout=$matches[3]";s:37:"(.?.+?)/add-payment-method(/(.*))?/?$";s:61:"index.php?pagename=$matches[1]&add-payment-method=$matches[3]";s:40:"(.?.+?)/delete-payment-method(/(.*))?/?$";s:64:"index.php?pagename=$matches[1]&delete-payment-method=$matches[3]";s:45:"(.?.+?)/set-default-payment-method(/(.*))?/?$";s:69:"index.php?pagename=$matches[1]&set-default-payment-method=$matches[3]";s:31:".?.+?/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:42:".?.+?/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:24:"(.?.+?)(?:/([0-9]+))?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";s:27:"[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:"[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:33:"[^/]+/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:16:"([^/]+)/embed/?$";s:37:"index.php?name=$matches[1]&embed=true";s:20:"([^/]+)/trackback/?$";s:31:"index.php?name=$matches[1]&tb=1";s:40:"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:35:"([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:28:"([^/]+)/page/?([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&paged=$matches[2]";s:35:"([^/]+)/comment-page-([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&cpage=$matches[2]";s:25:"([^/]+)/wc-api(/(.*))?/?$";s:45:"index.php?name=$matches[1]&wc-api=$matches[3]";s:31:"[^/]+/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:42:"[^/]+/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:24:"([^/]+)(?:/([0-9]+))?/?$";s:43:"index.php?name=$matches[1]&page=$matches[2]";s:16:"[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:26:"[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:46:"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:22:"[^/]+/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";}', 'yes'),
+(29, 'rewrite_rules', 'a:161:{s:24:"^wc-auth/v([1]{1})/(.*)?";s:63:"index.php?wc-auth-version=$matches[1]&wc-auth-route=$matches[2]";s:22:"^wc-api/v([1-3]{1})/?$";s:51:"index.php?wc-api-version=$matches[1]&wc-api-route=/";s:24:"^wc-api/v([1-3]{1})(.*)?";s:61:"index.php?wc-api-version=$matches[1]&wc-api-route=$matches[2]";s:9:"shop-2/?$";s:27:"index.php?post_type=product";s:39:"shop-2/feed/(feed|rdf|rss|rss2|atom)/?$";s:44:"index.php?post_type=product&feed=$matches[1]";s:34:"shop-2/(feed|rdf|rss|rss2|atom)/?$";s:44:"index.php?post_type=product&feed=$matches[1]";s:26:"shop-2/page/([0-9]{1,})/?$";s:45:"index.php?post_type=product&paged=$matches[1]";s:11:"^wp-json/?$";s:22:"index.php?rest_route=/";s:14:"^wp-json/(.*)?";s:33:"index.php?rest_route=/$matches[1]";s:21:"^index.php/wp-json/?$";s:22:"index.php?rest_route=/";s:24:"^index.php/wp-json/(.*)?";s:33:"index.php?rest_route=/$matches[1]";s:17:"^wp-sitemap\\.xml$";s:23:"index.php?sitemap=index";s:17:"^wp-sitemap\\.xsl$";s:36:"index.php?sitemap-stylesheet=sitemap";s:23:"^wp-sitemap-index\\.xsl$";s:34:"index.php?sitemap-stylesheet=index";s:48:"^wp-sitemap-([a-z]+?)-([a-z\\d_-]+?)-(\\d+?)\\.xml$";s:75:"index.php?sitemap=$matches[1]&sitemap-subtype=$matches[2]&paged=$matches[3]";s:34:"^wp-sitemap-([a-z]+?)-(\\d+?)\\.xml$";s:47:"index.php?sitemap=$matches[1]&paged=$matches[2]";s:47:"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:42:"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:23:"category/(.+?)/embed/?$";s:46:"index.php?category_name=$matches[1]&embed=true";s:35:"category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:32:"category/(.+?)/wc-api(/(.*))?/?$";s:54:"index.php?category_name=$matches[1]&wc-api=$matches[3]";s:17:"category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:44:"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:39:"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:20:"tag/([^/]+)/embed/?$";s:36:"index.php?tag=$matches[1]&embed=true";s:32:"tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:29:"tag/([^/]+)/wc-api(/(.*))?/?$";s:44:"index.php?tag=$matches[1]&wc-api=$matches[3]";s:14:"tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:45:"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:40:"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:21:"type/([^/]+)/embed/?$";s:44:"index.php?post_format=$matches[1]&embed=true";s:33:"type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:15:"type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:55:"product-category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_cat=$matches[1]&feed=$matches[2]";s:50:"product-category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_cat=$matches[1]&feed=$matches[2]";s:31:"product-category/(.+?)/embed/?$";s:44:"index.php?product_cat=$matches[1]&embed=true";s:43:"product-category/(.+?)/page/?([0-9]{1,})/?$";s:51:"index.php?product_cat=$matches[1]&paged=$matches[2]";s:25:"product-category/(.+?)/?$";s:33:"index.php?product_cat=$matches[1]";s:52:"product-tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_tag=$matches[1]&feed=$matches[2]";s:47:"product-tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?product_tag=$matches[1]&feed=$matches[2]";s:28:"product-tag/([^/]+)/embed/?$";s:44:"index.php?product_tag=$matches[1]&embed=true";s:40:"product-tag/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?product_tag=$matches[1]&paged=$matches[2]";s:22:"product-tag/([^/]+)/?$";s:33:"index.php?product_tag=$matches[1]";s:35:"product/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:45:"product/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:65:"product/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:60:"product/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:60:"product/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:41:"product/[^/]+/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:24:"product/([^/]+)/embed/?$";s:40:"index.php?product=$matches[1]&embed=true";s:28:"product/([^/]+)/trackback/?$";s:34:"index.php?product=$matches[1]&tb=1";s:48:"product/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:46:"index.php?product=$matches[1]&feed=$matches[2]";s:43:"product/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:46:"index.php?product=$matches[1]&feed=$matches[2]";s:36:"product/([^/]+)/page/?([0-9]{1,})/?$";s:47:"index.php?product=$matches[1]&paged=$matches[2]";s:43:"product/([^/]+)/comment-page-([0-9]{1,})/?$";s:47:"index.php?product=$matches[1]&cpage=$matches[2]";s:33:"product/([^/]+)/wc-api(/(.*))?/?$";s:48:"index.php?product=$matches[1]&wc-api=$matches[3]";s:39:"product/[^/]+/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:50:"product/[^/]+/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:32:"product/([^/]+)(?:/([0-9]+))?/?$";s:46:"index.php?product=$matches[1]&page=$matches[2]";s:24:"product/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:34:"product/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:54:"product/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:49:"product/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:49:"product/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:30:"product/[^/]+/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:13:"favicon\\.ico$";s:19:"index.php?favicon=1";s:48:".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$";s:18:"index.php?feed=old";s:20:".*wp-app\\.php(/.*)?$";s:19:"index.php?error=403";s:18:".*wp-register.php$";s:23:"index.php?register=true";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:8:"embed/?$";s:21:"index.php?&embed=true";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:27:"comment-page-([0-9]{1,})/?$";s:40:"index.php?&page_id=362&cpage=$matches[1]";s:17:"wc-api(/(.*))?/?$";s:29:"index.php?&wc-api=$matches[2]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:17:"comments/embed/?$";s:21:"index.php?&embed=true";s:26:"comments/wc-api(/(.*))?/?$";s:29:"index.php?&wc-api=$matches[2]";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:20:"search/(.+)/embed/?$";s:34:"index.php?s=$matches[1]&embed=true";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:29:"search/(.+)/wc-api(/(.*))?/?$";s:42:"index.php?s=$matches[1]&wc-api=$matches[3]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:47:"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:42:"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:23:"author/([^/]+)/embed/?$";s:44:"index.php?author_name=$matches[1]&embed=true";s:35:"author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:32:"author/([^/]+)/wc-api(/(.*))?/?$";s:52:"index.php?author_name=$matches[1]&wc-api=$matches[3]";s:17:"author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:69:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:45:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/embed/?$";s:74:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&embed=true";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:54:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/wc-api(/(.*))?/?$";s:82:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&wc-api=$matches[5]";s:39:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:56:"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:51:"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:32:"([0-9]{4})/([0-9]{1,2})/embed/?$";s:58:"index.php?year=$matches[1]&monthnum=$matches[2]&embed=true";s:44:"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:41:"([0-9]{4})/([0-9]{1,2})/wc-api(/(.*))?/?$";s:66:"index.php?year=$matches[1]&monthnum=$matches[2]&wc-api=$matches[4]";s:26:"([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:43:"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:38:"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:19:"([0-9]{4})/embed/?$";s:37:"index.php?year=$matches[1]&embed=true";s:31:"([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:28:"([0-9]{4})/wc-api(/(.*))?/?$";s:45:"index.php?year=$matches[1]&wc-api=$matches[3]";s:13:"([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:27:".?.+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:".?.+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:33:".?.+?/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:16:"(.?.+?)/embed/?$";s:41:"index.php?pagename=$matches[1]&embed=true";s:20:"(.?.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:40:"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:35:"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:28:"(.?.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:35:"(.?.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:25:"(.?.+?)/wc-api(/(.*))?/?$";s:49:"index.php?pagename=$matches[1]&wc-api=$matches[3]";s:28:"(.?.+?)/order-pay(/(.*))?/?$";s:52:"index.php?pagename=$matches[1]&order-pay=$matches[3]";s:33:"(.?.+?)/order-received(/(.*))?/?$";s:57:"index.php?pagename=$matches[1]&order-received=$matches[3]";s:25:"(.?.+?)/orders(/(.*))?/?$";s:49:"index.php?pagename=$matches[1]&orders=$matches[3]";s:29:"(.?.+?)/view-order(/(.*))?/?$";s:53:"index.php?pagename=$matches[1]&view-order=$matches[3]";s:28:"(.?.+?)/downloads(/(.*))?/?$";s:52:"index.php?pagename=$matches[1]&downloads=$matches[3]";s:31:"(.?.+?)/edit-account(/(.*))?/?$";s:55:"index.php?pagename=$matches[1]&edit-account=$matches[3]";s:31:"(.?.+?)/edit-address(/(.*))?/?$";s:55:"index.php?pagename=$matches[1]&edit-address=$matches[3]";s:34:"(.?.+?)/payment-methods(/(.*))?/?$";s:58:"index.php?pagename=$matches[1]&payment-methods=$matches[3]";s:32:"(.?.+?)/lost-password(/(.*))?/?$";s:56:"index.php?pagename=$matches[1]&lost-password=$matches[3]";s:34:"(.?.+?)/customer-logout(/(.*))?/?$";s:58:"index.php?pagename=$matches[1]&customer-logout=$matches[3]";s:37:"(.?.+?)/add-payment-method(/(.*))?/?$";s:61:"index.php?pagename=$matches[1]&add-payment-method=$matches[3]";s:40:"(.?.+?)/delete-payment-method(/(.*))?/?$";s:64:"index.php?pagename=$matches[1]&delete-payment-method=$matches[3]";s:45:"(.?.+?)/set-default-payment-method(/(.*))?/?$";s:69:"index.php?pagename=$matches[1]&set-default-payment-method=$matches[3]";s:31:".?.+?/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:42:".?.+?/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:24:"(.?.+?)(?:/([0-9]+))?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";s:27:"[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:"[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:33:"[^/]+/attachment/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";s:16:"([^/]+)/embed/?$";s:37:"index.php?name=$matches[1]&embed=true";s:20:"([^/]+)/trackback/?$";s:31:"index.php?name=$matches[1]&tb=1";s:40:"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:35:"([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:28:"([^/]+)/page/?([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&paged=$matches[2]";s:35:"([^/]+)/comment-page-([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&cpage=$matches[2]";s:25:"([^/]+)/wc-api(/(.*))?/?$";s:45:"index.php?name=$matches[1]&wc-api=$matches[3]";s:31:"[^/]+/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:42:"[^/]+/attachment/([^/]+)/wc-api(/(.*))?/?$";s:51:"index.php?attachment=$matches[1]&wc-api=$matches[3]";s:24:"([^/]+)(?:/([0-9]+))?/?$";s:43:"index.php?name=$matches[1]&page=$matches[2]";s:16:"[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:26:"[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:46:"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:22:"[^/]+/([^/]+)/embed/?$";s:43:"index.php?attachment=$matches[1]&embed=true";}', 'yes'),
 (30, 'hack_file', '0', 'yes'),
 (31, 'blog_charset', 'UTF-8', 'yes'),
 (32, 'moderation_keys', '', 'no'),
@@ -6574,7 +6687,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (74, 'comment_order', 'asc', 'yes'),
 (75, 'sticky_posts', 'a:0:{}', 'yes'),
 (76, 'widget_categories', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(77, 'widget_text', 'a:2:{i:1;a:4:{s:5:"title";s:0:"";s:4:"text";s:269:"<img class="alignnone size-full wp-image-83" style="margin-bottom: 12px; display: inline-block;" src="//demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/BOTIGA.svg" alt="" width="105" height="18" />\r\nGive your customers insight into your product collection.";s:6:"filter";b:1;s:6:"visual";b:1;}s:12:"_multiwidget";i:1;}', 'yes'),
+(77, 'widget_text', 'a:2:{i:1;a:4:{s:5:"title";s:0:"";s:4:"text";s:264:"<img class="alignnone size-medium wp-image-414" src="http://merish.local/wp-content/uploads/2022/08/cropped-Madame-maison-beauty-fashion-logo-removebg-preview-300x115.png" alt="" width="300" height="115" />\nGive your customers insight into your product collection.";s:6:"filter";b:1;s:6:"visual";b:1;}s:12:"_multiwidget";i:1;}', 'yes'),
 (78, 'widget_rss', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (79, 'uninstall_plugins', 'a:0:{}', 'no'),
 (80, 'timezone_string', '', 'yes'),
@@ -6603,7 +6716,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (102, 'user_count', '1', 'no'),
 (103, 'widget_block', 'a:6:{i:2;a:1:{s:7:"content";s:19:"<!-- wp:search /-->";}i:3;a:1:{s:7:"content";s:154:"<!-- wp:group --><div class="wp-block-group"><!-- wp:heading --><h2>Recent Posts</h2><!-- /wp:heading --><!-- wp:latest-posts /--></div><!-- /wp:group -->";}i:4;a:1:{s:7:"content";s:227:"<!-- wp:group --><div class="wp-block-group"><!-- wp:heading --><h2>Recent Comments</h2><!-- /wp:heading --><!-- wp:latest-comments {"displayAvatar":false,"displayDate":false,"displayExcerpt":false} /--></div><!-- /wp:group -->";}i:5;a:1:{s:7:"content";s:146:"<!-- wp:group --><div class="wp-block-group"><!-- wp:heading --><h2>Archives</h2><!-- /wp:heading --><!-- wp:archives /--></div><!-- /wp:group -->";}i:6;a:1:{s:7:"content";s:150:"<!-- wp:group --><div class="wp-block-group"><!-- wp:heading --><h2>Categories</h2><!-- /wp:heading --><!-- wp:categories /--></div><!-- /wp:group -->";}s:12:"_multiwidget";i:1;}', 'yes'),
 (104, 'sidebars_widgets', 'a:7:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:14:{i:0;s:7:"block-2";i:1;s:7:"block-3";i:2;s:7:"block-4";i:3;s:7:"block-5";i:4;s:7:"block-6";i:5;s:32:"woocommerce_product_categories-1";i:6;s:26:"woocommerce_price_filter-1";i:7;s:31:"woocommerce_product_tag_cloud-1";i:8;s:25:"woocommerce_layered_nav-1";i:9;s:27:"woocommerce_rating_filter-1";i:10;s:32:"woocommerce_top_rated_products-1";i:11;s:22:"woocommerce_products-1";i:12;s:28:"woocommerce_recent_reviews-1";i:13;s:28:"woocommerce_product_search-1";}s:8:"footer-1";a:1:{i:0;s:6:"text-1";}s:8:"footer-2";a:1:{i:0;s:10:"nav_menu-1";}s:8:"footer-3";a:1:{i:0;s:10:"nav_menu-2";}s:8:"footer-4";a:0:{}s:13:"array_version";i:3;}', 'yes'),
-(105, 'cron', 'a:20:{i:1660391680;a:1:{s:26:"action_scheduler_run_queue";a:1:{s:32:"0d04ed39571b55704c122d726248bbac";a:3:{s:8:"schedule";s:12:"every_minute";s:4:"args";a:1:{i:0;s:7:"WP Cron";}s:8:"interval";i:60;}}}i:1660392464;a:1:{s:34:"wp_privacy_delete_old_export_files";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660392715;a:1:{s:32:"woocommerce_cancel_unpaid_orders";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:2:{s:8:"schedule";b:0;s:4:"args";a:0:{}}}}i:1660392905;a:1:{s:33:"wc_admin_process_orders_milestone";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660392915;a:1:{s:29:"wc_admin_unsnooze_admin_notes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660393297;a:1:{s:20:"jetpack_clean_nonces";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660399663;a:2:{s:30:"wp_site_health_scheduled_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"weekly";s:4:"args";a:0:{}s:8:"interval";i:604800;}}s:32:"recovery_mode_clean_expired_keys";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660399664;a:4:{s:18:"wp_https_detection";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1660399778;a:3:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:25:"delete_expired_transients";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:21:"wp_update_user_counts";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1660399779;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400100;a:1:{s:14:"wc_admin_daily";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400110;a:2:{s:33:"woocommerce_cleanup_personal_data";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:30:"woocommerce_tracker_send_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400497;a:1:{s:20:"jetpack_v2_heartbeat";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660410900;a:2:{s:24:"woocommerce_cleanup_logs";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:31:"woocommerce_cleanup_rate_limits";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660421700;a:1:{s:28:"woocommerce_cleanup_sessions";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1660435200;a:1:{s:27:"woocommerce_scheduled_sales";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660572000;a:1:{s:28:"wpforms_email_summaries_cron";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:30:"wpforms_email_summaries_weekly";s:4:"args";a:0:{}s:8:"interval";i:604800;}}}i:1661609760;a:1:{s:25:"woocommerce_geoip_updater";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:11:"fifteendays";s:4:"args";a:0:{}s:8:"interval";i:1296000;}}}i:1662950659;a:1:{s:19:"delete_fonts_folder";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:7:"monthly";s:4:"args";a:0:{}s:8:"interval";i:2635200;}}}s:7:"version";i:2;}', 'yes'),
+(105, 'cron', 'a:18:{i:1660398460;a:1:{s:26:"action_scheduler_run_queue";a:1:{s:32:"0d04ed39571b55704c122d726248bbac";a:3:{s:8:"schedule";s:12:"every_minute";s:4:"args";a:1:{i:0;s:7:"WP Cron";}s:8:"interval";i:60;}}}i:1660399663;a:2:{s:30:"wp_site_health_scheduled_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"weekly";s:4:"args";a:0:{}s:8:"interval";i:604800;}}s:32:"recovery_mode_clean_expired_keys";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660399664;a:5:{s:18:"wp_https_detection";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:34:"wp_privacy_delete_old_export_files";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660399778;a:3:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:25:"delete_expired_transients";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:21:"wp_update_user_counts";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1660399779;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400100;a:1:{s:14:"wc_admin_daily";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400105;a:1:{s:33:"wc_admin_process_orders_milestone";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660400110;a:2:{s:33:"woocommerce_cleanup_personal_data";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:30:"woocommerce_tracker_send_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660400115;a:1:{s:29:"wc_admin_unsnooze_admin_notes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660400272;a:1:{s:32:"woocommerce_cancel_unpaid_orders";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:2:{s:8:"schedule";b:0;s:4:"args";a:0:{}}}}i:1660400497;a:2:{s:20:"jetpack_v2_heartbeat";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:20:"jetpack_clean_nonces";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1660410900;a:2:{s:24:"woocommerce_cleanup_logs";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}s:31:"woocommerce_cleanup_rate_limits";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660421700;a:1:{s:28:"woocommerce_cleanup_sessions";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1660435200;a:1:{s:27:"woocommerce_scheduled_sales";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1660572000;a:1:{s:28:"wpforms_email_summaries_cron";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:30:"wpforms_email_summaries_weekly";s:4:"args";a:0:{}s:8:"interval";i:604800;}}}i:1661609760;a:1:{s:25:"woocommerce_geoip_updater";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:11:"fifteendays";s:4:"args";a:0:{}s:8:"interval";i:1296000;}}}i:1662950659;a:1:{s:19:"delete_fonts_folder";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:7:"monthly";s:4:"args";a:0:{}s:8:"interval";i:2635200;}}}s:7:"version";i:2;}', 'yes'),
 (106, 'widget_pages', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (107, 'widget_calendar', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (108, 'widget_archives', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
@@ -6616,7 +6729,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (115, 'nonce_key', '_D^DzPlcDv:|LEm$Y(|L]iJU:t25kj$Q`J |Mku(YF !yX-_6JG; (3;2?@db$FW', 'no'),
 (116, 'nonce_salt', '?q3MCN&8P4`=rv,+?Uo$K8.v}dwY<7P*R?2KeoOwX%/(Xcy&oWCFmGLMqn:R,wTx', 'no'),
 (117, 'widget_tag_cloud', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
-(118, 'widget_nav_menu', 'a:3:{i:1;a:2:{s:5:"title";s:11:"Quick links";s:8:"nav_menu";i:18;}i:2;a:2:{s:5:"title";s:5:"About";s:8:"nav_menu";i:18;}s:12:"_multiwidget";i:1;}', 'yes'),
+(118, 'widget_nav_menu', 'a:3:{i:1;a:2:{s:5:"title";s:11:"Quick links";s:8:"nav_menu";i:17;}i:2;a:2:{s:5:"title";s:5:"About";s:8:"nav_menu";i:18;}s:12:"_multiwidget";i:1;}', 'yes'),
 (119, 'widget_custom_html', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (121, 'recovery_keys', 'a:0:{}', 'yes'),
 (124, 'theme_mods_twentytwentytwo', 'a:2:{s:18:"custom_css_post_id";i:-1;s:16:"sidebars_widgets";a:2:{s:4:"time";i:1660314751;s:4:"data";a:3:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:3:{i:0;s:7:"block-2";i:1;s:7:"block-3";i:2;s:7:"block-4";}s:9:"sidebar-2";a:2:{i:0;s:7:"block-5";i:1;s:7:"block-6";}}}}', 'yes'),
@@ -6745,7 +6858,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (279, 'woocommerce_demo_store', 'no', 'no'),
 (280, 'wc_downloads_approved_directories_mode', 'enabled', 'yes'),
 (282, 'woocommerce_permalinks', 'a:5:{s:12:"product_base";s:7:"product";s:13:"category_base";s:16:"product-category";s:8:"tag_base";s:11:"product-tag";s:14:"attribute_base";s:0:"";s:22:"use_verbose_page_rules";b:0;}', 'yes'),
-(283, 'current_theme_supports_woocommerce', 'no', 'yes'),
+(283, 'current_theme_supports_woocommerce', 'yes', 'yes'),
 (284, 'woocommerce_queue_flush_rewrite_rules', 'no', 'yes'),
 (287, 'default_product_cat', '15', 'yes'),
 (289, 'woocommerce_refund_returns_page_id', '10', 'yes'),
@@ -6754,7 +6867,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (294, 'woocommerce_db_version', '6.8.0', 'yes'),
 (295, 'woocommerce_admin_install_timestamp', '1660313703', 'yes'),
 (296, 'woocommerce_inbox_variant_assignment', '9', 'yes'),
-(301, 'action_scheduler_lock_async-request-runner', '1660391703', 'yes'),
+(301, 'action_scheduler_lock_async-request-runner', '1660398448', 'yes'),
 (302, 'woocommerce_admin_notices', 'a:1:{i:0;s:20:"no_secure_connection";}', 'yes'),
 (303, 'woocommerce_maxmind_geolocation_settings', 'a:1:{s:15:"database_prefix";s:32:"3K694P7ORXidklt5xCCs0fVZwx4E9gdM";}', 'yes'),
 (307, 'widget_woocommerce_widget_cart', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
@@ -6831,7 +6944,7 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (504, 'wpforms_notifications', 'a:4:{s:6:"update";i:1660315498;s:4:"feed";a:0:{}s:6:"events";a:6:{s:15:"welcome-message";a:6:{s:2:"id";s:15:"welcome-message";s:5:"title";s:19:"Welcome to WPForms!";s:7:"content";s:233:"We’re grateful that you chose WPForms for your website! Now that you’ve installed the plugin, you’re less than 5 minutes away from publishing your first form. To make it easy, we’ve got 400+ form templates to get you started!";s:4:"btns";a:2:{s:4:"main";a:2:{s:3:"url";s:59:"http://merish.local/wp-admin/admin.php?page=wpforms-builder";s:4:"text";s:14:"Start Building";}s:3:"alt";a:2:{s:3:"url";s:163:"https://wpforms.com/docs/creating-first-form/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Welcome%20Read%20the%20Guide";s:4:"text";s:14:"Read the Guide";}}s:4:"type";a:7:{i:0;s:4:"lite";i:1;s:5:"basic";i:2;s:4:"plus";i:3;s:3:"pro";i:4;s:6:"agency";i:5;s:5:"elite";i:6;s:8:"ultimate";}s:5:"start";s:19:"2022-08-12 14:41:21";}s:22:"wp-mail-smtp-education";a:5:{s:2:"id";s:22:"wp-mail-smtp-education";s:5:"title";s:43:"Don’t Miss Your Form Notification Emails!";s:7:"content";s:260:"Did you know that many WordPress sites are not properly configured to send emails? With the free WP Mail SMTP plugin, you can easily optimize your site to send emails, avoid the spam folder, and make sure your emails land in the recipient’s inbox every time.";s:4:"btns";a:2:{s:4:"main";a:2:{s:3:"url";s:56:"http://merish.local/wp-admin/admin.php?page=wpforms-smtp";s:4:"text";s:11:"Install Now";}s:3:"alt";a:2:{s:3:"url";s:195:"https://wpforms.com/docs/how-to-set-up-smtp-using-the-wp-mail-smtp-plugin/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=WP%20Mail%20SMTP%20Learn%20More";s:4:"text";s:10:"Learn More";}}s:5:"start";s:19:"2022-08-15 14:41:21";}s:15:"join-vip-circle";a:5:{s:2:"id";s:15:"join-vip-circle";s:5:"title";s:27:"Want to Be a VIP? Join Now!";s:7:"content";s:326:"Running a WordPress site can be challenging. But help is just around the corner! Our Facebook group contains tons of tips and help to get your business growing! When you join our VIP Circle, you’ll get instant access to tips, tricks, and answers from a community of loyal WPForms users. Best of all, membership is 100% free!";s:4:"btns";a:1:{s:4:"main";a:2:{s:3:"url";s:43:"https://www.facebook.com/groups/wpformsvip/";s:4:"text";s:8:"Join Now";}}s:5:"start";s:19:"2022-09-11 14:41:21";}s:14:"survey-reports";a:5:{s:2:"id";s:14:"survey-reports";s:5:"title";s:46:"Want to Know What Your Customers Really Think?";s:7:"content";s:334:"Nothing beats real feedback from your customers and visitors. That’s why many small businesses love our awesome Surveys and Polls addon. Instantly unlock full survey reporting right in your WordPress dashboard. And don’t forget: building a survey is easy with our pre-made templates, so you could get started within a few minutes!";s:4:"btns";a:2:{s:4:"main";a:1:{s:7:"license";a:5:{s:4:"lite";a:2:{s:3:"url";s:161:"https://wpforms.com/lite-upgrade/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Surveys%20and%20Polls%20Upgrade%20Lite";s:4:"text";s:11:"Upgrade Now";}s:5:"basic";a:2:{s:3:"url";s:166:"https://wpforms.com/account/licenses/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Surveys%20and%20Polls%20Upgrade%20Basic";s:4:"text";s:11:"Upgrade Now";}s:4:"plus";a:2:{s:3:"url";s:166:"https://wpforms.com/account/licenses/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Surveys%20and%20Polls%20Upgrade%20Basic";s:4:"text";s:11:"Upgrade Now";}s:3:"pro";a:2:{s:3:"url";s:58:"http://merish.local/wp-admin/admin.php?page=wpforms-addons";s:4:"text";s:11:"Install Now";}s:5:"elite";a:2:{s:3:"url";s:58:"http://merish.local/wp-admin/admin.php?page=wpforms-addons";s:4:"text";s:11:"Install Now";}}}s:3:"alt";a:2:{s:3:"url";s:202:"https://wpforms.com/docs/how-to-install-and-use-the-surveys-and-polls-addon/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Surveys%20and%20Polls%20Learn%20More";s:4:"text";s:10:"Learn More";}}s:5:"start";s:19:"2022-09-26 14:41:21";}s:16:"form-abandonment";a:5:{s:2:"id";s:16:"form-abandonment";s:5:"title";s:31:"Get More Leads From Your Forms!";s:7:"content";s:363:"Are your forms converting fewer visitors than you hoped? Often, visitors quit forms partway through. That can prevent you from getting all the leads you deserve to capture. With our Form Abandonment addon, you can capture partial entries even if your visitor didn’t hit Submit! From there, it’s easy to follow up with leads and turn them into loyal customers.";s:4:"btns";a:2:{s:4:"main";a:1:{s:7:"license";a:5:{s:4:"lite";a:2:{s:3:"url";s:158:"https://wpforms.com/lite-upgrade/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Form%20Abandonment%20Upgrade%20Lite";s:4:"text";s:11:"Upgrade Now";}s:5:"basic";a:2:{s:3:"url";s:163:"https://wpforms.com/account/licenses/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Form%20Abandonment%20Upgrade%20Basic";s:4:"text";s:11:"Upgrade Now";}s:4:"plus";a:2:{s:3:"url";s:163:"https://wpforms.com/account/licenses/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Form%20Abandonment%20Upgrade%20Basic";s:4:"text";s:11:"Upgrade Now";}s:3:"pro";a:2:{s:3:"url";s:58:"http://merish.local/wp-admin/admin.php?page=wpforms-addons";s:4:"text";s:11:"Install Now";}s:5:"elite";a:2:{s:3:"url";s:58:"http://merish.local/wp-admin/admin.php?page=wpforms-addons";s:4:"text";s:11:"Install Now";}}}s:3:"alt";a:2:{s:3:"url";s:201:"https://wpforms.com/docs/how-to-install-and-use-form-abandonment-with-wpforms/?utm_source=WordPress&utm_medium=Event%20Notification&utm_campaign=liteplugin&utm_content=Form%20Abandonment%20Learn%20More";s:4:"text";s:10:"Learn More";}}s:5:"start";s:19:"2022-10-11 14:41:21";}s:5:"ideas";a:5:{s:2:"id";s:5:"ideas";s:5:"title";s:36:"What’s Your Dream WPForms Feature?";s:7:"content";s:288:"If you could add just one feature to WPForms, what would it be? We want to know! Our team is busy surveying valued customers like you as we plan the year ahead. We’d love to know which features would take your business to the next level! Do you have a second to share your idea with us?";s:4:"btns";a:1:{s:4:"main";a:2:{s:3:"url";s:36:"https://wpforms.com/share-your-idea/";s:4:"text";s:15:"Share Your Idea";}}s:5:"start";s:19:"2022-12-10 14:41:21";}}s:9:"dismissed";a:1:{i:0;s:3:"172";}}', 'yes'),
 (506, 'widget_recent-comments', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (507, 'widget_recent-posts', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(678, 'wpmdb_usage', 'a:2:{s:6:"action";s:8:"savefile";s:4:"time";i:1660391494;}', 'no'),
+(678, 'wpmdb_usage', 'a:2:{s:6:"action";s:8:"savefile";s:4:"time";i:1660398395;}', 'no'),
 (753, 'woocommerce_cod_settings', 'a:6:{s:7:"enabled";s:3:"yes";s:5:"title";s:16:"Cash on delivery";s:11:"description";s:28:"Pay with cash upon delivery.";s:12:"instructions";s:28:"Pay with cash upon delivery.";s:18:"enable_for_methods";a:0:{}s:18:"enable_for_virtual";s:3:"yes";}', 'yes'),
 (758, 'woocommerce_admin_created_default_shipping_zones', 'yes', 'yes'),
 (760, 'woocommerce_task_list_prompt_shown', '1', 'yes'),
@@ -6841,7 +6954,8 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (839, 'wc_fields_billing', 'a:4:{s:18:"billing_first_name";a:17:{s:4:"type";s:4:"text";s:4:"name";s:18:"billing_first_name";s:5:"label";s:3:"Nom";s:7:"default";s:0:"";s:11:"placeholder";s:16:"Saisir le nom...";s:5:"class";a:1:{i:0;s:13:"form-row-wide";}s:8:"validate";s:0:"";s:10:"title_type";s:0:"";s:8:"required";i:1;s:7:"checked";i:0;s:7:"enabled";i:1;s:13:"show_in_email";i:0;s:13:"show_in_order";i:0;s:7:"options";s:0:"";s:12:"autocomplete";s:10:"given-name";s:8:"priority";i:10;s:6:"custom";i:0;}s:17:"billing_address_1";a:17:{s:4:"type";s:4:"text";s:4:"name";s:17:"billing_address_1";s:5:"label";s:7:"Adresse";s:7:"default";s:0:"";s:11:"placeholder";s:32:"Saisir l\'adresse de livraison...";s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:8:"validate";s:0:"";s:10:"title_type";s:0:"";s:8:"required";i:1;s:7:"checked";i:0;s:7:"enabled";i:1;s:13:"show_in_email";i:0;s:13:"show_in_order";i:0;s:7:"options";s:0:"";s:12:"autocomplete";s:13:"address-line1";s:8:"priority";i:20;s:6:"custom";i:0;}s:12:"billing_city";a:9:{s:5:"label";s:11:"Town / City";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:14:"address-level2";s:8:"priority";i:30;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:13:"billing_phone";a:17:{s:4:"type";s:3:"tel";s:4:"name";s:13:"billing_phone";s:5:"label";s:22:"Numéro de téléphone";s:7:"default";s:0:"";s:11:"placeholder";s:35:"Saisir le numéro de téléphone...";s:5:"class";a:1:{i:0;s:13:"form-row-wide";}s:8:"validate";a:1:{i:0;s:5:"phone";}s:10:"title_type";s:0:"";s:8:"required";i:1;s:7:"checked";i:0;s:7:"enabled";i:1;s:13:"show_in_email";i:0;s:13:"show_in_order";i:0;s:7:"options";s:0:"";s:12:"autocomplete";s:3:"tel";s:8:"priority";i:40;s:6:"custom";i:0;}}', 'no'),
 (862, 'WPLANG', 'fr_FR', 'yes'),
 (863, 'new_admin_email', 'dev-email@flywheel.local', 'yes'),
-(924, 'wc_fields_shipping', 'a:8:{s:19:"shipping_first_name";a:9:{s:5:"label";s:7:"Prénom";s:8:"required";b:1;s:5:"class";a:1:{i:0;s:14:"form-row-first";}s:12:"autocomplete";s:10:"given-name";s:8:"priority";i:10;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_last_name";a:9:{s:5:"label";s:3:"Nom";s:8:"required";b:1;s:5:"class";a:1:{i:0;s:13:"form-row-last";}s:12:"autocomplete";s:11:"family-name";s:8:"priority";i:20;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:16:"shipping_country";a:10:{s:4:"type";s:7:"country";s:5:"label";s:12:"Pays/région";s:8:"required";b:1;s:5:"class";a:3:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";i:2;s:23:"update_totals_on_change";}s:12:"autocomplete";s:7:"country";s:8:"priority";i:30;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_address_1";a:10:{s:5:"label";s:21:"Numéro et nom de rue";s:11:"placeholder";s:32:"Numéro de voie et nom de la rue";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:13:"address-line1";s:8:"priority";i:40;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_address_2";a:11:{s:5:"label";s:32:"Appartement, suite, unité, etc.";s:11:"label_class";a:1:{i:0;s:18:"screen-reader-text";}s:11:"placeholder";s:46:"Bâtiment, appartement, lot, etc. (facultatif)";s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:13:"address-line2";s:8:"priority";i:50;s:8:"required";b:0;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:13:"shipping_city";a:9:{s:5:"label";s:5:"Ville";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:14:"address-level2";s:8:"priority";i:60;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:14:"shipping_state";a:13:{s:4:"type";s:5:"state";s:5:"label";s:24:"Région / Département";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:8:"validate";a:1:{i:0;s:5:"state";}s:12:"autocomplete";s:14:"address-level1";s:8:"priority";i:70;s:13:"country_field";s:16:"shipping_country";s:7:"country";s:2:"MA";s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:17:"shipping_postcode";a:10:{s:5:"label";s:11:"Code postal";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:8:"validate";a:1:{i:0;s:8:"postcode";}s:12:"autocomplete";s:11:"postal-code";s:8:"priority";i:80;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}}', 'no') ;
+(924, 'wc_fields_shipping', 'a:8:{s:19:"shipping_first_name";a:9:{s:5:"label";s:7:"Prénom";s:8:"required";b:1;s:5:"class";a:1:{i:0;s:14:"form-row-first";}s:12:"autocomplete";s:10:"given-name";s:8:"priority";i:10;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_last_name";a:9:{s:5:"label";s:3:"Nom";s:8:"required";b:1;s:5:"class";a:1:{i:0;s:13:"form-row-last";}s:12:"autocomplete";s:11:"family-name";s:8:"priority";i:20;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:16:"shipping_country";a:10:{s:4:"type";s:7:"country";s:5:"label";s:12:"Pays/région";s:8:"required";b:1;s:5:"class";a:3:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";i:2;s:23:"update_totals_on_change";}s:12:"autocomplete";s:7:"country";s:8:"priority";i:30;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_address_1";a:10:{s:5:"label";s:21:"Numéro et nom de rue";s:11:"placeholder";s:32:"Numéro de voie et nom de la rue";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:13:"address-line1";s:8:"priority";i:40;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:18:"shipping_address_2";a:11:{s:5:"label";s:32:"Appartement, suite, unité, etc.";s:11:"label_class";a:1:{i:0;s:18:"screen-reader-text";}s:11:"placeholder";s:46:"Bâtiment, appartement, lot, etc. (facultatif)";s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:13:"address-line2";s:8:"priority";i:50;s:8:"required";b:0;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:13:"shipping_city";a:9:{s:5:"label";s:5:"Ville";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:12:"autocomplete";s:14:"address-level2";s:8:"priority";i:60;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:14:"shipping_state";a:13:{s:4:"type";s:5:"state";s:5:"label";s:24:"Région / Département";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:8:"validate";a:1:{i:0;s:5:"state";}s:12:"autocomplete";s:14:"address-level1";s:8:"priority";i:70;s:13:"country_field";s:16:"shipping_country";s:7:"country";s:2:"MA";s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}s:17:"shipping_postcode";a:10:{s:5:"label";s:11:"Code postal";s:8:"required";b:1;s:5:"class";a:2:{i:0;s:13:"form-row-wide";i:1;s:13:"address-field";}s:8:"validate";a:1:{i:0;s:8:"postcode";}s:12:"autocomplete";s:11:"postal-code";s:8:"priority";i:80;s:6:"custom";i:0;s:7:"enabled";i:0;s:13:"show_in_email";i:1;s:13:"show_in_order";i:1;}}', 'no'),
+(1143, 'nav_menu_options', 'a:2:{i:0;b:0;s:8:"auto_add";a:0:{}}', 'yes') ;
 
 #
 # Fin du contenu des données de la table `wp_options`
@@ -6863,12 +6977,12 @@ DROP TABLE IF EXISTS `wp_postmeta`;
 CREATE TABLE `wp_postmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=571 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=680 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -7075,29 +7189,9 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (198, 47, '_wp_old_date', '2021-07-25'),
 (199, 47, '_wp_old_date', '2021-08-06'),
 (200, 47, '_wxr_import_user_slug', 'dev.hmtl'),
-(201, 78, '_menu_item_type', 'post_type'),
-(202, 78, '_menu_item_menu_item_parent', '0') ;
-INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
-(203, 78, '_menu_item_object_id', '393'),
-(204, 78, '_menu_item_object', 'page'),
-(205, 78, '_menu_item_target', ''),
-(206, 78, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(207, 78, '_menu_item_xfn', ''),
-(208, 78, '_menu_item_url', ''),
-(209, 78, '_wp_old_date', '2021-07-17'),
-(210, 78, '_wxr_import_user_slug', 'dev.hmtl'),
-(211, 79, '_menu_item_type', 'post_type'),
-(212, 79, '_menu_item_menu_item_parent', '0'),
-(213, 79, '_menu_item_object_id', '27'),
-(214, 79, '_menu_item_object', 'page'),
-(215, 79, '_menu_item_target', ''),
-(216, 79, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(217, 79, '_menu_item_xfn', ''),
-(218, 79, '_menu_item_url', ''),
-(219, 79, '_wp_old_date', '2021-07-17'),
-(220, 79, '_wxr_import_user_slug', 'dev.hmtl'),
 (223, 109, '_botiga_page_builder_mode', '0'),
-(224, 109, '_botiga_sidebar_layout', 'customizer'),
+(224, 109, '_botiga_sidebar_layout', 'customizer') ;
+INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (225, 109, '_thumbnail_id', '146'),
 (226, 109, '_wxr_import_user_slug', 'dev.hmtl'),
 (227, 109, '_wxr_import_has_attachment_refs', '1'),
@@ -7108,15 +7202,6 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (234, 112, '_thumbnail_id', '145'),
 (235, 112, '_wxr_import_user_slug', 'dev.hmtl'),
 (236, 112, '_wxr_import_has_attachment_refs', '1'),
-(237, 160, '_menu_item_type', 'custom'),
-(238, 160, '_menu_item_menu_item_parent', '0'),
-(239, 160, '_menu_item_object_id', '160'),
-(240, 160, '_menu_item_object', 'custom'),
-(241, 160, '_menu_item_target', ''),
-(242, 160, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(243, 160, '_menu_item_xfn', ''),
-(244, 160, '_menu_item_url', '#'),
-(245, 160, '_wxr_import_user_slug', 'dev.hmtl'),
 (246, 161, '_menu_item_type', 'custom'),
 (247, 161, '_menu_item_menu_item_parent', '0'),
 (248, 161, '_menu_item_object_id', '161'),
@@ -7141,17 +7226,6 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (267, 257, '_wp_page_template', 'default'),
 (268, 257, '_wxr_import_user_slug', 'dev.hmtl'),
 (269, 257, '_wxr_import_has_attachment_refs', '1'),
-(270, 320, '_menu_item_type', 'post_type'),
-(271, 320, '_menu_item_menu_item_parent', '0'),
-(272, 320, '_menu_item_object_id', '257'),
-(273, 320, '_menu_item_object', 'page'),
-(274, 320, '_menu_item_target', ''),
-(275, 320, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(276, 320, '_menu_item_xfn', ''),
-(277, 320, '_menu_item_url', ''),
-(278, 320, '_wp_old_date', '2021-07-25'),
-(279, 320, '_wp_old_date', '2021-08-06'),
-(280, 320, '_wxr_import_user_slug', 'dev.hmtl'),
 (281, 362, '_botiga_page_builder_mode', '1'),
 (282, 362, '_botiga_sidebar_layout', 'customizer'),
 (283, 362, '_dp_original', '5'),
@@ -7159,26 +7233,7 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (285, 362, '_wpassetcleanup_no_load', '{"styles":["contact-form-7","elementor-common","elementor-icons"],"scripts":["contact-form-7","wpcf7-recaptcha","backbone-marionette","backbone-radio","elementor-app-loader","elementor-common","elementor-common-modules","elementor-dialog","st-carousel","jquery-blockui","google-recaptcha","jquery-ui-position"]}'),
 (286, 362, '_wxr_import_user_slug', 'dev.hmtl'),
 (287, 362, '_wxr_import_has_attachment_refs', '1'),
-(288, 364, '_menu_item_type', 'post_type'),
-(289, 364, '_menu_item_menu_item_parent', '0'),
-(290, 364, '_menu_item_object_id', '362'),
-(291, 364, '_menu_item_object', 'page'),
-(292, 364, '_menu_item_target', ''),
-(293, 364, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(294, 364, '_menu_item_xfn', ''),
-(295, 364, '_menu_item_url', ''),
-(296, 364, '_wxr_import_user_slug', 'dev.hmtl'),
-(297, 365, '_menu_item_type', 'post_type'),
-(298, 365, '_menu_item_menu_item_parent', '0'),
-(299, 365, '_menu_item_object_id', '362'),
-(300, 365, '_menu_item_object', 'page'),
-(301, 365, '_menu_item_target', ''),
-(302, 365, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(303, 365, '_menu_item_xfn', ''),
-(304, 365, '_menu_item_url', ''),
-(305, 365, '_wxr_import_user_slug', 'dev.hmtl'),
-(306, 31, 'total_sales', '0') ;
-INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(306, 31, 'total_sales', '0'),
 (307, 31, '_tax_status', 'taxable'),
 (308, 31, '_tax_class', ''),
 (309, 31, '_manage_stock', 'no'),
@@ -7236,7 +7291,8 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (361, 42, '_wc_average_rating', '0'),
 (362, 42, '_wc_review_count', '0'),
 (363, 42, '_product_version', '5.5.1'),
-(364, 42, '_price', '14'),
+(364, 42, '_price', '14') ;
+INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (365, 42, '_botiga_page_builder_mode', '0'),
 (366, 42, '_botiga_sidebar_layout', 'customizer'),
 (367, 42, '_thumbnail_id', '315'),
@@ -7278,8 +7334,7 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (403, 94, '_wc_average_rating', '0'),
 (404, 94, '_wc_review_count', '0'),
 (405, 94, '_product_version', '5.5.1'),
-(406, 94, '_price', '14') ;
-INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(406, 94, '_price', '14'),
 (407, 94, '_botiga_page_builder_mode', '0'),
 (408, 94, '_botiga_sidebar_layout', 'customizer'),
 (409, 94, '_thumbnail_id', '317'),
@@ -7337,7 +7392,8 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (461, 97, '_virtual', 'no'),
 (462, 97, '_downloadable', 'no'),
 (463, 97, '_download_limit', '-1'),
-(464, 97, '_download_expiry', '-1'),
+(464, 97, '_download_expiry', '-1') ;
+INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (465, 97, '_stock', ''),
 (466, 97, '_stock_status', 'instock'),
 (467, 97, '_wc_average_rating', '0'),
@@ -7379,8 +7435,7 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (507, 116, '_wxr_import_user_slug', 'dev.hmtl'),
 (508, 116, '_wxr_import_has_attachment_refs', '1'),
 (509, 117, '_pingme', '1'),
-(511, 117, '_botiga_page_builder_mode', '0') ;
-INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(511, 117, '_botiga_page_builder_mode', '0'),
 (512, 117, '_botiga_sidebar_layout', 'customizer'),
 (513, 117, '_dp_original', '116'),
 (514, 117, '_thumbnail_id', '138'),
@@ -7437,7 +7492,66 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (567, 406, '_wp_trash_meta_time', '1660384445'),
 (568, 407, '_edit_lock', '1660384593:1'),
 (569, 407, '_wp_trash_meta_status', 'publish'),
-(570, 407, '_wp_trash_meta_time', '1660384610') ;
+(570, 407, '_wp_trash_meta_time', '1660384610'),
+(571, 408, '_menu_item_type', 'post_type') ;
+INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(572, 408, '_menu_item_menu_item_parent', '0'),
+(573, 408, '_menu_item_object_id', '362'),
+(574, 408, '_menu_item_object', 'page'),
+(575, 408, '_menu_item_target', ''),
+(576, 408, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(577, 408, '_menu_item_xfn', ''),
+(578, 408, '_menu_item_url', ''),
+(589, 410, '_menu_item_type', 'post_type'),
+(590, 410, '_menu_item_menu_item_parent', '0'),
+(591, 410, '_menu_item_object_id', '257'),
+(592, 410, '_menu_item_object', 'page'),
+(593, 410, '_menu_item_target', ''),
+(594, 410, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(595, 410, '_menu_item_xfn', ''),
+(596, 410, '_menu_item_url', ''),
+(607, 46, '_wp_old_date', '2021-08-17'),
+(608, 47, '_wp_old_date', '2021-08-17'),
+(618, 413, '_edit_lock', '1660397804:1'),
+(619, 414, '_wp_attached_file', '2022/08/cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397555218.png'),
+(620, 414, '_wp_attachment_metadata', 'a:6:{s:5:"width";i:100;s:6:"height";i:62;s:4:"file";s:85:"2022/08/cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397555218.png";s:8:"filesize";i:20082;s:5:"sizes";a:5:{s:6:"medium";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-300x115.png";s:5:"width";i:300;s:6:"height";i:115;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:13976;}s:9:"thumbnail";a:5:{s:4:"file";s:85:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397287728-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:21526;}s:13:"botiga-medium";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-380x146.png";s:5:"width";i:380;s:6:"height";i:146;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:19307;}s:21:"woocommerce_thumbnail";a:6:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-420x161.png";s:5:"width";i:420;s:6:"height";i:161;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:22387;s:9:"uncropped";b:1;}s:29:"woocommerce_gallery_thumbnail";a:5:{s:4:"file";s:85:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397287728-100x100.png";s:5:"width";i:100;s:6:"height";i:100;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:12158;}}s:10:"image_meta";a:12:{s:8:"aperture";s:1:"0";s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";s:1:"0";s:9:"copyright";s:0:"";s:12:"focal_length";s:1:"0";s:3:"iso";s:1:"0";s:13:"shutter_speed";s:1:"0";s:5:"title";s:0:"";s:11:"orientation";s:1:"0";s:8:"keywords";a:0:{}}}'),
+(621, 414, '_wp_attachment_backup_sizes', 'a:9:{s:9:"full-orig";a:3:{s:5:"width";i:500;s:6:"height";i:192;s:4:"file";s:62:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview.png";}s:14:"thumbnail-orig";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:17644;}s:11:"medium-orig";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-300x115.png";s:5:"width";i:300;s:6:"height";i:115;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:13976;}s:18:"botiga-medium-orig";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-380x146.png";s:5:"width";i:380;s:6:"height";i:146;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:19307;}s:26:"woocommerce_thumbnail-orig";a:6:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-420x161.png";s:5:"width";i:420;s:6:"height";i:161;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:22387;s:9:"uncropped";b:1;}s:34:"woocommerce_gallery_thumbnail-orig";a:5:{s:4:"file";s:70:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-100x100.png";s:5:"width";i:100;s:6:"height";i:100;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:10411;}s:18:"full-1660397555218";a:3:{s:5:"width";i:252;s:6:"height";i:157;s:4:"file";s:77:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397287728.png";}s:23:"thumbnail-1660397555218";a:5:{s:4:"file";s:85:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397287728-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:21526;}s:43:"woocommerce_gallery_thumbnail-1660397555218";a:5:{s:4:"file";s:85:"cropped-Madame-maison-beauty-fashion-logo-removebg-preview-e1660397287728-100x100.png";s:5:"width";i:100;s:6:"height";i:100;s:9:"mime-type";s:9:"image/png";s:8:"filesize";i:12158;}}'),
+(622, 413, '_wp_trash_meta_status', 'publish'),
+(623, 413, '_wp_trash_meta_time', '1660397819'),
+(624, 415, '_menu_item_type', 'post_type'),
+(625, 415, '_menu_item_menu_item_parent', '0'),
+(626, 415, '_menu_item_object_id', '362'),
+(627, 415, '_menu_item_object', 'page'),
+(628, 415, '_menu_item_target', ''),
+(629, 415, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(630, 415, '_menu_item_xfn', ''),
+(631, 415, '_menu_item_url', ''),
+(633, 416, '_menu_item_type', 'post_type'),
+(634, 416, '_menu_item_menu_item_parent', '0'),
+(635, 416, '_menu_item_object_id', '393'),
+(636, 416, '_menu_item_object', 'page'),
+(637, 416, '_menu_item_target', ''),
+(638, 416, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(639, 416, '_menu_item_xfn', ''),
+(640, 416, '_menu_item_url', ''),
+(642, 417, '_menu_item_type', 'post_type'),
+(643, 417, '_menu_item_menu_item_parent', '0'),
+(644, 417, '_menu_item_object_id', '27'),
+(645, 417, '_menu_item_object', 'page'),
+(646, 417, '_menu_item_target', ''),
+(647, 417, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(648, 417, '_menu_item_xfn', ''),
+(649, 417, '_menu_item_url', ''),
+(651, 418, '_menu_item_type', 'custom'),
+(652, 418, '_menu_item_menu_item_parent', '0'),
+(653, 418, '_menu_item_object_id', '418'),
+(654, 418, '_menu_item_object', 'custom'),
+(655, 418, '_menu_item_target', ''),
+(656, 418, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(657, 418, '_menu_item_xfn', ''),
+(658, 418, '_menu_item_url', '#'),
+(678, 161, '_wp_old_date', '2021-07-21'),
+(679, 162, '_wp_old_date', '2021-07-21') ;
 
 #
 # Fin du contenu des données de la table `wp_postmeta`
@@ -7461,31 +7575,31 @@ CREATE TABLE `wp_posts` (
   `post_author` bigint(20) unsigned NOT NULL DEFAULT '0',
   `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_content` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `post_title` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `post_excerpt` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `post_status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'publish',
-  `comment_status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'open',
-  `ping_status` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'open',
-  `post_password` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `post_name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `to_ping` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `pinged` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_excerpt` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'publish',
+  `comment_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'open',
+  `ping_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'open',
+  `post_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `post_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `to_ping` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `pinged` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `post_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_modified_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_content_filtered` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_content_filtered` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `post_parent` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `guid` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `guid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `menu_order` int(11) NOT NULL DEFAULT '0',
-  `post_type` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'post',
-  `post_mime_type` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `post_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'post',
+  `post_mime_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `comment_count` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `post_name` (`post_name`(191)),
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=408 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=421 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -7512,11 +7626,9 @@ INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `pos
 (31, 1, '2021-07-17 09:49:14', '2021-07-17 09:49:14', 'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\n\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Rare Earth Deep Pore Minimizing Cleansing', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.', 'publish', 'open', 'closed', '', 'rare-earth-deep-pore-minimizing-cleansing-clay-mask', '', '', '2021-07-17 09:49:14', '2021-07-17 09:49:14', '', 0, 'https://demo.athemes.com/botiga/?post_type=product&amp;p=31', 0, 'product', '', 0),
 (40, 1, '2021-07-17 10:39:31', '2021-07-17 10:39:31', 'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\n\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Facial Treatment Essence (Pitera Essence)', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.', 'publish', 'open', 'closed', '', 'facial-treatment-essence-pitera-essence', '', '', '2021-07-17 10:39:31', '2021-07-17 10:39:31', '', 0, 'https://demo.athemes.com/botiga/?post_type=product&amp;p=40', 0, 'product', '', 0),
 (42, 1, '2021-07-17 10:42:05', '2021-07-17 10:42:05', 'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\n\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Mini Radiant Creamy Concealer and Blush', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.', 'publish', 'open', 'closed', '', 'mini-radiant-creamy-concealer-and-blush-customizable-set', '', '', '2021-07-17 10:42:05', '2021-07-17 10:42:05', '', 0, 'https://demo.athemes.com/botiga/?post_type=product&amp;p=42', 0, 'product', '', 0),
-(46, 1, '2021-08-17 17:07:05', '2021-07-17 14:05:25', ' ', '', '', 'publish', 'closed', 'closed', '', '46', '', '', '2021-08-17 17:07:05', '2021-07-17 14:05:25', '', 0, 'https://demo.athemes.com/botiga/?p=46', 2, 'nav_menu_item', '', 0),
-(47, 1, '2021-08-17 17:07:05', '2021-07-17 14:05:25', ' ', '', '', 'publish', 'closed', 'closed', '', '47', '', '', '2021-08-17 17:07:05', '2021-07-17 14:05:25', '', 0, 'https://demo.athemes.com/botiga/?p=47', 3, 'nav_menu_item', '', 0),
+(46, 1, '2022-08-13 13:57:08', '2021-07-17 14:05:25', ' ', '', '', 'publish', 'closed', 'closed', '', '46', '', '', '2022-08-13 13:57:08', '2022-08-13 12:57:08', '', 0, 'https://demo.athemes.com/botiga/?p=46', 2, 'nav_menu_item', '', 0),
+(47, 1, '2022-08-13 13:57:08', '2021-07-17 14:05:25', ' ', '', '', 'publish', 'closed', 'closed', '', '47', '', '', '2022-08-13 13:57:08', '2022-08-13 12:57:08', '', 0, 'https://demo.athemes.com/botiga/?p=47', 3, 'nav_menu_item', '', 0),
 (49, 1, '2021-07-17 14:08:17', '2021-07-17 14:08:17', '', 'Mask Group (1) (1)', '', 'inherit', 'open', 'closed', '', 'mask-group-1-1', '', '', '2021-07-17 14:08:17', '2021-07-17 14:08:17', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Mask-Group-1-1.jpg', 0, 'attachment', 'image/jpeg', 0),
-(78, 1, '2021-08-17 17:06:48', '2021-07-17 14:50:43', ' ', '', '', 'publish', 'closed', 'closed', '', '78', '', '', '2021-08-17 17:06:48', '2021-07-17 14:50:43', '', 0, 'https://demo.athemes.com/botiga/2021/07/17/78/', 2, 'nav_menu_item', '', 0),
-(79, 1, '2021-08-17 17:06:48', '2021-07-17 14:50:43', ' ', '', '', 'publish', 'closed', 'closed', '', '79', '', '', '2021-08-17 17:06:48', '2021-07-17 14:50:43', '', 0, 'https://demo.athemes.com/botiga/2021/07/17/79/', 3, 'nav_menu_item', '', 0),
 (88, 1, '2021-07-18 08:23:43', '2021-07-18 08:23:43', '', 'Hero', '', 'inherit', 'open', 'closed', '', 'hero', '', '', '2021-07-18 08:23:43', '2021-07-18 08:23:43', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Hero.jpg', 0, 'attachment', 'image/jpeg', 0),
 (93, 1, '2021-07-18 08:40:16', '2021-07-18 08:40:16', 'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\n\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Watermelon Glow Hyaluronic Clay Pore', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.', 'publish', 'open', 'closed', '', 'watermelon-glow-hyaluronic-clay-pore-tight-facial-mask', '', '', '2021-07-18 08:40:16', '2021-07-18 08:40:16', '', 0, 'https://demo.athemes.com/botiga/?post_type=product&amp;p=93', 0, 'product', '', 0),
 (94, 1, '2021-07-18 08:40:27', '2021-07-18 08:40:27', 'Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum.\n\nDuis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Ultra Facial Moisturizing Cream', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras luctus congue nisi.', 'publish', 'open', 'closed', '', 'ultra-facial-moisturizing-cream-with-squalane-combination', '', '', '2021-07-18 08:40:27', '2021-07-18 08:40:27', '', 0, 'https://demo.athemes.com/botiga/?post_type=product&amp;p=94', 0, 'product', '', 0),
@@ -7542,9 +7654,8 @@ INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `pos
 (143, 1, '2021-07-18 19:38:42', '2021-07-18 19:38:42', '', 'pexels-anna-urlapova-2968785', '', 'inherit', 'open', 'closed', '', 'pexels-anna-urlapova-2968785', '', '', '2021-07-18 19:38:42', '2021-07-18 19:38:42', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/pexels-anna-urlapova-2968785.jpg', 0, 'attachment', 'image/jpeg', 0),
 (145, 1, '2021-07-18 19:41:14', '2021-07-18 19:41:14', '', 'pexels-karolina-grabowska-4210310', '', 'inherit', 'open', 'closed', '', 'pexels-karolina-grabowska-4210310', '', '', '2021-07-18 19:41:14', '2021-07-18 19:41:14', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/pexels-karolina-grabowska-4210310.jpg', 0, 'attachment', 'image/jpeg', 0),
 (146, 1, '2021-07-18 19:41:24', '2021-07-18 19:41:24', '', 'pexels-jess-harper-sunday-2834934', '', 'inherit', 'open', 'closed', '', 'pexels-jess-harper-sunday-2834934', '', '', '2021-07-18 19:41:24', '2021-07-18 19:41:24', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/pexels-jess-harper-sunday-2834934.jpg', 0, 'attachment', 'image/jpeg', 0),
-(160, 1, '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 'Shipping', '', 'publish', 'closed', 'closed', '', 'shipping', '', '', '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 0, 'https://demo.athemes.com/botiga/?p=160', 1, 'nav_menu_item', '', 0),
-(161, 1, '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 'Terms', '', 'publish', 'closed', 'closed', '', 'terms', '', '', '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 0, 'https://demo.athemes.com/botiga/?p=161', 2, 'nav_menu_item', '', 0),
-(162, 1, '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 'Policy', '', 'publish', 'closed', 'closed', '', 'policy', '', '', '2021-07-21 08:47:03', '2021-07-21 08:47:03', '', 0, 'https://demo.athemes.com/botiga/?p=162', 3, 'nav_menu_item', '', 0),
+(161, 1, '2022-08-13 14:44:19', '2021-07-21 08:47:03', '', 'Terms', '', 'publish', 'closed', 'closed', '', 'terms', '', '', '2022-08-13 14:44:19', '2022-08-13 13:44:19', '', 0, 'https://demo.athemes.com/botiga/?p=161', 2, 'nav_menu_item', '', 0),
+(162, 1, '2022-08-13 14:44:19', '2021-07-21 08:47:03', '', 'Policy', '', 'publish', 'closed', 'closed', '', 'policy', '', '', '2022-08-13 14:44:19', '2022-08-13 13:44:19', '', 0, 'https://demo.athemes.com/botiga/?p=162', 3, 'nav_menu_item', '', 0),
 (163, 1, '2021-07-21 10:07:04', '2021-07-21 10:07:04', '', 'BOTIGA', '', 'inherit', 'open', 'closed', '', 'botiga-2', '', '', '2021-07-21 10:07:04', '2021-07-21 10:07:04', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/BOTIGA.svg', 0, 'attachment', 'image/svg+xml', 0),
 (171, 1, '2021-07-21 10:59:41', '2021-07-21 10:59:41', '', 'gr', '', 'inherit', 'open', 'closed', '', 'gr', '', '', '2021-07-21 10:59:41', '2021-07-21 10:59:41', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gr.jpg', 0, 'attachment', 'image/jpeg', 0),
 (172, 1, '2021-07-21 11:01:20', '2021-07-21 11:01:20', '', 'gray', '', 'inherit', 'open', 'closed', '', 'gray', '', '', '2021-07-21 11:01:20', '2021-07-21 11:01:20', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/gray.jpg', 0, 'attachment', 'image/jpeg', 0),
@@ -7565,15 +7676,12 @@ INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `pos
 (317, 1, '2021-07-23 18:13:54', '2021-07-23 18:13:54', '', 'Beaucoup', '', 'inherit', 'open', 'closed', '', 'beaucoup', '', '', '2021-07-23 18:13:54', '2021-07-23 18:13:54', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Beaucoup.jpg', 0, 'attachment', 'image/jpeg', 0),
 (318, 1, '2021-07-23 18:14:05', '2021-07-23 18:14:05', '', 'Pearlville', '', 'inherit', 'open', 'closed', '', 'pearlville-2', '', '', '2021-07-23 18:14:05', '2021-07-23 18:14:05', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Pearlville-1.jpg', 0, 'attachment', 'image/jpeg', 0),
 (319, 1, '2021-07-23 18:14:27', '2021-07-23 18:14:27', '', 'Klassichic', '', 'inherit', 'open', 'closed', '', 'klassichic', '', '', '2021-07-23 18:14:27', '2021-07-23 18:14:27', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Klassichic.jpg', 0, 'attachment', 'image/jpeg', 0),
-(320, 1, '2021-08-17 17:07:05', '2021-07-25 09:15:46', '', 'Contact', '', 'publish', 'closed', 'closed', '', '320', '', '', '2021-08-17 17:07:05', '2021-07-25 09:15:46', '', 0, 'https://demo.athemes.com/botiga/?p=320', 4, 'nav_menu_item', '', 0),
 (323, 1, '2021-07-26 18:10:38', '2021-07-26 18:10:38', '', 'Rectangle 582 (1)', '', 'inherit', 'open', 'closed', '', 'rectangle-582-1', '', '', '2021-07-26 18:10:38', '2021-07-26 18:10:38', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-582-1.jpg', 0, 'attachment', 'image/jpeg', 0),
 (325, 1, '2021-07-26 18:11:27', '2021-07-26 18:11:27', '', 'Rectangle 581 (1)', '', 'inherit', 'open', 'closed', '', 'rectangle-581-1', '', '', '2021-07-26 18:11:27', '2021-07-26 18:11:27', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-581-1.jpg', 0, 'attachment', 'image/jpeg', 0),
 (326, 1, '2021-07-26 18:12:03', '2021-07-26 18:12:03', '', 'Rectangle 583 (1)', '', 'inherit', 'open', 'closed', '', 'rectangle-583-1', '', '', '2021-07-26 18:12:03', '2021-07-26 18:12:03', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-583-1.jpg', 0, 'attachment', 'image/jpeg', 0),
 (327, 1, '2021-07-26 18:13:02', '2021-07-26 18:13:02', '', 'Rectangle 584 (1)', '', 'inherit', 'open', 'closed', '', 'rectangle-584-1', '', '', '2021-07-26 18:13:02', '2021-07-26 18:13:02', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-584-1.jpg', 0, 'attachment', 'image/jpeg', 0),
 (353, 1, '2021-07-28 18:51:00', '2021-07-28 18:51:00', '', 'Heroc', '', 'inherit', 'open', 'closed', '', 'heroc', '', '', '2021-07-28 18:51:00', '2021-07-28 18:51:00', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc.jpg', 0, 'attachment', 'image/jpeg', 0),
 (362, 1, '2021-08-17 17:03:43', '2021-08-17 17:03:43', '<!-- wp:athemes/athemes-blocks-block-container {"block_id":"428d2d54","wrapperPaddingToggle":false,"wrapperPadding":0,"wrapperPaddingTop":200,"wrapperPaddingBottom":240,"wrapperBackgroundType":"image","wrapperBackgroundImage":{"uploading":false,"date":1627498260000,"filename":"Heroc.jpg","menuOrder":0,"uploadedTo":5,"type":"image","subtype":"jpeg","id":353,"title":"Heroc","url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc.jpg","link":"https://demo.athemes.com/botiga/home/heroc/","alt":"","author":"63","description":"","caption":"","name":"heroc","status":"inherit","modified":1627498260000,"mime":"image/jpeg","icon":"https://demo.athemes.com/botiga/wp-includes/images/media/default.png","dateFormatted":"July 28, 2021","nonces":{"update":"b4588a21d3","delete":"59e8f4629c","edit":"095099c387"},"editLink":"https://demo.athemes.com/botiga/wp-admin/post.php?post=353\\u0026action=edit","meta":false,"authorName":"vlad","authorLink":"https://demo.athemes.com/botiga/wp-admin/profile.php","uploadedToTitle":"Home","uploadedToLink":"https://demo.athemes.com/botiga/wp-admin/post.php?post=5\\u0026action=edit","filesizeInBytes":114535,"filesizeHumanReadable":"112 KB","context":"","height":1138,"width":2048,"orientation":"landscape","sizes":{"thumbnail":{"height":150,"width":150,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-150x150.jpg","orientation":"landscape"},"medium":{"height":167,"width":300,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-300x167.jpg","orientation":"landscape"},"large":{"height":569,"width":1024,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-1024x569.jpg","orientation":"landscape"},"full":{"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc.jpg","height":1138,"width":2048,"orientation":"landscape"}},"compat":{"item":"","meta":""}},"wrapperBackgroundPosition":"center center"} -->\n<div id="athemes-blocks-block-428d2d54" class="wp-block-athemes-athemes-blocks-block-container athemes-blocks-block athemes-blocks-block-428d2d54 athemes-blocks-block-container alignfull"><div class="athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-cover athemes-blocks-block-container-bg-effect-scroll"><img class="athemes-blocks-background-image" width="2048" height="1138" loading="lazy" srcset="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-150x150.jpg 150w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-300x167.jpg 300w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc-1024x569.jpg 1024w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Heroc.jpg 2048w, " sizes="(max-width: 2048px) 100vw, 2048px" alt=""/><div class="athemes-blocks-block-container-wrapper-content"><!-- wp:columns -->\n<div class="wp-block-columns"><!-- wp:column {"width":"66.66%"} -->\n<div class="wp-block-column" style="flex-basis:66.66%"><!-- wp:heading {"fontSize":"gigantic"} -->\n<h2 class="has-gigantic-font-size">Headline that grabs people\'s attention</h2>\n<!-- /wp:heading -->\n\n<!-- wp:buttons -->\n<div class="wp-block-buttons"><!-- wp:button {"borderRadius":0} -->\n<div class="wp-block-button"><a class="wp-block-button__link no-border-radius" href="https://demo.athemes.com/botiga/shop/">SHOP NOW</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons --></div>\n<!-- /wp:column -->\n\n<!-- wp:column {"width":"33.33%"} -->\n<div class="wp-block-column" style="flex-basis:33.33%"></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns --></div></div></div>\n<!-- /wp:athemes/athemes-blocks-block-container -->\n\n<!-- wp:spacer -->\n<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>\n<!-- /wp:spacer -->\n\n<!-- wp:heading {"textAlign":"center","level":3} -->\n<h3 class="has-text-align-center">Featured Collection</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center">A powerful headline about your product\'s features to give focus to your chosen product collection </p>\n<!-- /wp:paragraph -->\n\n<!-- wp:woocommerce/product-new {"rows":1,"contentVisibility":{"title":true,"price":true,"rating":false,"button":true,"image":true}} /-->\n\n<!-- wp:spacer -->\n<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>\n<!-- /wp:spacer -->\n\n<!-- wp:athemes/athemes-blocks-block-container {"block_id":"943d931c","wrapperPaddingToggle":false,"wrapperPaddingTop":150,"wrapperPaddingBottom":150,"wrapperBackgroundType":"image","wrapperBackgroundImage":{"uploading":false,"date":1626976776000,"filename":"hbg-1.jpg","menuOrder":0,"uploadedTo":5,"type":"image","subtype":"jpeg","id":255,"title":"hbg (1)","url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1.jpg","link":"https://demo.athemes.com/botiga/home/hbg-1/","alt":"","author":"63","description":"","caption":"","name":"hbg-1","status":"inherit","modified":1626976776000,"mime":"image/jpeg","icon":"https://demo.athemes.com/botiga/wp-includes/images/media/default.png","dateFormatted":"July 22, 2021","nonces":{"update":"9d4e76ee2d","delete":"05218e8ec0","edit":"c918ab52cc"},"editLink":"https://demo.athemes.com/botiga/wp-admin/post.php?post=255\\u0026action=edit","meta":false,"authorName":"vlad","authorLink":"https://demo.athemes.com/botiga/wp-admin/profile.php","uploadedToTitle":"Home","uploadedToLink":"https://demo.athemes.com/botiga/wp-admin/post.php?post=5\\u0026action=edit","filesizeInBytes":137880,"filesizeHumanReadable":"135 KB","context":"","height":580,"width":1440,"orientation":"landscape","sizes":{"thumbnail":{"height":150,"width":150,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-150x150.jpg","orientation":"landscape"},"medium":{"height":121,"width":300,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-300x121.jpg","orientation":"landscape"},"large":{"height":412,"width":1024,"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-1024x412.jpg","orientation":"landscape"},"full":{"url":"https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1.jpg","height":580,"width":1440,"orientation":"landscape"}},"compat":{"item":"","meta":""}},"wrapperBackgroundPosition":"center center"} -->\n<div id="athemes-blocks-block-943d931c" class="wp-block-athemes-athemes-blocks-block-container athemes-blocks-block athemes-blocks-block-943d931c athemes-blocks-block-container alignfull"><div class="athemes-blocks-block-container-wrapper athemes-blocks-block-container-bg-cover athemes-blocks-block-container-bg-effect-scroll"><img class="athemes-blocks-background-image" width="1440" height="580" loading="lazy" srcset="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-150x150.jpg 150w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-300x121.jpg 300w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1-1024x412.jpg 1024w, https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/hbg-1.jpg 1440w, " sizes="(max-width: 1440px) 100vw, 1440px" alt=""/><div class="athemes-blocks-block-container-wrapper-content"><!-- wp:heading {"textAlign":"center","level":3} -->\n<h3 class="has-text-align-center">Highlighted Section</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center">What differentiates you from the competition? Use this section to talk about it. Don\'t forget to talk about the benefits.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:buttons {"contentJustification":"center"} -->\n<div class="wp-block-buttons is-content-justification-center"><!-- wp:button {"borderRadius":0} -->\n<div class="wp-block-button"><a class="wp-block-button__link no-border-radius">SHOP NOW</a></div>\n<!-- /wp:button --></div>\n<!-- /wp:buttons --></div></div></div>\n<!-- /wp:athemes/athemes-blocks-block-container -->\n\n<!-- wp:spacer -->\n<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>\n<!-- /wp:spacer -->\n\n<!-- wp:heading {"textAlign":"center","level":3} -->\n<h3 class="has-text-align-center">Featured Categories</h3>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center">Give your customers insight into your product collection. Select imagery and name that relates to the product category.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:columns -->\n<div class="wp-block-columns"><!-- wp:column -->\n<div class="wp-block-column"><!-- wp:image {"align":"center","id":325,"sizeSlug":"large","linkDestination":"custom"} -->\n<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://demo.athemes.com/botiga/product-category/cosmetics/"><img src="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-581-1.jpg" alt="" class="wp-image-325"/></a></figure></div>\n<!-- /wp:image -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center"><a style="text-decoration:none;" href="https://demo.athemes.com/botiga/product-category/cosmetics/" data-type="URL" data-id="https://demo.athemes.com/botiga/product-category/cosmetics/">Makeup</a></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class="wp-block-column"><!-- wp:image {"align":"center","id":323,"sizeSlug":"large","linkDestination":"custom"} -->\n<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://demo.athemes.com/botiga/product-category/cosmetics/"><img src="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-582-1.jpg" alt="" class="wp-image-323"/></a></figure></div>\n<!-- /wp:image -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center"><a style="text-decoration:none;" href="https://demo.athemes.com/botiga/product-category/cosmetics/" data-type="URL" data-id="https://demo.athemes.com/botiga/product-category/cosmetics/">Lipstick</a></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class="wp-block-column"><!-- wp:image {"align":"center","id":326,"sizeSlug":"large","linkDestination":"custom"} -->\n<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://demo.athemes.com/botiga/product-category/cosmetics/"><img src="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-583-1.jpg" alt="" class="wp-image-326"/></a></figure></div>\n<!-- /wp:image -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center"><a style="text-decoration:none;" href="https://demo.athemes.com/botiga/product-category/cosmetics/">Bath Products</a></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column -->\n\n<!-- wp:column -->\n<div class="wp-block-column"><!-- wp:image {"align":"center","id":327,"sizeSlug":"large","linkDestination":"custom"} -->\n<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://demo.athemes.com/botiga/product-category/cosmetics/"><img src="https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/07/Rectangle-584-1.jpg" alt="" class="wp-image-327"/></a></figure></div>\n<!-- /wp:image -->\n\n<!-- wp:paragraph {"align":"center"} -->\n<p class="has-text-align-center"><a style="text-decoration:none;" href="https://demo.athemes.com/botiga/product-category/cosmetics/">Treatments</a></p>\n<!-- /wp:paragraph --></div>\n<!-- /wp:column --></div>\n<!-- /wp:columns -->\n\n<!-- wp:spacer {"height":90} -->\n<div style="height:90px" aria-hidden="true" class="wp-block-spacer"></div>\n<!-- /wp:spacer -->', 'Home', '', 'publish', 'closed', 'closed', '', 'home-2', '', '', '2021-08-17 17:03:43', '2021-08-17 17:03:43', '', 0, 'https://demo.athemes.com/botiga/?page_id=362', 0, 'page', '', 0),
-(364, 1, '2021-08-17 17:06:48', '2021-08-17 17:06:48', ' ', '', '', 'publish', 'closed', 'closed', '', '364', '', '', '2021-08-17 17:06:48', '2021-08-17 17:06:48', '', 0, 'https://demo.athemes.com/botiga/?p=364', 1, 'nav_menu_item', '', 0),
-(365, 1, '2021-08-17 17:07:05', '2021-08-17 17:07:05', ' ', '', '', 'publish', 'closed', 'closed', '', '365', '', '', '2021-08-17 17:07:05', '2021-08-17 17:07:05', '', 0, 'https://demo.athemes.com/botiga/?p=365', 1, 'nav_menu_item', '', 0),
 (385, 1, '2021-12-02 15:24:51', '2021-12-02 15:24:51', '', 'favicon', '', 'inherit', 'open', 'closed', '', 'favicon', '', '', '2021-12-02 15:24:51', '2021-12-02 15:24:51', '', 0, 'https://demo.athemes.com/botiga/wp-content/uploads/sites/125/2021/12/favicon.png', 0, 'attachment', 'image/png', 0),
 (388, 1, '2021-12-20 12:07:20', '2021-12-20 12:07:20', '{"fields":[{"id":"0","type":"name","label":"Name","format":"simple","description":"","required":"1","size":"large","simple_placeholder":"","simple_default":"","first_placeholder":"","first_default":"","middle_placeholder":"","middle_default":"","last_placeholder":"","last_default":"","css":"wpforms-one-half wpforms-first"},{"id":"1","type":"email","label":"Email","description":"","required":"1","size":"large","placeholder":"","confirmation_placeholder":"","default_value":"","filter_type":"","allowlist":"","denylist":"","css":"wpforms-one-half"},{"id":"2","type":"textarea","label":"Comment or Message","description":"","required":"1","size":"large","placeholder":"","limit_count":"1","limit_mode":"characters","default_value":"","css":""}],"id":"388","field_id":3,"settings":{"form_title":"Simple Contact Form","form_desc":"","submit_text":"Send message","submit_text_processing":"Sending...","antispam":"1","form_class":"","submit_class":"","ajax_submit":"1","notification_enable":"1","notifications":{"1":{"email":"{admin_email}","subject":"New Entry: Simple Contact Form","sender_name":"Botiga","sender_address":"{admin_email}","replyto":"{field_id=\\"1\\"}","message":"{all_fields}"}},"confirmations":{"1":{"type":"message","message":"<p>Thanks for contacting us! We will be in touch with you shortly.<\\/p>","message_scroll":"1","page":"2","redirect":""}}},"meta":{"template":"4dbf022985a4fe4bda4a80365011a3a0"}}', 'Simple Contact Form', '', 'publish', 'closed', 'closed', '', 'simple-contact-form', '', '', '2021-12-20 12:07:20', '2021-12-20 12:07:20', '', 0, 'https://demo.athemes.com/botiga/?post_type=wpforms&amp;p=388', 0, 'wpforms', '', 0),
 (391, 1, '2021-12-20 12:11:33', '2021-12-20 12:11:33', '.page-id-257 .wpforms-form button[type=submit] {\n    background-color: #000 !important;\n    border-color: #000 !important;\n    color: #fff !important;\n}\n \n.page-id-257 .wpforms-form button[type=submit]:hover {\n    background-color: #000 !important;\n}\n.page-id-257 .wpforms-form input,\n.page-id-257 .wpforms-form textarea {\n	border-color: #000 !important;\n}', 'botiga', '', 'publish', 'closed', 'closed', '', 'botiga', '', '', '2021-12-20 12:11:33', '2021-12-20 12:11:33', '', 0, 'https://demo.athemes.com/botiga/2021/12/20/botiga/', 0, 'custom_css', '', 0),
@@ -7592,7 +7700,17 @@ INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `pos
 (404, 1, '2022-08-13 10:50:43', '2022-08-13 09:50:43', '{"botiga::shop_archive_sidebar":{"value":"no-sidebar","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:46:50"},"botiga::shop_page_title":{"value":false,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:46:50"},"botiga::shop_page_description":{"value":false,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:46:50"},"botiga::shop_breadcrumbs":{"value":false,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:46:50"},"botiga::shop_product_card_layout":{"value":"layout2","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:47:51"},"botiga::shop_product_quickview_layout":{"value":"layout3","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:47:51"},"botiga::shop_sale_tag_spacing":{"value":"0","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:48:51"},"botiga::sale_badge_text":{"value":"SOLD!","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:48:51"},"botiga::sale_badge_percent":{"value":true,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:48:51"},"botiga::shop_product_card_style":{"value":"layout3","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:49:51"},"botiga::single_product_sale_background_color":{"value":"#212121","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:50:43"},"botiga::single_product_sale_color":{"value":"#ffffff","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:50:43"}}', '', '', 'trash', 'closed', 'closed', '', 'cf41fd31-e53a-4ea8-b868-7352ec35bbb5', '', '', '2022-08-13 10:50:43', '2022-08-13 09:50:43', '', 0, 'http://merish.local/?p=404', 0, 'customize_changeset', '', 0),
 (405, 1, '2022-08-13 10:52:55', '2022-08-13 09:52:55', '{"botiga::shop_card_elements":{"value":["botiga_shop_loop_product_title","woocommerce_template_loop_rating","botiga_loop_product_category","botiga_loop_product_description","woocommerce_template_loop_price"],"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:52:51"},"botiga::shop_product_alignment":{"value":"left","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:51:50"}}', '', '', 'trash', 'closed', 'closed', '', '51d68601-bf88-4540-bf0e-9d9f06b68be5', '', '', '2022-08-13 10:52:55', '2022-08-13 09:52:55', '', 0, 'http://merish.local/?p=405', 0, 'customize_changeset', '', 0),
 (406, 1, '2022-08-13 10:54:04', '2022-08-13 09:54:04', '{"botiga::shop_archive_layout":{"value":"product-grid","type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:54:04"},"botiga::shop_card_elements":{"value":["botiga_shop_loop_product_title","woocommerce_template_loop_price","woocommerce_template_loop_rating","botiga_loop_product_category"],"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:53:50"}}', '', '', 'trash', 'closed', 'closed', '', '8579a0b6-f4a8-4d9a-9698-43f4a400f06e', '', '', '2022-08-13 10:54:04', '2022-08-13 09:54:04', '', 0, 'http://merish.local/?p=406', 0, 'customize_changeset', '', 0),
-(407, 1, '2022-08-13 10:56:50', '2022-08-13 09:56:50', '{"botiga::shop_search_enable_ajax":{"value":true,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:56:28"},"woocommerce_category_archive_display":{"value":"both","type":"option","user_id":1,"date_modified_gmt":"2022-08-13 09:56:50"}}', '', '', 'trash', 'closed', 'closed', '', 'a3774428-7b61-4b33-ac93-f6a4f7f19043', '', '', '2022-08-13 10:56:50', '2022-08-13 09:56:50', '', 0, 'http://merish.local/?p=407', 0, 'customize_changeset', '', 0) ;
+(407, 1, '2022-08-13 10:56:50', '2022-08-13 09:56:50', '{"botiga::shop_search_enable_ajax":{"value":true,"type":"theme_mod","user_id":1,"date_modified_gmt":"2022-08-13 09:56:28"},"woocommerce_category_archive_display":{"value":"both","type":"option","user_id":1,"date_modified_gmt":"2022-08-13 09:56:50"}}', '', '', 'trash', 'closed', 'closed', '', 'a3774428-7b61-4b33-ac93-f6a4f7f19043', '', '', '2022-08-13 10:56:50', '2022-08-13 09:56:50', '', 0, 'http://merish.local/?p=407', 0, 'customize_changeset', '', 0),
+(408, 1, '2022-08-13 13:57:08', '2022-08-13 12:56:21', ' ', '', '', 'publish', 'closed', 'closed', '', '408', '', '', '2022-08-13 13:57:08', '2022-08-13 12:57:08', '', 0, 'http://merish.local/?p=408', 1, 'nav_menu_item', '', 0),
+(410, 1, '2022-08-13 13:57:08', '2022-08-13 12:56:21', '', 'Contact', '', 'publish', 'closed', 'closed', '', 'contact', '', '', '2022-08-13 13:57:08', '2022-08-13 12:57:08', '', 0, 'http://merish.local/?p=410', 4, 'nav_menu_item', '', 0) ;
+INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(413, 1, '2022-08-13 14:36:59', '2022-08-13 13:36:59', '{"widget_text[1]":{"value":{"encoded_serialized_instance":"YTo0OntzOjU6InRpdGxlIjtzOjA6IiI7czo0OiJ0ZXh0IjtzOjI2NDoiPGltZyBjbGFzcz0iYWxpZ25ub25lIHNpemUtbWVkaXVtIHdwLWltYWdlLTQxNCIgc3JjPSJodHRwOi8vbWVyaXNoLmxvY2FsL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDIyLzA4L2Nyb3BwZWQtTWFkYW1lLW1haXNvbi1iZWF1dHktZmFzaGlvbi1sb2dvLXJlbW92ZWJnLXByZXZpZXctMzAweDExNS5wbmciIGFsdD0iIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjExNSIgLz4KR2l2ZSB5b3VyIGN1c3RvbWVycyBpbnNpZ2h0IGludG8geW91ciBwcm9kdWN0IGNvbGxlY3Rpb24uIjtzOjY6ImZpbHRlciI7YjoxO3M6NjoidmlzdWFsIjtiOjE7fQ==","title":"","is_widget_customizer_js_value":true,"instance_hash_key":"380f4ba20934242bcc0e5785268fdb39","raw_instance":{"title":"","text":"<img class=\\"alignnone size-medium wp-image-414\\" src=\\"http:\\/\\/merish.local\\/wp-content\\/uploads\\/2022\\/08\\/cropped-Madame-maison-beauty-fashion-logo-removebg-preview-300x115.png\\" alt=\\"\\" width=\\"300\\" height=\\"115\\" \\/>\\nGive your customers insight into your product collection.","filter":true,"visual":true}},"type":"option","user_id":1,"date_modified_gmt":"2022-08-13 13:35:46"},"sidebars_widgets[footer-2]":{"value":["nav_menu-1"],"type":"option","user_id":1,"date_modified_gmt":"2022-08-13 13:36:44"},"widget_nav_menu[1]":{"value":{"encoded_serialized_instance":"YToyOntzOjU6InRpdGxlIjtzOjExOiJRdWljayBsaW5rcyI7czo4OiJuYXZfbWVudSI7aToxNzt9","title":"Quick links","is_widget_customizer_js_value":true,"instance_hash_key":"9748efaa81ef9ebe41f4d2a27be1b188","raw_instance":{"title":"Quick links","nav_menu":17}},"type":"option","user_id":1,"date_modified_gmt":"2022-08-13 13:36:59"}}', '', '', 'trash', 'closed', 'closed', '', 'd897a44c-47b6-449a-966e-7126b40ac775', '', '', '2022-08-13 14:36:59', '2022-08-13 13:36:59', '', 0, 'http://merish.local/?p=413', 0, 'customize_changeset', '', 0),
+(414, 1, '2022-08-13 14:27:03', '2022-08-13 13:27:03', '', 'cropped-Madame-maison-beauty-fashion-logo-removebg-preview', '', 'inherit', 'open', 'closed', '', 'cropped-madame-maison-beauty-fashion-logo-removebg-preview', '', '', '2022-08-13 14:27:03', '2022-08-13 13:27:03', '', 0, 'http://merish.local/wp-content/uploads/2022/08/cropped-Madame-maison-beauty-fashion-logo-removebg-preview.png', 0, 'attachment', 'image/png', 0),
+(415, 1, '2022-08-13 14:39:16', '2022-08-13 13:39:16', ' ', '', '', 'publish', 'closed', 'closed', '', '415', '', '', '2022-08-13 14:39:16', '2022-08-13 13:39:16', '', 0, 'http://merish.local/?p=415', 1, 'nav_menu_item', '', 0),
+(416, 1, '2022-08-13 14:39:17', '2022-08-13 13:39:17', ' ', '', '', 'publish', 'closed', 'closed', '', '416', '', '', '2022-08-13 14:39:17', '2022-08-13 13:39:17', '', 0, 'http://merish.local/?p=416', 2, 'nav_menu_item', '', 0) ;
+INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(417, 1, '2022-08-13 14:39:17', '2022-08-13 13:39:17', ' ', '', '', 'publish', 'closed', 'closed', '', '417', '', '', '2022-08-13 14:39:17', '2022-08-13 13:39:17', '', 0, 'http://merish.local/?p=417', 3, 'nav_menu_item', '', 0),
+(418, 1, '2022-08-13 14:44:19', '2022-08-13 13:43:47', '', 'Shipping', '', 'publish', 'closed', 'closed', '', 'shipping-2', '', '', '2022-08-13 14:44:19', '2022-08-13 13:44:19', '', 0, 'http://merish.local/?p=418', 1, 'nav_menu_item', '', 0) ;
 
 #
 # Fin du contenu des données de la table `wp_posts`
@@ -7633,8 +7751,6 @@ INSERT INTO `wp_term_relationships` ( `object_id`, `term_taxonomy_id`, `term_ord
 (42, 16, 0),
 (46, 19, 0),
 (47, 19, 0),
-(78, 17, 0),
-(79, 17, 0),
 (93, 2, 0),
 (93, 16, 0),
 (94, 2, 0),
@@ -7654,13 +7770,15 @@ INSERT INTO `wp_term_relationships` ( `object_id`, `term_taxonomy_id`, `term_ord
 (117, 1, 0),
 (118, 1, 0),
 (119, 1, 0),
-(160, 18, 0),
 (161, 18, 0),
 (162, 18, 0),
-(320, 19, 0),
-(364, 17, 0),
-(365, 19, 0),
-(398, 20, 0) ;
+(398, 20, 0),
+(408, 19, 0),
+(410, 19, 0),
+(415, 17, 0),
+(416, 17, 0),
+(417, 17, 0),
+(418, 18, 0) ;
 
 #
 # Fin du contenu des données de la table `wp_term_relationships`
@@ -7682,8 +7800,8 @@ DROP TABLE IF EXISTS `wp_term_taxonomy`;
 CREATE TABLE `wp_term_taxonomy` (
   `term_taxonomy_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `taxonomy` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `description` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `taxonomy` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `parent` bigint(20) unsigned NOT NULL DEFAULT '0',
   `count` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`term_taxonomy_id`),
@@ -7712,9 +7830,9 @@ INSERT INTO `wp_term_taxonomy` ( `term_taxonomy_id`, `term_id`, `taxonomy`, `des
 (14, 14, 'product_visibility', '', 0, 0),
 (15, 15, 'product_cat', '', 0, 0),
 (16, 16, 'product_cat', '', 0, 8),
-(17, 17, 'nav_menu', '', 0, 0),
-(18, 18, 'nav_menu', '', 0, 0),
-(19, 19, 'nav_menu', '', 0, 0),
+(17, 17, 'nav_menu', '', 0, 3),
+(18, 18, 'nav_menu', '', 0, 3),
+(19, 19, 'nav_menu', '', 0, 4),
 (20, 20, 'wp_theme', '', 0, 1) ;
 
 #
@@ -7737,8 +7855,8 @@ DROP TABLE IF EXISTS `wp_termmeta`;
 CREATE TABLE `wp_termmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`meta_id`),
   KEY `term_id` (`term_id`),
   KEY `meta_key` (`meta_key`(191))
@@ -7772,8 +7890,8 @@ DROP TABLE IF EXISTS `wp_terms`;
 
 CREATE TABLE `wp_terms` (
   `term_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `slug` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `slug` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `term_group` bigint(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`term_id`),
   KEY `slug` (`slug`(191)),
@@ -7826,12 +7944,12 @@ DROP TABLE IF EXISTS `wp_usermeta`;
 CREATE TABLE `wp_usermeta` (
   `umeta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -7853,12 +7971,12 @@ INSERT INTO `wp_usermeta` ( `umeta_id`, `user_id`, `meta_key`, `meta_value`) VAL
 (13, 1, 'wp_user_level', '10'),
 (14, 1, 'dismissed_wp_pointers', ''),
 (15, 1, 'show_welcome_panel', '0'),
-(16, 1, 'session_tokens', 'a:2:{s:64:"13b64319f6197924c3f8322c6b5591d0921aa5f6db5011a82fd7060290251a10";a:4:{s:10:"expiration";i:1660486177;s:2:"ip";s:9:"127.0.0.1";s:2:"ua";s:111:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";s:5:"login";i:1660313377;}s:64:"3e031cda7912431c4c5074cf2d5719c5aa8ec3993cfac3ae5bffcc55e932a667";a:4:{s:10:"expiration";i:1661591361;s:2:"ip";s:9:"127.0.0.1";s:2:"ua";s:111:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";s:5:"login";i:1660381761;}}'),
+(16, 1, 'session_tokens', 'a:3:{s:64:"13b64319f6197924c3f8322c6b5591d0921aa5f6db5011a82fd7060290251a10";a:4:{s:10:"expiration";i:1660486177;s:2:"ip";s:9:"127.0.0.1";s:2:"ua";s:111:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";s:5:"login";i:1660313377;}s:64:"3e031cda7912431c4c5074cf2d5719c5aa8ec3993cfac3ae5bffcc55e932a667";a:4:{s:10:"expiration";i:1661591361;s:2:"ip";s:9:"127.0.0.1";s:2:"ua";s:111:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";s:5:"login";i:1660381761;}s:64:"1970140ba1d8a51018b40aa32e255efd08bfbc98b7bbff9df57ef881c90f4251";a:4:{s:10:"expiration";i:1660568048;s:2:"ip";s:9:"127.0.0.1";s:2:"ua";s:111:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36";s:5:"login";i:1660395248;}}'),
 (17, 1, 'wp_dashboard_quick_press_last_post_id', '4'),
 (18, 1, '_woocommerce_tracks_anon_id', 'woo:xkJVIktJp+jZ+uY/DmGQSjuk'),
 (19, 1, 'wc_last_active', '1660348800'),
-(20, 1, 'wp_user-settings', 'libraryContent=browse&mfold=f'),
-(21, 1, 'wp_user-settings-time', '1660391450'),
+(20, 1, 'wp_user-settings', 'libraryContent=browse&mfold=o'),
+(21, 1, 'wp_user-settings-time', '1660395289'),
 (22, 1, 'dismissed_no_secure_connection_notice', '1'),
 (23, 1, 'meta-box-order_dashboard', 'a:4:{s:6:"normal";s:52:"wc_admin_dashboard_setup,wpforms_reports_widget_lite";s:4:"side";s:40:"dashboard_quick_press,dashboard_activity";s:7:"column3";s:39:"dashboard_primary,dashboard_site_health";s:7:"column4";s:19:"dashboard_right_now";}'),
 (24, 1, 'closedpostboxes_dashboard', 'a:7:{i:0;s:24:"wc_admin_dashboard_setup";i:1;s:27:"wpforms_reports_widget_lite";i:2;s:21:"dashboard_quick_press";i:3;s:18:"dashboard_activity";i:4;s:17:"dashboard_primary";i:5;s:21:"dashboard_site_health";i:6;s:19:"dashboard_right_now";}'),
@@ -7866,7 +7984,10 @@ INSERT INTO `wp_usermeta` ( `umeta_id`, `user_id`, `meta_key`, `meta_value`) VAL
 (26, 1, '_woocommerce_persistent_cart_1', 'a:1:{s:4:"cart";a:1:{s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";a:11:{s:3:"key";s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";s:10:"product_id";i:97;s:12:"variation_id";i:0;s:9:"variation";a:0:{}s:8:"quantity";i:1;s:9:"data_hash";s:32:"b5c1d5ca8bae6d4896cf1807cdf763f0";s:13:"line_tax_data";a:2:{s:8:"subtotal";a:0:{}s:5:"total";a:0:{}}s:13:"line_subtotal";d:12;s:17:"line_subtotal_tax";i:0;s:10:"line_total";d:12;s:8:"line_tax";i:0;}}}'),
 (27, 1, 'meta-box-order_product', 'a:3:{s:4:"side";s:84:"submitdiv,postimagediv,woocommerce-product-images,product_catdiv,tagsdiv-product_tag";s:6:"normal";s:55:"woocommerce-product-data,postcustom,slugdiv,postexcerpt";s:8:"advanced";s:0:"";}'),
 (28, 1, 'last_update', '1660322457'),
-(29, 1, 'woocommerce_admin_task_list_tracked_started_tasks', '{"tax":1,"marketing":1,"appearance":1}') ;
+(29, 1, 'woocommerce_admin_task_list_tracked_started_tasks', '{"tax":1,"marketing":1,"appearance":1}'),
+(32, 1, 'nav_menu_recently_edited', '18'),
+(33, 1, 'managenav-menuscolumnshidden', 'a:5:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";i:4;s:15:"title-attribute";}'),
+(34, 1, 'metaboxhidden_nav-menus', 'a:5:{i:0;s:21:"add-post-type-product";i:1;s:12:"add-post_tag";i:2;s:15:"add-post_format";i:3;s:15:"add-product_cat";i:4;s:15:"add-product_tag";}') ;
 
 #
 # Fin du contenu des données de la table `wp_usermeta`
@@ -7887,15 +8008,15 @@ DROP TABLE IF EXISTS `wp_users`;
 
 CREATE TABLE `wp_users` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_login` varchar(60) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `user_pass` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `user_nicename` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `user_email` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `user_url` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_login` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_nicename` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `user_activation_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `display_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`),
@@ -7929,13 +8050,13 @@ DROP TABLE IF EXISTS `wp_wc_admin_note_actions`;
 CREATE TABLE `wp_wc_admin_note_actions` (
   `action_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `note_id` bigint(20) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `label` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `query` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `actioned_text` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `nonce_action` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `nonce_name` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `query` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `actioned_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `nonce_action` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `nonce_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   PRIMARY KEY (`action_id`),
   KEY `note_id` (`note_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -8011,22 +8132,22 @@ DROP TABLE IF EXISTS `wp_wc_admin_notes`;
 
 CREATE TABLE `wp_wc_admin_notes` (
   `note_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `locale` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `title` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `content_data` longtext COLLATE utf8mb4_unicode_520_ci,
-  `status` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `source` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `locale` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `content_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `source` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_reminder` datetime DEFAULT NULL,
   `is_snoozable` tinyint(1) NOT NULL DEFAULT '0',
-  `layout` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `image` varchar(200) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `layout` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `image` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `is_read` tinyint(1) NOT NULL DEFAULT '0',
-  `icon` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'info',
+  `icon` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'info',
   PRIMARY KEY (`note_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
@@ -8127,16 +8248,16 @@ DROP TABLE IF EXISTS `wp_wc_customer_lookup`;
 CREATE TABLE `wp_wc_customer_lookup` (
   `customer_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned DEFAULT NULL,
-  `username` varchar(60) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `username` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `date_last_active` timestamp NULL DEFAULT NULL,
   `date_registered` timestamp NULL DEFAULT NULL,
-  `country` char(2) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `postcode` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `city` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `state` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `country` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `postcode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `city` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `state` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `user_id` (`user_id`),
   KEY `email` (`email`)
@@ -8169,7 +8290,7 @@ CREATE TABLE `wp_wc_download_log` (
   `timestamp` datetime NOT NULL,
   `permission_id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
-  `user_ip_address` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT '',
+  `user_ip_address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT '',
   PRIMARY KEY (`download_log_id`),
   KEY `permission_id` (`permission_id`),
   KEY `timestamp` (`timestamp`)
@@ -8283,7 +8404,7 @@ CREATE TABLE `wp_wc_order_stats` (
   `shipping_total` double NOT NULL DEFAULT '0',
   `net_total` double NOT NULL DEFAULT '0',
   `returning_customer` tinyint(1) DEFAULT NULL,
-  `status` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `customer_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `date_created` (`date_created`),
@@ -8350,7 +8471,7 @@ DROP TABLE IF EXISTS `wp_wc_product_attributes_lookup`;
 CREATE TABLE `wp_wc_product_attributes_lookup` (
   `product_id` bigint(20) NOT NULL,
   `product_or_parent_id` bigint(20) NOT NULL,
-  `taxonomy` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `taxonomy` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `term_id` bigint(20) NOT NULL,
   `is_variation_attribute` tinyint(1) NOT NULL,
   `in_stock` tinyint(1) NOT NULL,
@@ -8382,7 +8503,7 @@ DROP TABLE IF EXISTS `wp_wc_product_download_directories`;
 
 CREATE TABLE `wp_wc_product_download_directories` (
   `url_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `url` varchar(256) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `url` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`url_id`),
   KEY `url` (`url`(191))
@@ -8415,19 +8536,19 @@ DROP TABLE IF EXISTS `wp_wc_product_meta_lookup`;
 
 CREATE TABLE `wp_wc_product_meta_lookup` (
   `product_id` bigint(20) NOT NULL,
-  `sku` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT '',
+  `sku` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT '',
   `virtual` tinyint(1) DEFAULT '0',
   `downloadable` tinyint(1) DEFAULT '0',
   `min_price` decimal(19,4) DEFAULT NULL,
   `max_price` decimal(19,4) DEFAULT NULL,
   `onsale` tinyint(1) DEFAULT '0',
   `stock_quantity` double DEFAULT NULL,
-  `stock_status` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT 'instock',
+  `stock_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT 'instock',
   `rating_count` bigint(20) DEFAULT '0',
   `average_rating` decimal(3,2) DEFAULT '0.00',
   `total_sales` bigint(20) DEFAULT '0',
-  `tax_status` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT 'taxable',
-  `tax_class` varchar(100) COLLATE utf8mb4_unicode_520_ci DEFAULT '',
+  `tax_status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT 'taxable',
+  `tax_class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT '',
   PRIMARY KEY (`product_id`),
   KEY `virtual` (`virtual`),
   KEY `downloadable` (`downloadable`),
@@ -8461,7 +8582,7 @@ DROP TABLE IF EXISTS `wp_wc_rate_limits`;
 
 CREATE TABLE `wp_wc_rate_limits` (
   `rate_limit_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `rate_limit_key` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `rate_limit_key` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `rate_limit_expiry` bigint(20) unsigned NOT NULL,
   `rate_limit_remaining` smallint(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`rate_limit_id`),
@@ -8523,8 +8644,8 @@ DROP TABLE IF EXISTS `wp_wc_tax_rate_classes`;
 
 CREATE TABLE `wp_wc_tax_rate_classes` (
   `tax_rate_class_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `slug` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `slug` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`tax_rate_class_id`),
   UNIQUE KEY `slug` (`slug`(191))
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -8556,12 +8677,12 @@ DROP TABLE IF EXISTS `wp_wc_webhooks`;
 
 CREATE TABLE `wp_wc_webhooks` (
   `webhook_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `status` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `status` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `user_id` bigint(20) unsigned NOT NULL,
-  `delivery_url` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `secret` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `topic` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `delivery_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `topic` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `date_created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_created_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -8598,12 +8719,12 @@ DROP TABLE IF EXISTS `wp_woocommerce_api_keys`;
 CREATE TABLE `wp_woocommerce_api_keys` (
   `key_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL,
-  `description` varchar(200) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `permissions` varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `consumer_key` char(64) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `consumer_secret` char(43) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `nonces` longtext COLLATE utf8mb4_unicode_520_ci,
-  `truncated_key` char(7) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `permissions` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `consumer_key` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `consumer_secret` char(43) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `nonces` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
+  `truncated_key` char(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `last_access` datetime DEFAULT NULL,
   PRIMARY KEY (`key_id`),
   KEY `consumer_key` (`consumer_key`),
@@ -8634,10 +8755,10 @@ DROP TABLE IF EXISTS `wp_woocommerce_attribute_taxonomies`;
 
 CREATE TABLE `wp_woocommerce_attribute_taxonomies` (
   `attribute_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `attribute_name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `attribute_label` varchar(200) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `attribute_type` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `attribute_orderby` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `attribute_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `attribute_label` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `attribute_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `attribute_orderby` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `attribute_public` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`attribute_id`),
   KEY `attribute_name` (`attribute_name`(20))
@@ -8667,13 +8788,13 @@ DROP TABLE IF EXISTS `wp_woocommerce_downloadable_product_permissions`;
 
 CREATE TABLE `wp_woocommerce_downloadable_product_permissions` (
   `permission_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `download_id` varchar(36) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `download_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `product_id` bigint(20) unsigned NOT NULL,
   `order_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `order_key` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `user_email` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `order_key` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `user_email` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `user_id` bigint(20) unsigned DEFAULT NULL,
-  `downloads_remaining` varchar(9) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `downloads_remaining` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `access_granted` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `access_expires` datetime DEFAULT NULL,
   `download_count` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -8710,9 +8831,9 @@ CREATE TABLE `wp_woocommerce_log` (
   `log_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `timestamp` datetime NOT NULL,
   `level` smallint(4) NOT NULL,
-  `source` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `message` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `context` longtext COLLATE utf8mb4_unicode_520_ci,
+  `source` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `context` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`log_id`),
   KEY `level` (`level`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -8742,8 +8863,8 @@ DROP TABLE IF EXISTS `wp_woocommerce_order_itemmeta`;
 CREATE TABLE `wp_woocommerce_order_itemmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `order_item_id` bigint(20) unsigned NOT NULL,
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`meta_id`),
   KEY `order_item_id` (`order_item_id`),
   KEY `meta_key` (`meta_key`(32))
@@ -8773,8 +8894,8 @@ DROP TABLE IF EXISTS `wp_woocommerce_order_items`;
 
 CREATE TABLE `wp_woocommerce_order_items` (
   `order_item_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `order_item_name` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `order_item_type` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `order_item_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `order_item_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `order_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`order_item_id`),
   KEY `order_id` (`order_id`)
@@ -8805,8 +8926,8 @@ DROP TABLE IF EXISTS `wp_woocommerce_payment_tokenmeta`;
 CREATE TABLE `wp_woocommerce_payment_tokenmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `payment_token_id` bigint(20) unsigned NOT NULL,
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_520_ci,
+  `meta_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
+  `meta_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`meta_id`),
   KEY `payment_token_id` (`payment_token_id`),
   KEY `meta_key` (`meta_key`(32))
@@ -8836,10 +8957,10 @@ DROP TABLE IF EXISTS `wp_woocommerce_payment_tokens`;
 
 CREATE TABLE `wp_woocommerce_payment_tokens` (
   `token_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `gateway_id` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `token` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `gateway_id` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `token` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `type` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `is_default` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`token_id`),
   KEY `user_id` (`user_id`)
@@ -8869,12 +8990,12 @@ DROP TABLE IF EXISTS `wp_woocommerce_sessions`;
 
 CREATE TABLE `wp_woocommerce_sessions` (
   `session_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `session_key` char(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `session_value` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `session_key` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `session_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `session_expiry` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`session_id`),
   UNIQUE KEY `session_key` (`session_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -8883,7 +9004,8 @@ CREATE TABLE `wp_woocommerce_sessions` (
 INSERT INTO `wp_woocommerce_sessions` ( `session_id`, `session_key`, `session_value`, `session_expiry`) VALUES
 (14, 't_71ca535c209cab6d9b03b27f4bd20c', 'a:7:{s:4:"cart";s:6:"a:0:{}";s:11:"cart_totals";s:367:"a:15:{s:8:"subtotal";i:0;s:12:"subtotal_tax";i:0;s:14:"shipping_total";i:0;s:12:"shipping_tax";i:0;s:14:"shipping_taxes";a:0:{}s:14:"discount_total";i:0;s:12:"discount_tax";i:0;s:19:"cart_contents_total";i:0;s:17:"cart_contents_tax";i:0;s:19:"cart_contents_taxes";a:0:{}s:9:"fee_total";i:0;s:7:"fee_tax";i:0;s:9:"fee_taxes";a:0:{}s:5:"total";i:0;s:9:"total_tax";i:0;}";s:15:"applied_coupons";s:6:"a:0:{}";s:22:"coupon_discount_totals";s:6:"a:0:{}";s:26:"coupon_discount_tax_totals";s:6:"a:0:{}";s:21:"removed_cart_contents";s:6:"a:0:{}";s:8:"customer";s:716:"a:27:{s:2:"id";s:1:"0";s:13:"date_modified";s:0:"";s:8:"postcode";s:0:"";s:4:"city";s:0:"";s:9:"address_1";s:0:"";s:7:"address";s:0:"";s:9:"address_2";s:0:"";s:5:"state";s:0:"";s:7:"country";s:2:"MA";s:17:"shipping_postcode";s:0:"";s:13:"shipping_city";s:0:"";s:18:"shipping_address_1";s:0:"";s:16:"shipping_address";s:0:"";s:18:"shipping_address_2";s:0:"";s:14:"shipping_state";s:0:"";s:16:"shipping_country";s:2:"MA";s:13:"is_vat_exempt";s:0:"";s:19:"calculated_shipping";s:0:"";s:10:"first_name";s:0:"";s:9:"last_name";s:0:"";s:7:"company";s:0:"";s:5:"phone";s:0:"";s:5:"email";s:0:"";s:19:"shipping_first_name";s:0:"";s:18:"shipping_last_name";s:0:"";s:16:"shipping_company";s:0:"";s:14:"shipping_phone";s:0:"";}";}', 1660554535),
 (15, 't_79711309898df3e2adb40bb9dbd6b0', 'a:7:{s:4:"cart";s:6:"a:0:{}";s:11:"cart_totals";s:367:"a:15:{s:8:"subtotal";i:0;s:12:"subtotal_tax";i:0;s:14:"shipping_total";i:0;s:12:"shipping_tax";i:0;s:14:"shipping_taxes";a:0:{}s:14:"discount_total";i:0;s:12:"discount_tax";i:0;s:19:"cart_contents_total";i:0;s:17:"cart_contents_tax";i:0;s:19:"cart_contents_taxes";a:0:{}s:9:"fee_total";i:0;s:7:"fee_tax";i:0;s:9:"fee_taxes";a:0:{}s:5:"total";i:0;s:9:"total_tax";i:0;}";s:15:"applied_coupons";s:6:"a:0:{}";s:22:"coupon_discount_totals";s:6:"a:0:{}";s:26:"coupon_discount_tax_totals";s:6:"a:0:{}";s:21:"removed_cart_contents";s:6:"a:0:{}";s:8:"customer";s:716:"a:27:{s:2:"id";s:1:"0";s:13:"date_modified";s:0:"";s:8:"postcode";s:0:"";s:4:"city";s:0:"";s:9:"address_1";s:0:"";s:7:"address";s:0:"";s:9:"address_2";s:0:"";s:5:"state";s:0:"";s:7:"country";s:2:"MA";s:17:"shipping_postcode";s:0:"";s:13:"shipping_city";s:0:"";s:18:"shipping_address_1";s:0:"";s:16:"shipping_address";s:0:"";s:18:"shipping_address_2";s:0:"";s:14:"shipping_state";s:0:"";s:16:"shipping_country";s:2:"MA";s:13:"is_vat_exempt";s:0:"";s:19:"calculated_shipping";s:0:"";s:10:"first_name";s:0:"";s:9:"last_name";s:0:"";s:7:"company";s:0:"";s:5:"phone";s:0:"";s:5:"email";s:0:"";s:19:"shipping_first_name";s:0:"";s:18:"shipping_last_name";s:0:"";s:16:"shipping_company";s:0:"";s:14:"shipping_phone";s:0:"";}";}', 1660554535),
-(16, '1', 'a:12:{s:4:"cart";s:410:"a:1:{s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";a:11:{s:3:"key";s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";s:10:"product_id";i:97;s:12:"variation_id";i:0;s:9:"variation";a:0:{}s:8:"quantity";i:1;s:9:"data_hash";s:32:"b5c1d5ca8bae6d4896cf1807cdf763f0";s:13:"line_tax_data";a:2:{s:8:"subtotal";a:0:{}s:5:"total";a:0:{}}s:13:"line_subtotal";d:12;s:17:"line_subtotal_tax";i:0;s:10:"line_total";d:12;s:8:"line_tax";i:0;}}";s:11:"cart_totals";s:393:"a:15:{s:8:"subtotal";s:2:"12";s:12:"subtotal_tax";i:0;s:14:"shipping_total";s:1:"0";s:12:"shipping_tax";i:0;s:14:"shipping_taxes";a:0:{}s:14:"discount_total";i:0;s:12:"discount_tax";i:0;s:19:"cart_contents_total";s:2:"12";s:17:"cart_contents_tax";i:0;s:19:"cart_contents_taxes";a:0:{}s:9:"fee_total";s:1:"0";s:7:"fee_tax";i:0;s:9:"fee_taxes";a:0:{}s:5:"total";s:5:"12.00";s:9:"total_tax";d:0;}";s:15:"applied_coupons";s:6:"a:0:{}";s:22:"coupon_discount_totals";s:6:"a:0:{}";s:26:"coupon_discount_tax_totals";s:6:"a:0:{}";s:21:"removed_cart_contents";s:6:"a:0:{}";s:22:"shipping_for_package_0";s:423:"a:2:{s:12:"package_hash";s:40:"wc_ship_fad59a161d1f7abde3d5d49b656f1f69";s:5:"rates";a:1:{s:15:"free_shipping:1";O:16:"WC_Shipping_Rate":2:{s:7:"\0*\0data";a:6:{s:2:"id";s:15:"free_shipping:1";s:9:"method_id";s:13:"free_shipping";s:11:"instance_id";i:1;s:5:"label";s:13:"Free shipping";s:4:"cost";s:4:"0.00";s:5:"taxes";a:0:{}}s:12:"\0*\0meta_data";a:1:{s:5:"Items";s:49:"Eternal Sunset Collection Lip and Cheek &times; 1";}}}}";s:25:"previous_shipping_methods";s:43:"a:1:{i:0;a:1:{i:0;s:15:"free_shipping:1";}}";s:23:"chosen_shipping_methods";s:33:"a:1:{i:0;s:15:"free_shipping:1";}";s:22:"shipping_method_counts";s:14:"a:1:{i:0;i:1;}";s:8:"customer";s:767:"a:27:{s:2:"id";s:1:"1";s:13:"date_modified";s:25:"2022-08-12T16:40:57+00:00";s:8:"postcode";s:0:"";s:4:"city";s:0:"";s:9:"address_1";s:0:"";s:7:"address";s:0:"";s:9:"address_2";s:0:"";s:5:"state";s:0:"";s:7:"country";s:2:"MA";s:17:"shipping_postcode";s:0:"";s:13:"shipping_city";s:0:"";s:18:"shipping_address_1";s:0:"";s:16:"shipping_address";s:0:"";s:18:"shipping_address_2";s:0:"";s:14:"shipping_state";s:0:"";s:16:"shipping_country";s:2:"MA";s:13:"is_vat_exempt";s:0:"";s:19:"calculated_shipping";s:0:"";s:10:"first_name";s:0:"";s:9:"last_name";s:0:"";s:7:"company";s:0:"";s:5:"phone";s:0:"";s:5:"email";s:24:"dev-email@flywheel.local";s:19:"shipping_first_name";s:0:"";s:18:"shipping_last_name";s:0:"";s:16:"shipping_company";s:0:"";s:14:"shipping_phone";s:0:"";}";s:21:"chosen_payment_method";s:3:"cod";}', 1660554566) ;
+(19, 't_fa062475a06e6850ff46c98d4e1164', 'a:7:{s:4:"cart";s:6:"a:0:{}";s:11:"cart_totals";s:367:"a:15:{s:8:"subtotal";i:0;s:12:"subtotal_tax";i:0;s:14:"shipping_total";i:0;s:12:"shipping_tax";i:0;s:14:"shipping_taxes";a:0:{}s:14:"discount_total";i:0;s:12:"discount_tax";i:0;s:19:"cart_contents_total";i:0;s:17:"cart_contents_tax";i:0;s:19:"cart_contents_taxes";a:0:{}s:9:"fee_total";i:0;s:7:"fee_tax";i:0;s:9:"fee_taxes";a:0:{}s:5:"total";i:0;s:9:"total_tax";i:0;}";s:15:"applied_coupons";s:6:"a:0:{}";s:22:"coupon_discount_totals";s:6:"a:0:{}";s:26:"coupon_discount_tax_totals";s:6:"a:0:{}";s:21:"removed_cart_contents";s:6:"a:0:{}";s:8:"customer";s:716:"a:27:{s:2:"id";s:1:"0";s:13:"date_modified";s:0:"";s:8:"postcode";s:0:"";s:4:"city";s:0:"";s:9:"address_1";s:0:"";s:7:"address";s:0:"";s:9:"address_2";s:0:"";s:5:"state";s:0:"";s:7:"country";s:2:"MA";s:17:"shipping_postcode";s:0:"";s:13:"shipping_city";s:0:"";s:18:"shipping_address_1";s:0:"";s:16:"shipping_address";s:0:"";s:18:"shipping_address_2";s:0:"";s:14:"shipping_state";s:0:"";s:16:"shipping_country";s:2:"MA";s:13:"is_vat_exempt";s:0:"";s:19:"calculated_shipping";s:0:"";s:10:"first_name";s:0:"";s:9:"last_name";s:0:"";s:7:"company";s:0:"";s:5:"phone";s:0:"";s:5:"email";s:0:"";s:19:"shipping_first_name";s:0:"";s:18:"shipping_last_name";s:0:"";s:16:"shipping_company";s:0:"";s:14:"shipping_phone";s:0:"";}";}', 1660565121),
+(27, '1', 'a:13:{s:4:"cart";s:410:"a:1:{s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";a:11:{s:3:"key";s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";s:10:"product_id";i:97;s:12:"variation_id";i:0;s:9:"variation";a:0:{}s:8:"quantity";i:1;s:9:"data_hash";s:32:"b5c1d5ca8bae6d4896cf1807cdf763f0";s:13:"line_tax_data";a:2:{s:8:"subtotal";a:0:{}s:5:"total";a:0:{}}s:13:"line_subtotal";d:12;s:17:"line_subtotal_tax";i:0;s:10:"line_total";d:12;s:8:"line_tax";i:0;}}";s:11:"cart_totals";s:393:"a:15:{s:8:"subtotal";s:2:"12";s:12:"subtotal_tax";i:0;s:14:"shipping_total";s:1:"0";s:12:"shipping_tax";i:0;s:14:"shipping_taxes";a:0:{}s:14:"discount_total";i:0;s:12:"discount_tax";i:0;s:19:"cart_contents_total";s:2:"12";s:17:"cart_contents_tax";i:0;s:19:"cart_contents_taxes";a:0:{}s:9:"fee_total";s:1:"0";s:7:"fee_tax";i:0;s:9:"fee_taxes";a:0:{}s:5:"total";s:5:"12.00";s:9:"total_tax";d:0;}";s:15:"applied_coupons";s:6:"a:0:{}";s:22:"coupon_discount_totals";s:6:"a:0:{}";s:26:"coupon_discount_tax_totals";s:6:"a:0:{}";s:21:"removed_cart_contents";s:410:"a:1:{s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";a:11:{s:3:"key";s:32:"e2ef524fbf3d9fe611d5a8e90fefdc9c";s:10:"product_id";i:97;s:12:"variation_id";i:0;s:9:"variation";a:0:{}s:8:"quantity";i:4;s:9:"data_hash";s:32:"b5c1d5ca8bae6d4896cf1807cdf763f0";s:13:"line_tax_data";a:2:{s:8:"subtotal";a:0:{}s:5:"total";a:0:{}}s:13:"line_subtotal";d:48;s:17:"line_subtotal_tax";i:0;s:10:"line_total";d:48;s:8:"line_tax";i:0;}}";s:22:"shipping_for_package_0";s:712:"a:2:{s:12:"package_hash";s:40:"wc_ship_17a38df8a352c94296182952c5d558e2";s:5:"rates";a:1:{s:15:"free_shipping:1";O:16:"WC_Shipping_Rate":4:{s:7:"\0*\0data";a:6:{s:2:"id";s:15:"free_shipping:1";s:9:"method_id";s:13:"free_shipping";s:11:"instance_id";i:1;s:5:"label";s:18:"Livraison gratuite";s:4:"cost";s:4:"0.00";s:5:"taxes";a:0:{}}s:12:"\0*\0meta_data";a:1:{s:8:"Articles";s:49:"Eternal Sunset Collection Lip and Cheek &times; 1";}s:4:"data";a:6:{s:2:"id";s:15:"free_shipping:1";s:9:"method_id";s:13:"free_shipping";s:11:"instance_id";i:1;s:5:"label";s:18:"Livraison gratuite";s:4:"cost";s:4:"0.00";s:5:"taxes";a:0:{}}s:9:"meta_data";a:1:{s:8:"Articles";s:49:"Eternal Sunset Collection Lip and Cheek &times; 1";}}}}";s:25:"previous_shipping_methods";s:43:"a:1:{i:0;a:1:{i:0;s:15:"free_shipping:1";}}";s:23:"chosen_shipping_methods";s:33:"a:1:{i:0;s:15:"free_shipping:1";}";s:22:"shipping_method_counts";s:14:"a:1:{i:0;i:1;}";s:8:"customer";s:767:"a:27:{s:2:"id";s:1:"1";s:13:"date_modified";s:25:"2022-08-12T16:40:57+00:00";s:8:"postcode";s:0:"";s:4:"city";s:0:"";s:9:"address_1";s:0:"";s:7:"address";s:0:"";s:9:"address_2";s:0:"";s:5:"state";s:0:"";s:7:"country";s:2:"MA";s:17:"shipping_postcode";s:0:"";s:13:"shipping_city";s:0:"";s:18:"shipping_address_1";s:0:"";s:16:"shipping_address";s:0:"";s:18:"shipping_address_2";s:0:"";s:14:"shipping_state";s:0:"";s:16:"shipping_country";s:2:"MA";s:13:"is_vat_exempt";s:0:"";s:19:"calculated_shipping";s:0:"";s:10:"first_name";s:0:"";s:9:"last_name";s:0:"";s:7:"company";s:0:"";s:5:"phone";s:0:"";s:5:"email";s:24:"dev-email@flywheel.local";s:19:"shipping_first_name";s:0:"";s:18:"shipping_last_name";s:0:"";s:16:"shipping_company";s:0:"";s:14:"shipping_phone";s:0:"";}";s:21:"chosen_payment_method";s:3:"cod";s:10:"wc_notices";N;}', 1660565156) ;
 
 #
 # Fin du contenu des données de la table `wp_woocommerce_sessions`
@@ -8905,8 +9027,8 @@ DROP TABLE IF EXISTS `wp_woocommerce_shipping_zone_locations`;
 CREATE TABLE `wp_woocommerce_shipping_zone_locations` (
   `location_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `zone_id` bigint(20) unsigned NOT NULL,
-  `location_code` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `location_type` varchar(40) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `location_code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `location_type` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`location_id`),
   KEY `location_id` (`location_id`),
   KEY `location_type_code` (`location_type`(10),`location_code`(20))
@@ -8939,7 +9061,7 @@ DROP TABLE IF EXISTS `wp_woocommerce_shipping_zone_methods`;
 CREATE TABLE `wp_woocommerce_shipping_zone_methods` (
   `zone_id` bigint(20) unsigned NOT NULL,
   `instance_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `method_id` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `method_id` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `method_order` bigint(20) unsigned NOT NULL,
   `is_enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`instance_id`)
@@ -8971,7 +9093,7 @@ DROP TABLE IF EXISTS `wp_woocommerce_shipping_zones`;
 
 CREATE TABLE `wp_woocommerce_shipping_zones` (
   `zone_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `zone_name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `zone_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `zone_order` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`zone_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
@@ -9002,9 +9124,9 @@ DROP TABLE IF EXISTS `wp_woocommerce_tax_rate_locations`;
 
 CREATE TABLE `wp_woocommerce_tax_rate_locations` (
   `location_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `location_code` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `location_code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `tax_rate_id` bigint(20) unsigned NOT NULL,
-  `location_type` varchar(40) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `location_type` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`location_id`),
   KEY `tax_rate_id` (`tax_rate_id`),
   KEY `location_type_code` (`location_type`(10),`location_code`(20))
@@ -9034,15 +9156,15 @@ DROP TABLE IF EXISTS `wp_woocommerce_tax_rates`;
 
 CREATE TABLE `wp_woocommerce_tax_rates` (
   `tax_rate_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tax_rate_country` varchar(2) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `tax_rate_state` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `tax_rate` varchar(8) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
-  `tax_rate_name` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `tax_rate_country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `tax_rate_state` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `tax_rate` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `tax_rate_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `tax_rate_priority` bigint(20) unsigned NOT NULL,
   `tax_rate_compound` int(1) NOT NULL DEFAULT '0',
   `tax_rate_shipping` int(1) NOT NULL DEFAULT '1',
   `tax_rate_order` bigint(20) unsigned NOT NULL,
-  `tax_rate_class` varchar(200) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `tax_rate_class` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`tax_rate_id`),
   KEY `tax_rate_country` (`tax_rate_country`),
   KEY `tax_rate_state` (`tax_rate_state`(2)),
@@ -9074,8 +9196,8 @@ DROP TABLE IF EXISTS `wp_wpforms_tasks_meta`;
 
 CREATE TABLE `wp_wpforms_tasks_meta` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `data` longtext COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `action` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
